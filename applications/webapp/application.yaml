@@ -6,9 +6,9 @@ spec:
   destination:
     name: 'salaserver'
     namespace: 'webapp-dev'
-    server: 'https://kubernetes.default.svc'
+    server: ''
   source:
-    path: 'applications/webapp/application.yaml'
+    path: 'applications/webapp/manifests'
     repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
     targetRevision: HEAD
   sources: []
