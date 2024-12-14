@@ -13,4 +13,10 @@ spec:
     targetRevision: HEAD
   sources: []
   project: 'salaserver'
-
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webapp-dev
+  labels:
+    name: webapp-dev
