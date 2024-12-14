@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: 'webapp-dev'
+  name: 'argocd'
 spec:
   destination:
-    name: ''
-    namespace: ''
+    name: 'https://kubernetes.default.svc'
+    namespace: 'webapp-dev'
     server: ''
   source:
-    path: ''
-    repoURL: ''
+    path: 'applications/webapp/application.yaml'
+    repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
     targetRevision: HEAD
   sources: []
   project: 'salaserver'
