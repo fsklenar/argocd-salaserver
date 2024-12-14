@@ -4,9 +4,9 @@ metadata:
   name: 'webapp-dev'
 spec:
   destination:
-    name: 'https://kubernetes.default.svc'
+    name: 'salaserver'
     namespace: 'webapp-dev'
-    server: ''
+    server: 'https://kubernetes.default.svc'
   source:
     path: 'applications/webapp/application.yaml'
     repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
