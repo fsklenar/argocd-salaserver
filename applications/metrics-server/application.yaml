@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'metrics-server'
+spec:
+  destination:
+    name: 'salaserver'
+    namespace: 'kube-system'
+    server: ''
+  source:
+    path: 'applications/metrics-server/manifests'
+    repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+    targetRevision: HEAD
+  sources: []
+  project: 'salaserver'
+
