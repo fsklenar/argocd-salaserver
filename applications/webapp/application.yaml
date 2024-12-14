@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: 'argocd'
+  name: 'webapp-dev'
 spec:
   destination:
     name: 'https://kubernetes.default.svc'
