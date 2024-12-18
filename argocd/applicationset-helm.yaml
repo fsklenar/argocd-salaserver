@@ -24,7 +24,7 @@ spec:
         path: '{{.path.path}}'
         helm:
           valueFiles:
-          - chart/values.yaml
+          - values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.path.basename}}'
@@ -32,5 +32,5 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - '--helm-values'
-          - 'chart/values.yaml'
+          - 'values.yaml'
 
