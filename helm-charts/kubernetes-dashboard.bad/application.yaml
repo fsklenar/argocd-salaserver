@@ -12,10 +12,10 @@ spec:
       helm:
         valueFiles:
           - '$values/values.yaml'
-    - repoURL: 'https://github.com/fsklenar/argocd-salaserver/tree/main/helm-charts/kubernetes-dashboard/'
+    - repoURL: 'https://github.com/fsklenar/argocd-salaserver/tree/main/helm-charts/'
       targetRevision: HEAD
       ref: values
-      #path: ''
+      path: 'kubernetes-dashboard'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kubernetes-dashboard
