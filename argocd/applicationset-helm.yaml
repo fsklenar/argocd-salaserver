@@ -10,7 +10,7 @@ spec:
   generators:
   - git:
       directories:
-      - path: 'helm-charts/**'
+      - path: 'helm-charts/**/config.json'
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
   template:
@@ -19,8 +19,9 @@ spec:
     spec:
       project: "salaserver"
       sources:
-      - repoURL: https://github.com/fsklenar/argocd-salaserver.git
-        targetRevision: HEAD
+      - repoURL: '{{.app.repo}}'
+        chart: '{{.app.chart}}'
+        targetRevision: '{{.app.revision}}'
         path: '{{.path.path}}'
         helm:
           valueFiles:
