@@ -10,8 +10,13 @@ spec:
       chart: 'kubernetes-dashboard'
       targetRevision: 7.10.0
       helm:
-        valueFiles:
-          - https://github.com/fsklenar/argocd-salaserver/blob/main/helm-charts/kubernetes-dashboard/values.yaml
+        values: |
+          web:
+            containers:
+              resources:
+                requests:
+                  cpu: 150m
+                  memory: 250Mi
         #ignoreMissingValueFiles: true
     # - repoURL: 'https://github.com/fsklenar/argocd-salaserver'
     #   targetRevision: HEAD
