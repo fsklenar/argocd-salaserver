@@ -1,0 +1,7 @@
+{
+  "app": {
+    "repo": "https://kubernetes.github.io/dashboard/",
+    "revision": "7.10.0",
+    "path": "applicationset/examples/git-generator-files-discovery/apps/guestbook"
+  }
+}

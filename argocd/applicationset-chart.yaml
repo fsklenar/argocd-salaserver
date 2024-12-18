@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applicationset-chart
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      directories:
+      - path: 'helm-charts/**'
+      repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+      revision: HEAD
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+    spec:
+      project: "salaserver"
+      source:
+        path: '{{.path.path}}'
+        repoURL: '{{app.repo}}'
+        targetRevision: '{{app.revision}}'
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+          - '--helm-values'
+          - 'chart/values.yaml'
+    chart: 'kubernetes-dashboard'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
