@@ -1,6 +1,6 @@
 ##
 ArgoCD for k8s-salaserver
 
-##Examples
+## Examples
 https://github.com/argoproj/argocd-example-apps
 
