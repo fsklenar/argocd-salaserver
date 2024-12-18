@@ -1,3 +1,5 @@
+##Generate password for mysql
+# kubectl create secret generic mysql-pass --from-literal=password=secretpass -n wordpress-dev
 apiVersion: v1
 kind: Service
 metadata:
