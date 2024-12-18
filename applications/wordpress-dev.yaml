@@ -1,15 +1,15 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: 'wordpress-dev'
-spec:
-  destination:
-    name: 'salaserver'
-    namespace: 'wordpress-dev'
-    server: ''
-  source:
-    path: 'applications/wordpress-dev/manifests'
-    repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
-    targetRevision: HEAD
-  sources: []
-  project: 'salaserver'
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: 'wordpress-dev'
+# spec:
+#   destination:
+#     name: 'salaserver'
+#     namespace: 'wordpress-dev'
+#     server: ''
+#   source:
+#     path: 'applications/wordpress-dev/manifests'
+#     repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+#     targetRevision: HEAD
+#   sources: []
+#   project: 'salaserver'
