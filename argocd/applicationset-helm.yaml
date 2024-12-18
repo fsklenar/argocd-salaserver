@@ -21,11 +21,15 @@ spec:
       - repoURL: https://github.com/fsklenar/argocd-salaserver.git
         targetRevision: HEAD
         path: '{{.path.path}}'
+        helm:
+          valueFiles:
+          - "values.yaml"
+      - repoURL: 'https://git.example.com/org/value-files.git'
+        targetRevision: dev
+        ref: values
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.path.basename}}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
-          - '--helm-values'
-          - 'chart/values.yaml'
