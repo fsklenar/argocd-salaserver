@@ -9,7 +9,7 @@ spec:
   generators:
   - git:
       directories:
-      - path: 'applications/*'
+      - path: 'applications/**'
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
   template:
