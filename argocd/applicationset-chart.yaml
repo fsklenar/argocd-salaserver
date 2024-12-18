@@ -27,7 +27,7 @@ spec:
         syncOptions:
           - '--helm-values'
           - 'chart/values.yaml'
-    chart: 'kubernetes-dashboard'
+    chart: '{{app.chart}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.path.basename}}'
