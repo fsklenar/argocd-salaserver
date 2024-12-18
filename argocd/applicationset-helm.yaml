@@ -1,3 +1,4 @@
+
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -21,6 +22,13 @@ spec:
       - repoURL: https://github.com/fsklenar/argocd-salaserver.git
         targetRevision: HEAD
         path: '{{.path.path}}'
+        chart: sealed-secrets
+        repoURL: https://bitnami-labs.github.io/sealed-secrets
+        targetRevision: 1.16.1
+        helm:
+          releaseName: sealed-secrets
+          valueFiles:
+            -chart/values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.path.basename}}'
@@ -29,3 +37,4 @@ spec:
           - CreateNamespace=true
           - '--helm-values'
           - 'chart/values.yaml'
+

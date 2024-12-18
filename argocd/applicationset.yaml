@@ -26,6 +26,6 @@ spec:
         namespace: '{{.path.basename}}'
       syncPolicy:
         syncOptions:
-          - CreateNamespace=true
-          - '--helm-values'
-          - 'chart/values.yaml'
+        - CreateNamespace=true
+
+
