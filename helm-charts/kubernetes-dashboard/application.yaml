@@ -20,4 +20,4 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kubernetes-dashboard
-
+#kubectl get secret kd-admin-user -n kubernetes-dashboard -o jsonpath="{.data.token}" | base64 -d
