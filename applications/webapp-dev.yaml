@@ -8,7 +8,7 @@ spec:
     namespace: 'webapp-dev'
     server: ''
   source:
-    path: 'applications/webapp/manifests'
+    path: 'applications/webapp-dev/manifests'
     repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
     targetRevision: HEAD
   sources: []
