@@ -1,6 +1,13 @@
 web:
-  containers:
-    resources:
-      requests:
-        cpu: 150m
-        memory: 250Mi
+  role: web
+  image:
+    repository: docker.io/kubernetesui/dashboard-web
+    tag: 1.1.0
+
+
+# web:
+#   containers:
+#     resources:
+#       requests:
+#         cpu: 150m
+#         memory: 250Mi
