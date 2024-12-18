@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: applications
+  name: applicationset
   namespace: argocd
 spec:
   goTemplate: true
@@ -9,9 +9,10 @@ spec:
   generators:
   - git:
       directories:
-      - path: 'applications/**/application.yaml'
+      - path: 'applications/*'
+        recursive: false
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
-      targetRevision: HEAD
+      revision: HEAD
   template:
     metadata:
       name: '{{.path.basename}}'
