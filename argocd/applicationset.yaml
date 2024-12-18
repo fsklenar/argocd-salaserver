@@ -21,6 +21,9 @@ spec:
         repoURL: https://github.com/fsklenar/argocd-salaserver.git
         targetRevision: HEAD
         path: '{{.path.path}}'
+        helm:
+          valueFiles:
+          - "values.yaml"
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.path.basename}}'
