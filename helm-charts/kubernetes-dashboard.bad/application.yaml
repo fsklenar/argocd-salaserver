@@ -12,28 +12,15 @@ spec:
       helm:
         valueFiles:
           - '$values/values.yaml'
-      # values: |
-      #   web:
-      #     image:
-      #       repository: docker.io/kubernetesui/dashboard-web
-      #       tag: 1.1.0
-      #     containers:
-      #       resources:
-      #         requests:
-      #           cpu: 160m
-      #           memory: 250Mi
   source:
     repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
     targetRevision: HEAD
     ref: values
     path: 'helm-charts/kubernetes-dashboard.bad/'
-
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kubernetes-dashboard
-  syncPolicy:
-    syncOptions:
-      - '--helm-values'
-      - 'values.yaml'
-
-
+  # syncPolicy:
+  #   syncOptions:
+  #     - '--helm-values'
+  #     - 'values.yaml'
