@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applications
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      directories:
+      - path: 'applications/**/application.yaml'
+      repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+      targetRevision: HEAD
+  template:
+    metadata:
+      name: '{{.path.basename}}'
+    spec:
+      project: "salaserver"
+      source:
+        repoURL: https://github.com/fsklenar/argocd-salaserver.git
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.path.basename}}'
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
