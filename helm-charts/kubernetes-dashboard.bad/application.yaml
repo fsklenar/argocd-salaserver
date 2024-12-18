@@ -7,16 +7,16 @@ spec:
   project: salaserver
   source:
     - repoURL: https://kubernetes.github.io/dashboard/
-      path: kubernetes-dashboard
+      chart: kubernetes-dashboard
       targetRevision: 7.10.0
       helm:
         valueFiles:
           - '$values/values.yaml'
   source:
-    repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+    repoURL: 'https://github.com/fsklenar/argocd-salaserver/tree/main/helm-charts/kubernetes-dashboard.bad'
     targetRevision: HEAD
     ref: values
-    path: 'helm-charts/kubernetes-dashboard.bad/'
+    path: '/'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kubernetes-dashboard
