@@ -9,7 +9,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
-      directories:
+      files:
       - path: 'helm-charts/**/config.json'
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
