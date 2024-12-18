@@ -25,9 +25,9 @@ spec:
         chart: '{{.app.chart}}'
         targetRevision: '{{.app.revision}}'
         path: '{{.path.path}}'
-        helm:
-          valueFiles:
-          - 'values.yaml'
+        # helm:
+        #   valueFiles:
+        #   - 'chart/values.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.path.basename}}'
