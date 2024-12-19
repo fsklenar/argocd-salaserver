@@ -1,5 +1,5 @@
 apiVersion: v2
-name: projectcalico/tigera-operator
+name: tigera-operator
 type: application
 version: 3.29.1
 
