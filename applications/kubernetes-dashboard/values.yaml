@@ -1,8 +1,5 @@
 kubernetes-dashboard:
   web:
-    image:
-      repository: docker.io/kubernetesui/dashboard-web
-      tag: 1.1.0
     containers:
       resources:
         requests:
