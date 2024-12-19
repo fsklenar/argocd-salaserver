@@ -1,3 +1,0 @@
-metrics-server:
-  apiService:
-    insecureSkipTLSVerify: true
