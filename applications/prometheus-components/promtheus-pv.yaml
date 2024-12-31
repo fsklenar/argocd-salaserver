@@ -48,7 +48,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   volumeMode: Filesystem
   claimRef:
-    name: prometheus-kps-grafana
+    name: monitoring-grafana
     namespace: monitoring
   nodeAffinity:
     required:
