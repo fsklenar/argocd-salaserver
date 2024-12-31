@@ -1,55 +1,8 @@
-apiVersion: monitoring.coreos.com/v1
-kind: Alertmanager
+apiVersion: v1
+data:
+  alertmanager.yaml: Z2xvYmFsOgogIHNtdHBfc21hcnRob3N0OiAnc210cC5nbWFpbC5jb206NTg3JwogIHNtdHBfZnJvbTogJ2hpbmV0LnZpcnR1YWxAZ21haWwuY29tJwogIHJlc29sdmVfdGltZW91dDogNW0Kcm91dGU6CiAgZ3JvdXBfYnk6IFsnYWxlcnRuYW1lJywnam9iJ10KICBncm91cF93YWl0OiAzMHMKICBncm91cF9pbnRlcnZhbDogNW0KICByZXBlYXRfaW50ZXJ2YWw6IDEyaAogIHJlY2VpdmVyOiAnc210cCcKICByb3V0ZXM6CnJlY2VpdmVyczoKLSBuYW1lOiAnc210cCcKICBlbWFpbF9jb25maWdzOgogIC0gdG86ICdmcmFudGlzZWsuc2tsZW5hckBnbWFpbC5jb20nCiAgICBhdXRoX3VzZXJuYW1lOiAnaGluZXQudmlydHVhbEBnbWFpbC5jb20nCiAgICBhdXRoX3Bhc3N3b3JkOiAnYXZudmZ3a2xveGtqcHBwdicKICAgIHJlcXVpcmVfdGxzOiB0cnVlCiAgICBzZW5kX3Jlc29sdmVkOiB0cnVlCnRlbXBsYXRlczoKLSAnL2V0Yy9hbGVydG1hbmFnZXIvY29uZmlnLyoudG1wbCcK
+kind: Secret
 metadata:
-  labels:
-    app: kube-prometheus-stack-alertmanager
-    app.kubernetes.io/instance: monitoring
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/part-of: kube-prometheus-stack
-    app.kubernetes.io/version: 66.2.1
-    chart: kube-prometheus-stack-66.2.1
-    heritage: Helm
-    release: monitoring
-  name: monitoring-kube-prometheus-alertmanager
+  name: secret-alertmanager-prometheus-kps-kube-promet-alertmanager
   namespace: monitoring
-spec:
-  affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - podAffinityTerm:
-            labelSelector:
-              matchExpressions:
-                - key: app.kubernetes.io/name
-                  operator: In
-                  values:
-                    - alertmanager
-                - key: alertmanager
-                  operator: In
-                  values:
-                    - monitoring-kube-prometheus-alertmanager
-            topologyKey: kubernetes.io/hostname
-          weight: 100
-  alertmanagerConfigNamespaceSelector: {}
-  alertmanagerConfigSelector: {}
-  automountServiceAccountToken: true
-  externalUrl: http://monitoring-kube-prometheus-alertmanager.monitoring:9093
-  image: quay.io/prometheus/alertmanager:v0.27.0
-  listenLocal: false
-  logFormat: logfmt
-  logLevel: info
-  paused: false
-  portName: http-web
-  replicas: 1
-  retention: 120h
-  routePrefix: /
-  secrets:
-    - alertmanager-prometheus-kps-kube-promet-alertmanager
-  securityContext:
-    fsGroup: 2000
-    runAsGroup: 2000
-    runAsNonRoot: true
-    runAsUser: 1000
-    seccompProfile:
-      type: RuntimeDefault
-  serviceAccountName: monitoring-kube-prometheus-alertmanager
-  version: v0.27.0
+type: Opaque
