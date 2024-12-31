@@ -1,5 +1,5 @@
 apiVersion: v2
-name: prometheus-community/kube-prometheus-stack
+name: kube-prometheus-stack
 
 type: application
 
