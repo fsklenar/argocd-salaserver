@@ -1,4 +1,0 @@
-dependencies:
-- name: prometheus-community/kube-prometheus-stack
-  version: 67.4.0
-  repository: https://prometheus-community.github.io/helm-charts
