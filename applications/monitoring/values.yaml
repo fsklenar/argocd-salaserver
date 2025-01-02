@@ -32,6 +32,13 @@ kube-prometheus-stack:
       finalizers:
         - kubernetes.io/pvc-protection
   alertmanager:
+    enabled: true
+    extraSecretMounts:
+      - name: secret-files
+        mountPath: /etc/secrets
+        subPath: ""
+        secretName: alertmanager-secrets
+        readOnly: true
     alertmanagerSpec:
       useExistingSecret: true
       logLevel: debug
