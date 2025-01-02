@@ -41,7 +41,7 @@ kube-prometheus-stack:
     #     readOnly: true
     alertmanagerSpec:
       useExistingSecret: true
-      logLevel: debug
+#      logLevel: debug
       secrets:
         - alertmanager-secrets
 
