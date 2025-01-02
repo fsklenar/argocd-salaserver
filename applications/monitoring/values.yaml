@@ -34,6 +34,7 @@ kube-prometheus-stack:
   alertmanager:
     alertmanagerSpec:
       useExistingSecret: true
+      logLevel: debug
       secrets:
         - secret-alertmanager-prometheus-kps-kube-promet-alertmanager
 
