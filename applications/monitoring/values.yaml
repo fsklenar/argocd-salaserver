@@ -35,5 +35,5 @@ kube-prometheus-stack:
     alertmanagerSpec:
       useExistingSecret: true
       secrets:
-        - alertmanager-prometheus-kps-kube-promet-alertmanager
+        - secret-alertmanager-prometheus-kps-kube-promet-alertmanager
 
