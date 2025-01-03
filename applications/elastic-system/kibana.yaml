@@ -8,3 +8,5 @@ spec:
   count: 1
   elasticsearchRef:
     name: eck01
+  externalIPs:
+  - 10.192.168.202
