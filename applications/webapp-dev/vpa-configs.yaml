@@ -1,7 +1,6 @@
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
-  annotations:
   labels:
     app.kubernetes.io/instance: webapp-dev
   name: webapp-vpa
