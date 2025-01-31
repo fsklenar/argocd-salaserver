@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: 'https://github.com/argoproj/argo-cd.git'
       path: 'manifests'
-      targetRevision: HEAD
+      targetRevision: v2.14.0-rc7
       directory:
         recurse: false
         include: 'install.yaml'
