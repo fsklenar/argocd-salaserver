@@ -1,0 +1,4 @@
+dependencies:
+- name: kyverno/kyverno
+  version: 3.3.4
+  repository: https://kyverno.github.io/kyverno/
