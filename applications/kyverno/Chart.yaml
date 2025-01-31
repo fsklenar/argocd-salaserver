@@ -4,7 +4,7 @@ type: application
 version: 3.3.4
 
 dependencies:
-- name: kyverno/kyverno
+- name: kyverno
   version: 3.3.4
   repository: https://kyverno.github.io/kyverno/
 
