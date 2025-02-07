@@ -8,12 +8,12 @@ spec:
     namespace: 'argocd'
     server: ''
   sources:
-    - repoURL: 'https://github.com/argoproj/argo-cd.git'
-      path: 'manifests'
-      targetRevision: HEAD
-      directory:
-        recurse: false
-        include: 'install.yaml'
+    # - repoURL: 'https://github.com/argoproj/argo-cd.git'
+    #   path: 'manifests'
+    #   targetRevision: HEAD
+    #   directory:
+    #     recurse: false
+    #     include: 'install.yaml'
     - repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       path: 'argocd/manifests'
       targetRevision: HEAD
