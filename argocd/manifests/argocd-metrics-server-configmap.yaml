@@ -98,6 +98,13 @@ data:
             {
               "groupKind": "deployment",
               "tabs": ["Golden Signal"],
+              "intervals": [
+                "1h",
+                "2h",
+                "6h",
+                "12h",
+                "24h"
+              ],
               "rows": [
                  {
                    "name": "httplatency",
