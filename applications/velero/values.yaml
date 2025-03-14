@@ -1,0 +1,11 @@
+configuration:
+  backupStorageLocation:
+  - name: aws-backup
+    provider: aws
+    bucket: k8s-sala-backup
+    accessMode: ReadWrite
+    credential:
+      name: k8s-sala-backup
+      key: k8s-sala-secret
+    config:
+      region: eu-central-1
