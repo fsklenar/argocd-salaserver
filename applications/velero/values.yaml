@@ -21,3 +21,4 @@ configuration:
     credential:
       name: k8s-sala-backup
       key: cloud
+
