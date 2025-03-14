@@ -24,7 +24,5 @@ velero:
     volumeSnapshotLocation:
     - name: default
       provider: aws
-      credential:
-        name: k8s-sala-backup
-        key: cloud
+
 
