@@ -5,7 +5,7 @@ velero:
     existingSecret: k8s-sala-backup
   configuration:
     backupStorageLocation:
-    - name: aws-backup
+    - name: default
       provider: aws
       bucket: k8s-sala-backup
       accessMode: ReadWrite
@@ -15,7 +15,7 @@ velero:
       config:
         region: eu-central-1
     volumeSnapshotLocation:
-    - name: aws-backup
+    - name: default
       provider: aws
       credential:
         name: k8s-sala-backup
