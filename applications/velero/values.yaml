@@ -22,7 +22,7 @@ velero:
       config:
         region: eu-central-1
     volumeSnapshotLocation:
-    - name: default
+    - name: aws-default
       provider: aws
       credential:
         name: k8s-sala-backup-volume
