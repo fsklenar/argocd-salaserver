@@ -25,7 +25,7 @@ velero:
     - name: aws-default
       provider: velero.io/aws
       credential:
-        name: k8s-sala-backup
+        name: k8s-sala-backup-volume
         key: cloud
       config:
         region: eu-central-1
