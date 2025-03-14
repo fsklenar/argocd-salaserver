@@ -22,7 +22,7 @@ velero:
       config:
         region: eu-central-1
     volumeSnapshotLocation:
-    - name: aws
+    - name: default
       provider: velero.io/aws
       config:
         region: eu-central-1
