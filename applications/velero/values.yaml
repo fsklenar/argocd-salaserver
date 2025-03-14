@@ -21,14 +21,14 @@ velero:
         key: cloud
       config:
         region: eu-central-1
-    volumeSnapshotLocation:
-    - name: aws-default
-      provider: aws
-      credential:
-        name: k8s-sala-backup-volume
-        key: cloud
-      config:
-        region: eu-central-1
-        profile: "default"
+    # volumeSnapshotLocation:
+    # - name: aws-default
+    #   provider: aws
+    #   credential:
+    #     name: k8s-sala-backup-volume
+    #     key: cloud
+    #   config:
+    #     region: eu-central-1
+    #     profile: "default"
 
 
