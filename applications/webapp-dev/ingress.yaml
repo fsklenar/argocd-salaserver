@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: webapp-dev.local
+  - host: webapp.linuxadmin.eu
     http:
       paths:
       - path: /
