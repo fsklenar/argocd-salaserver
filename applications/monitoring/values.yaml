@@ -2,7 +2,7 @@ kube-prometheus-stack:
   prometheus:
     ingress:
       enabled: true
-      host:
+      hosts:
       - prometheus-salaserver.linuxadmin.eu
         # http:
         #   paths:
