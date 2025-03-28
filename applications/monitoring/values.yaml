@@ -1,8 +1,14 @@
 kube-prometheus-stack:
   prometheus:
-    service:
-      externalIPs:
-        - 10.192.168.202
+    ingress:
+      enabled: true
+      - host: prometheus-salaserver.linuxadmin.eu
+        # http:
+        #   paths:
+        #   - path: /
+    # service:
+      # externalIPs:
+      #   - 10.192.168.202
     prometheusSpec:
       storageSpec:
         volumeClaimTemplate:
