@@ -31,7 +31,7 @@ spec:
             memory: "256Mi"
         volumeMounts:
           - name: data-volume
-            mountPath: /usr/share/nginx/www/speed
+            mountPath: /usr/share/nginx/html/speed
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
