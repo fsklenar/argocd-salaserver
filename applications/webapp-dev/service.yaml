@@ -6,8 +6,8 @@ metadata:
 spec:
   selector:
     app: webapp-dev
-  externalIPs:
-    - 10.192.168.202
+  # externalIPs:
+  #   - 10.192.168.202
   ports:
     - protocol: TCP
       port: 8090
