@@ -31,7 +31,7 @@ spec:
             memory: "256Mi"
         volumeMounts:
           - name: data-volume
-            mountPath: /mnt/data
+            mountPath: /usr/share/nginx/www/speed
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -39,9 +39,9 @@ metadata:
   name: webapp-pvc
   namespace: webapp-dev
 spec:
-  storageClassName: "local-path"
+  storageClassName: "local-storage"
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 3Gi
+      storage: 100Mi
