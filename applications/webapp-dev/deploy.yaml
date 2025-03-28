@@ -45,6 +45,7 @@ spec:
   resources:
     requests:
       storage: 100Mi
+  volumeName: webapp-pv
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -58,7 +59,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: /srv/virtiofs
+    path: /srv/virtiofs/webapp
   nodeAffinity:
     required:
       nodeSelectorTerms:
