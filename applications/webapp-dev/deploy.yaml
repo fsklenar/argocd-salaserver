@@ -29,6 +29,9 @@ spec:
             cpu: "700m"
           limits:
             memory: "256Mi"
+        volumeMounts:
+          - name: data-volume
+            mountPath: /mnt/data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
