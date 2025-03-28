@@ -1,30 +1,4 @@
 ---
-apiVersion: "autoscaling.k8s.io/v1"
-kind: VerticalPodAutoscaler
-metadata:
-  name: webapp-vpa
-  namespace: webapp-dev
-spec:
-  # recommenders field can be unset when using the default recommender.
-  # When using an alternative recommender, the alternative recommender's name
-  # can be specified as the following in a list.
-  # recommenders:
-  #   - name: 'alternative'
-  targetRef:
-    apiVersion: "apps/v1"
-    kind: Deployment
-    name: webapp-dev-deployment
-  resourcePolicy:
-    containerPolicies:
-      - containerName: '*'
-        minAllowed:
-          cpu: 10m
-          memory: 50Mi
-        maxAllowed:
-          cpu: 1
-          memory: 500Mi
-        controlledResources: ["cpu", "memory"]
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,6 +14,10 @@ spec:
       labels:
         app: webapp-dev
     spec:
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: webapp-pvc
       containers:
       - name: nginx
         image: nginx:1.27
@@ -51,3 +29,16 @@ spec:
             cpu: "700m"
           limits:
             memory: "256Mi"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: webapp-pvc
+  namespace: webapp-dev
+spec:
+  storageClassName: "local-path"
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
