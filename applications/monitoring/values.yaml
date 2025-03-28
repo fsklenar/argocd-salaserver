@@ -5,12 +5,6 @@ kube-prometheus-stack:
       ingressClassName: nginx
       hosts:
       - prometheus-salaserver.linuxadmin.eu
-        # http:
-        #   paths:
-        #   - path: /
-    # service:
-      # externalIPs:
-      #   - 10.192.168.202
     prometheusSpec:
       storageSpec:
         volumeClaimTemplate:
@@ -22,10 +16,15 @@ kube-prometheus-stack:
                 storage: 10Gi
   grafana:
     defaultDashboardsTimezone: Europe/Bratislava
-    service:
-      port: 3000
-      externalIPs:
-        - 10.192.168.202
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+      - grafana-salaserver.linuxadmin.eu
+    # service:
+    #   port: 3000
+    #   externalIPs:
+    #     - 10.192.168.202
     grafana.ini:
       server:
         domain: "k8smaster.local"
