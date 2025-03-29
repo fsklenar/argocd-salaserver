@@ -15,8 +15,10 @@ metadata:
   name: ingress-kibana
   namespace: elastic-system
 spec:
-  rules:
-  - http:
+│ ingressClassName: nginx
+│ rules:
+│ - host: webapp.linuxadmin.eu
+    http:
       paths:
       - path: /
         pathType: Prefix
