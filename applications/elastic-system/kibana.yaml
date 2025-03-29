@@ -15,9 +15,9 @@ metadata:
   name: ingress-kibana
   namespace: elastic-system
 spec:
-│ ingressClassName: nginx
-│ rules:
-│ - host: webapp.linuxadmin.eu
+  ingressClassName: nginx
+  rules:
+  - host: kibana-salaserver.linuxadmin.eu
     http:
       paths:
       - path: /
