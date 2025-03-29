@@ -18,7 +18,7 @@ spec:
   ingressClassName: nginx
   rules:
   - host: kibana-salaserver.linuxadmin.eu
-    https:
+    http:
       paths:
       - path: /
         pathType: Prefix
