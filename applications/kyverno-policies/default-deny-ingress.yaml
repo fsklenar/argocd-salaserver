@@ -29,24 +29,20 @@ spec:
       any:
       - resources:
           namespaces:
-          - demo-ns
           - argocd
           - calico-apiserver
           - calico-system
-          - demo-ns
           - elastic-system
           - ingress-nginx
           - kube-node-lease
           - kube-public
           - kube-system
-          - kubernetes-dashboard
           - kyverno
           - local-path-storage
           - monitoring
           - prometheus-components
           - tigera-operator
           - velero
-          - wordpress-dev
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
