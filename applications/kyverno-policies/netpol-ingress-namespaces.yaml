@@ -44,7 +44,7 @@ spec:
           podSelector: {}
           policyTypes:
           - Ingress
-  #        - Egress
+          - Egress
           ingress:
           - from:
             - namespaceSelector:
@@ -62,4 +62,4 @@ spec:
             - namespaceSelector:
                 matchLabels:
                   kubernetes.io/metadata.name: monitoring
- #         egress: []
+          egress: []
