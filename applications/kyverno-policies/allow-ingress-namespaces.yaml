@@ -27,20 +27,23 @@ spec:
       synchronize: true
       data:
         spec:
+          podSelector: {} # Select all pods in namespace1
+          policyTypes:
+          - Ingress
           ingress:
           - from:
             - namespaceSelector:
-                matchExpressions:
-                - key: kubernetes.io/metadata.name
-                  operator: In
-                  values:
-                  - ingress-nginx
-                  - argocd
-                  - kube-system
-                  - elastic-system
-                  - monitoring
-                  - tigera-operator
-                  - velero
-                  - kubernetes-dashboard
-          policyTypes:
-          - Ingress
+                matchLabels:
+                  kubernetes.io/metadata.name: kube-system
+            ports: {}
+          ingress:
+          - from:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: ingress-nginx
+            ports: {}
+          - from:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: kyverno
+            ports: {}
