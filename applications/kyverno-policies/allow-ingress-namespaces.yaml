@@ -19,6 +19,15 @@ spec:
       - resources:
           kinds:
           - Namespace
+    exclude:
+      any:
+      - resources:
+          namespaces:
+          - ingress-nginx
+          - kube-system
+          - calico-apiserver
+          - kyverno
+          - argocd
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
