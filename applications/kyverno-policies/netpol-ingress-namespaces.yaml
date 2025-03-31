@@ -1,7 +1,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: netpol-namespaces
+  name: netpol-ingress-namespaces
   annotations:
     policies.kyverno.io/title: Add Network Policy
     policies.kyverno.io/category: Multi-Tenancy, EKS Best Practices
@@ -22,6 +22,7 @@ spec:
           names:
           - demo-ns
           - webapp-dev
+          - wordpress-dev
     # exclude:
     #   any:
     #   - resources:
@@ -43,7 +44,7 @@ spec:
           podSelector: {}
           policyTypes:
           - Ingress
-          - Egress
+  #        - Egress
           ingress:
           - from:
             - namespaceSelector:
@@ -61,4 +62,4 @@ spec:
             - namespaceSelector:
                 matchLabels:
                   kubernetes.io/metadata.name: monitoring
-          egress: []
+ #         egress: []
