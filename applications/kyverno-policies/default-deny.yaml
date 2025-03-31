@@ -25,6 +25,30 @@ spec:
       - resources:
           kinds:
           - Namespace
+    exclude:
+      any:
+      - resources:
+          namespaces:
+          - demo-ns
+          - argocd
+          - calico-apiserver
+          - calico-system
+          - default
+          - demo-ns
+          - elastic-system
+          - ingress-nginx
+          - kube-node-lease
+          - kube-public
+          - kube-system
+          - kubernetes-dashboard
+          - kyverno
+          - local-path-storage
+          - monitoring
+          - prometheus-components
+          - tigera-operator
+          - velero
+          - webapp-dev
+          - wordpress-dev
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
