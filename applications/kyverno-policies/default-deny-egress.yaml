@@ -23,6 +23,8 @@ spec:
     match:
       any:
       - resources:
+          kinds:
+          - Namespace
           namespaces:
           - demo-ns
     generate:
