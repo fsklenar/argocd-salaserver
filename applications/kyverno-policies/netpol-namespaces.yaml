@@ -19,16 +19,19 @@ spec:
       - resources:
           kinds:
           - Namespace
-    exclude:
-      any:
-      - resources:
-          namespaces:
-          - ingress-nginx
-          - kube-system
-          - calico-apiserver
-          - calico-system
-          - kyverno
-          - argocd
+          names:
+          - demo-ns
+          - webapp-dev
+    # exclude:
+    #   any:
+    #   - resources:
+    #       namespaces:
+    #       - ingress-nginx
+    #       - kube-system
+    #       - calico-apiserver
+    #       - calico-system
+    #       - kyverno
+    #       - argocd
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
@@ -58,5 +61,5 @@ spec:
             - namespaceSelector:
                 matchLabels:
                   kubernetes.io/metadata.name: monitoring
-          # egress:
-          # - {}
+          egress:
+          - {}
