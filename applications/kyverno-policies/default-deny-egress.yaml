@@ -50,7 +50,7 @@ spec:
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
-      name: default-deny-exgress
+      name: default-deny-egress
       namespace: "{{request.object.metadata.name}}"
       synchronize: true
       data:
