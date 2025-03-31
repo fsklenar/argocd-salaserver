@@ -25,38 +25,26 @@ spec:
       - resources:
           kinds:
           - Namespace
-    exclude:
-      any:
-      - resources:
           namespaces:
-          - demo-ns
-          - argocd
-          - calico-apiserver
-          - calico-system
-          - demo-ns
-          - elastic-system
-          - ingress-nginx
-          - kube-node-lease
-          - kube-public
-          - kube-system
-          - kubernetes-dashboard
-          - kyverno
-          - local-path-storage
-          - monitoring
-          - prometheus-components
-          - tigera-operator
-          - velero
-          - wordpress-dev
+          - webapp-dev
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
-      name: default-deny-ingress
+      name: allow-ingress
       namespace: "{{request.object.metadata.name}}"
       synchronize: true
       data:
         spec:
-          # select all pods in the namespace
-          podSelector: {}
-          # deny all traffic
-          policyTypes:
-          - Ingress
+          ingress:
+          - from:
+            - namespaceSelector:
+                matchLabels:
+                  name:
+                  - ingress-nginx
+                  - argocd
+                  - kube-system
+                  - elastic-system
+                  - monitoring
+                  - tigera-operator
+                  - velero
+                  - kubernetes-dashboard
