@@ -27,7 +27,7 @@ spec:
       synchronize: true
       data:
         spec:
-          podSelector: {} # Select all pods in namespace1
+          podSelector: {}
           policyTypes:
           - Ingress
           ingress:
