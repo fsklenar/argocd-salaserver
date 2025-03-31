@@ -16,7 +16,7 @@ metadata:
       to application Pods from select sources. This policy will create a new NetworkPolicy resource
       named `default-deny` which will deny all traffic anytime a new Namespace is created.
 spec:
-  generateExisting: true
+#  generateExisting: true
   rules:
   - name: default-deny-egress
     skipBackgroundRequests: true
@@ -25,8 +25,8 @@ spec:
       - resources:
           kinds:
           - Namespace
-          names:
-          - demo-ns
+          # names:
+          # - demo-ns
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
@@ -40,5 +40,3 @@ spec:
           # deny all traffic
           policyTypes:
           - Egress
-          egress:
-          - {}
