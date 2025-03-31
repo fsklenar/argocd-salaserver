@@ -23,6 +23,7 @@ spec:
           - demo-ns
           - webapp-dev
           - wordpress-dev
+          - argocd
     # exclude:
     #   any:
     #   - resources:
