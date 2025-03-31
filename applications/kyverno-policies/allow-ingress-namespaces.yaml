@@ -35,7 +35,6 @@ spec:
             - namespaceSelector:
                 matchLabels:
                   kubernetes.io/metadata.name: kube-system
-          ingress:
           - from:
             - namespaceSelector:
                 matchLabels:
