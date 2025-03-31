@@ -30,11 +30,6 @@ spec:
           podSelector: {}
           policyTypes:
           - Ingress
-          ingress:
-          - from:
-            - namespaceSelector:
-                matchLabels:
-                  kubernetes.io/metadata.name: kube-system
           - from:
             - namespaceSelector:
                 matchLabels:
