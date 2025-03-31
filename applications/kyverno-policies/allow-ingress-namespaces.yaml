@@ -19,8 +19,6 @@ spec:
       - resources:
           kinds:
           - Namespace
-          namespaces:
-          - webapp-dev
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
