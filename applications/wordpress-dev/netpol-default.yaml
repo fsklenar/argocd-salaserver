@@ -9,12 +9,6 @@ spec:
     - Egress
   egress:
   - to:
-    # - namespaceSelector:
-    #     matchLabels:
-    #       networking/namespace: kube-system
-    #   podSelector:
-    #     matchLabels:
-    #       k8s-app: kube-dns
     - ipBlock:
         cidr: 0.0.0.0/0
     ports:

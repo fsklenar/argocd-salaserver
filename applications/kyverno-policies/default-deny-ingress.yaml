@@ -35,6 +35,7 @@ spec:
           - kube-node-lease
           - kube-public
           - kube-system
+          - wordpress-dev
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
