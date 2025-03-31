@@ -42,7 +42,6 @@ spec:
           - kubernetes-dashboard
           - kyverno
           - local-path-storage
-          - monitoring
           - prometheus-components
           - tigera-operator
           - velero

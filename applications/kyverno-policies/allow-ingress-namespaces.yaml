@@ -28,7 +28,6 @@ spec:
           - calico-apiserver
           - kyverno
           - argocd
-          - monitoring
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
@@ -53,3 +52,7 @@ spec:
             - namespaceSelector:
                 matchLabels:
                   kubernetes.io/metadata.name: kube-system
+          - from:
+            - namespaceSelector:
+                matchLabels:
+                  kubernetes.io/metadata.name: monitoring
