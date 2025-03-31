@@ -33,7 +33,6 @@ spec:
           - argocd
           - calico-apiserver
           - calico-system
-          - default
           - demo-ns
           - elastic-system
           - ingress-nginx
