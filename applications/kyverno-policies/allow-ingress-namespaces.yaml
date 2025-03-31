@@ -35,15 +35,12 @@ spec:
             - namespaceSelector:
                 matchLabels:
                   kubernetes.io/metadata.name: kube-system
-            ports: {}
           ingress:
           - from:
             - namespaceSelector:
                 matchLabels:
                   kubernetes.io/metadata.name: ingress-nginx
-            ports: {}
           - from:
             - namespaceSelector:
                 matchLabels:
                   kubernetes.io/metadata.name: kyverno
-            ports: {}
