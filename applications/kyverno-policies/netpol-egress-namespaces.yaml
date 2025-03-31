@@ -12,7 +12,7 @@ metadata:
 spec:
   generateExisting: true
   rules:
-  - name: netpol-namespaces
+  - name: netpol-egress-namespaces
     skipBackgroundRequests: true
     match:
       any:
@@ -40,5 +40,6 @@ spec:
           podSelector: {}
           policyTypes:
           - Egress
-          egress: {}
+          egress:
+          - {}
 
