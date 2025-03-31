@@ -40,3 +40,4 @@ spec:
           # deny all traffic
           policyTypes:
           - Egress
+          egress: []
