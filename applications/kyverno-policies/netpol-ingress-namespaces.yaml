@@ -8,7 +8,7 @@ metadata:
     policies.kyverno.io/subject: NetworkPolicy
     policies.kyverno.io/minversion: 1.6.0
     policies.kyverno.io/description: >-
-      Allow ingress from selected namespaces, egress communication
+      Allow ingress only from selected namespaces, block egress communication
 spec:
   generateExisting: true
   rules:
