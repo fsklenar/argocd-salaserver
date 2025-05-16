@@ -17,6 +17,7 @@ spec:
     - repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       path: 'argocd/manifests'
       targetRevision: HEAD
+      enableOCI: true
   project: 'salaserver'
 
 
