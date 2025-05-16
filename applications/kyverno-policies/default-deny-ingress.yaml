@@ -16,6 +16,7 @@
 #       to application Pods from select sources. This policy will create a new NetworkPolicy resource
 #       named `default-deny` which will deny all traffic anytime a new Namespace is created.
 # spec:
+#   generateExisting: true
 #   rules:
 #   - name: default-deny-ingress
 #     skipBackgroundRequests: true
@@ -35,7 +36,7 @@
 #           - kube-node-lease
 #           - kube-public
 #           - kube-system
-#           - wordpress-dev
+#           - kyverno
 #     generate:
 #       apiVersion: networking.k8s.io/v1
 #       kind: NetworkPolicy
