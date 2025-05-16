@@ -1,5 +1,0 @@
-apiVersion: v1
-name: grafana-operator
-type: application
-version: v5.18.0
-enableOCI: "true"

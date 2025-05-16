@@ -1,8 +1,0 @@
-grafana-operator:
-  ingress:
-    enabled: true
-    hosts:
-      - grafana-operator-salaserver.linuxadmin.eu
-    ingressClassName: nginx
-    annotations:
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
