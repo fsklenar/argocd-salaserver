@@ -1,4 +1,4 @@
-apiVersion: v2
+#apiVersion: v2
 name: grafana-operator
 type: application
 version: v5.18.0
