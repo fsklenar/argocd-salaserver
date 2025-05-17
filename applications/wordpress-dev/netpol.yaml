@@ -1,27 +1,27 @@
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: NetworkPolicy
-# metadata:
-#   name: mysql-policy
-#   namespace: wordpress-dev
-#   #connection to mysql allowed only from wordpress pods in current namespace
-# spec:
-#   podSelector:
-#     matchLabels:
-#       tier: mysql
-#   policyTypes:
-#     - Ingress
-#   ingress:
-#     - from:
-#       - podSelector:
-#           matchLabels:
-#             tier: frontend
-#         namespaceSelector:
-#           matchLabels:
-#             name: wordpress-dev
-#       ports:
-#         - protocol: TCP
-#           port: 3306
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mysql-policy
+  namespace: wordpress-dev
+  #connection to mysql allowed only from wordpress pods in current namespace
+spec:
+  podSelector:
+    matchLabels:
+      tier: mysql
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            tier: frontend
+        namespaceSelector:
+          matchLabels:
+            name: wordpress-dev
+      ports:
+        - protocol: TCP
+          port: 3306
 # ---
 # # egress:
 # # - Internet allowed
