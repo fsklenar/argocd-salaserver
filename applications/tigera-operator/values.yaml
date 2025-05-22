@@ -16,7 +16,9 @@ tigera-operator:
 
   kubeletVolumePluginPath: /var/lib/kubelet
 
-  manageCRDs: true
+  annotations:
+    argocd.argoproj.io/ignore-differences: |-
+      preserveUnknownFields: false
 
 
   # Optionally configure the host and port used to access the Kubernetes API server.
