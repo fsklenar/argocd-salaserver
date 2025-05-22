@@ -18,7 +18,8 @@ tigera-operator:
 
   annotations:
     argocd.argoproj.io/ignore-differences: |-
-      preserveUnknownFields: false
+      spec:
+        preserveUnknownFields: false
 
 
   # Optionally configure the host and port used to access the Kubernetes API server.
