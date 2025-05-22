@@ -16,6 +16,8 @@ tigera-operator:
 
   kubeletVolumePluginPath: /var/lib/kubelet
 
+  manageCRDs: true
+
 
   # Optionally configure the host and port used to access the Kubernetes API server.
   kubernetesServiceEndpoint:
