@@ -2,6 +2,9 @@ tigera-operator:
 
   apiServer:
     enabled: false
+    spec:
+      preserveUnknownFields: false
+
 
   # goldmane configures the Calico Goldmane flow aggregator.
   goldmane:
@@ -13,8 +16,6 @@ tigera-operator:
 
   kubeletVolumePluginPath: /var/lib/kubelet
 
-  spec:
-    preserveUnknownFields: false
 
   # Optionally configure the host and port used to access the Kubernetes API server.
   kubernetesServiceEndpoint:
