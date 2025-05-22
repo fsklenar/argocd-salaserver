@@ -13,6 +13,9 @@ tigera-operator:
 
   kubeletVolumePluginPath: /var/lib/kubelet
 
+  spec:
+    preserveUnknownFields: false
+
   # Optionally configure the host and port used to access the Kubernetes API server.
   kubernetesServiceEndpoint:
     host: "192.168.0.202"
