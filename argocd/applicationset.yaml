@@ -28,6 +28,7 @@ spec:
         syncOptions:
         - CreateNamespace=true
         - ServerSideApply=true
+        - preserveUnknownFields=false
 #        - Replace=true
 
 
