@@ -1,5 +1,4 @@
 ingress-nginx:
-
   controller:
     service:
       type: ClusterIP
