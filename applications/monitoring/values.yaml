@@ -18,7 +18,7 @@ kube-prometheus-stack:
     defaultDashboardsTimezone: Europe/Bratislava
     enabled: true
     defaultDashboardsEnabled: true
-    defaultDashboardsEditable: false
+    defaultDashboardsEditable: true
     forceDeployDashboards: true
     ingress:
       enabled: true
