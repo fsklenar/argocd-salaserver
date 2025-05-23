@@ -1,4 +1,6 @@
 kube-prometheus-stack:
+  nodeExporter:
+    forceDeployDashboards: true
   prometheus:
     ingress:
       enabled: true
@@ -20,8 +22,6 @@ kube-prometheus-stack:
     defaultDashboardsEnabled: true
     defaultDashboardsEditable: true
     forceDeployDashboards: true
-    operator:
-      dashboardsConfigMapRefEnabled: true
     ingress:
       enabled: true
       ingressClassName: nginx
