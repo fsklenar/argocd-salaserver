@@ -21,7 +21,7 @@ kube-prometheus-stack:
     defaultDashboardsEditable: true
     forceDeployDashboards: true
     operator:
-      dashboardsConfigMapRefEnabled: false
+      dashboardsConfigMapRefEnabled: true
     ingress:
       enabled: true
       ingressClassName: nginx
