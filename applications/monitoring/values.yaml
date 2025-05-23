@@ -1,6 +1,6 @@
 kube-prometheus-stack:
   nodeExporter:
-    forceDeployDashboards: true
+    forceDeployDashboards: false
   prometheus:
     ingress:
       enabled: true
@@ -46,7 +46,7 @@ kube-prometheus-stack:
         - kubernetes.io/pvc-protection
   alertmanager:
     enabled: true
-    forceDeployDashboards: true
+    forceDeployDashboards: false
     alertmanagerSpec:
       useExistingSecret: true
       secrets:
