@@ -50,4 +50,3 @@ kube-prometheus-stack:
       useExistingSecret: true
       secrets:
         - alertmanager-prometheus-kube-prometheus-alertmanager
-
