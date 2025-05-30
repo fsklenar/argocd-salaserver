@@ -15,10 +15,10 @@ tigera-operator:
 
   kubeletVolumePluginPath: /var/lib/kubelet
   #
-  # annotations:
-  #   argocd.argoproj.io/ignore-differences: |-
-  #     spec:
-  #       preserveUnknownFields: false
+  annotations:
+    argocd.argoproj.io/ignore-differences: |-
+      spec:
+        preserveUnknownFields: false
 
 
   # Optionally configure the host and port used to access the Kubernetes API server.
