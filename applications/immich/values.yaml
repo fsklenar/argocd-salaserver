@@ -32,7 +32,7 @@ immich:
     enabled: true
   persistence:
     library:
-      existingClaim: immich-pvc
+      existingClaim: virtiofs-psql-immich-claim
 
 
 
