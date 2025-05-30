@@ -1,0 +1,97 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: immich-postgres-pvc
+  namespace: immich # Ensure this matches your deployment namespace
+spec:
+  accessModes:
+    - ReadWriteOnce # PostgreSQL typically needs ReadWriteOnce
+  storageClassName: local-path # Or your preferred storage class (e.g., nfs-client, aws-ebs)
+  resources:
+    requests:
+      storage: 10Gi # Adjust storage size as needed for Immich data
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: immich-postgres-init-script
+  namespace: immich # Ensure this matches your deployment namespace
+data:
+  # This script will be executed when the PostgreSQL container starts for the first time.
+  # It ensures the 'vector' extension is created.
+  init.sql: |
+    CREATE EXTENSION IF NOT EXISTS vector;
+    -- You might add other initializations here if needed for Immich
+    -- For example, creating a specific database if POSTGRES_DB isn't enough
+    -- Or setting specific permissions.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: immich-postgres-deployment
+  namespace: immich # Ensure this matches your service namespace
+  labels:
+    app: immich-postgres
+spec:
+  replicas: 1 # Typically 1 for a single PostgreSQL instance
+  selector:
+    matchLabels:
+      app: immich-postgres
+  template:
+    metadata:
+      labels:
+        app: immich-postgres
+    spec:
+      containers:
+        - name: postgres
+          #image: pgvector/pgvector:pg17 # Image with pgvector pre-installed. You can specify a version like 'ankane/pgvector:pg15'
+          image: ghcr.io/tensorchord/pgvecto-rs:pg16-v0.3.0
+          ports:
+            - containerPort: 5432 # Default PostgreSQL port
+          env:
+            - name: POSTGRES_DB
+              value: immich # The database name for Immich
+            - name: POSTGRES_USER
+              value: immich # The user for Immich
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: immich-postgres-secret
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data # Default PostgreSQL data directory
+            - name: postgres-initdb
+              mountPath: /docker-entrypoint-initdb.d # Directory for init scripts
+          resources:
+            requests:
+              cpu: "150m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "2Gi"
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: immich-postgres-pvc
+        - name: postgres-initdb
+          configMap:
+            name: immich-postgres-init-script
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: immich-postgres-service
+  namespace: immich # Ensure this matches your deployment namespace
+  labels:
+    app: immich-postgres
+spec:
+  selector:
+    app: immich-postgres # Selects pods with this label
+  ports:
+    - protocol: TCP
+      port: 5432 # Service port
+      targetPort: 5432 # Container port
+  type: ClusterIP # Exposes the service internally within the cluster
+

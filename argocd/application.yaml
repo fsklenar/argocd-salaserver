@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'argocd'
+spec:
+  destination:
+    name: 'salaserver'
+    namespace: 'argocd'
+    server: ''
+  sources:
+    # - repoURL: 'https://github.com/argoproj/argo-cd.git'
+    #   path: 'manifests'
+    #   targetRevision: HEAD
+    #   directory:
+    #     recurse: false
+    #     include: 'install.yaml'
+    - repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+      path: 'argocd/manifests'
+      targetRevision: HEAD
+  project: 'salaserver'
+
+

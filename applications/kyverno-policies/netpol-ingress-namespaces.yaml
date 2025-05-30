@@ -1,0 +1,66 @@
+# apiVersion: kyverno.io/v1
+# kind: ClusterPolicy
+# metadata:
+#   name: netpol-ingress-namespaces
+#   annotations:
+#     policies.kyverno.io/title: Add Network Policy
+#     policies.kyverno.io/category: Multi-Tenancy, EKS Best Practices
+#     policies.kyverno.io/subject: NetworkPolicy
+#     policies.kyverno.io/minversion: 1.6.0
+#     policies.kyverno.io/description: >-
+#       Allow ingress only from selected namespaces, block egress communication
+# spec:
+#   generateExisting: true
+#   rules:
+#   - name: netpol-namespaces
+#     skipBackgroundRequests: true
+#     match:
+#       any:
+#       - resources:
+#           kinds:
+#           - Namespace
+#           names:
+#           - demo-ns
+#           - webapp-dev
+#           - wordpress-dev
+#           - argocd
+#     # exclude:
+#     #   any:
+#     #   - resources:
+#     #       namespaces:
+#     #       - ingress-nginx
+#     #       - kube-system
+#     #       - calico-apiserver
+#     #       - calico-system
+#     #       - kyverno
+#     #       - argocd
+#     generate:
+#       apiVersion: networking.k8s.io/v1
+#       kind: NetworkPolicy
+#       name: netpol-ingress-namespaces
+#       namespace: "{{request.object.metadata.name}}"
+#       synchronize: true
+#       data:
+#         spec:
+#           podSelector: {}
+#           policyTypes:
+#           - Ingress
+#           - Egress
+#           ingress:
+#           - from:
+#             - namespaceSelector:
+#                 matchLabels:
+#                   kubernetes.io/metadata.name: ingress-nginx
+#           - from:
+#             - namespaceSelector:
+#                 matchLabels:
+#                   kubernetes.io/metadata.name: kyverno
+#           - from:
+#             - namespaceSelector:
+#                 matchLabels:
+#                   kubernetes.io/metadata.name: kube-system
+#           - from:
+#             - namespaceSelector:
+#                 matchLabels:
+#                   kubernetes.io/metadata.name: monitoring
+#           egress: []

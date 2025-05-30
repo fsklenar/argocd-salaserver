@@ -1,0 +1,53 @@
+kube-prometheus-stack:
+  # nodeExporter:
+  #   forceDeployDashboards: true
+  prometheus:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+      - prometheus-salaserver.linuxadmin.eu
+    prometheusSpec:
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: local-storage
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 10Gi
+  grafana:
+    defaultDashboardsTimezone: Europe/Bratislava
+    enabled: true
+    defaultDashboardsEnabled: true
+    defaultDashboardsEditable: true
+    forceDeployDashboards: true
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+      - grafana-salaserver.linuxadmin.eu
+    # service:
+    #   port: 3000
+    #   externalIPs:
+    #     - 10.192.168.202
+    grafana.ini:
+      server:
+        domain: "k8smaster.local"
+        root_url: "%(protocol)s://%(domain)s/"
+        serve_from_sub_path: true
+    persistence:
+      enabled: true
+      storageClassName: "local-storage"
+      accessModes:
+        - ReadWriteOnce
+      size: 10Gi
+      finalizers:
+        - kubernetes.io/pvc-protection
+  alertmanager:
+    enabled: true
+#    forceDeployDashboards: true
+    alertmanagerSpec:
+      useExistingSecret: true
+      secrets:
+        - alertmanager-prometheus-kube-prometheus-alertmanager

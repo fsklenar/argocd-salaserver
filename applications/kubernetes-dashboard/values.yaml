@@ -1,0 +1,15 @@
+kubernetes-dashboard:
+  web:
+    containers:
+      resources:
+        requests:
+          cpu: 150m
+          memory: 250Mi
+  app:
+    ingress:
+      enabled: true
+      hosts:
+        - dashboard-salaserver.linuxadmin.eu
+      ingressClassName: nginx
+      annotations:
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"

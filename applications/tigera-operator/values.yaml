@@ -1,0 +1,28 @@
+tigera-operator:
+
+  apiServer:
+    enabled: false
+    spec:
+      preserveUnknownFields: false
+
+
+  # goldmane configures the Calico Goldmane flow aggregator.
+  goldmane:
+    enabled: false
+
+  # whisker configures the Calico Whisker observability UI.
+  whisker:
+    enabled: false
+
+  kubeletVolumePluginPath: /var/lib/kubelet
+  #
+  # annotations:
+  #   argocd.argoproj.io/ignore-differences: |-
+  #     spec:
+  #       preserveUnknownFields: false
+
+
+  # Optionally configure the host and port used to access the Kubernetes API server.
+  kubernetesServiceEndpoint:
+    host: "192.168.0.202"
+    port: "6443"
