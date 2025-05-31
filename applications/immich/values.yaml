@@ -1,50 +1,33 @@
-# immich:
-#   immich:
-#     metrics:
-#       enabled: true
-#
-#   redis:
-#     enabled: true
-#
-#   server:
-#     enabled: true
-#     ingress:
-#       main:
-#         enabled: true
-#         ingressClassName: nginx
-#         annotations:
-#           nginx.ingress.kubernetes.io/proxy-body-size: "0"
-#         hosts:
-#           - host: immich-salaserver.linuxadmin.eu
-#             paths:
-#               - path: "/"
-#
-
-env:
-  REDIS_HOSTNAME: redis-service
-  DB_HOSTNAME: "immich-postgres-service"
-  DB_USERNAME: "immich"
-  DB_DATABASE_NAME: "immich"
-  #DB_PASSWORD: ""
-
 immich:
-  metrics:
-    enabled: true
-  persistence:
-    library:
-      existingClaim: virtiofs-psql-immich-claim
 
+  env:
+    REDIS_HOSTNAME: redis-service
+    TZ: "Europe/Bratislava"
+    DB_HOSTNAME: "immich-postgres-service"
+    DB_USERNAME: "immich"
+    DB_DATABASE_NAME: "immich"
+    DB_PASSWORD:
+      valueFrom:
+        secretKeyRef:
+          name: immich-postgres-secret
+          key: db-password
 
-
-server:
-  enabled: true
-  ingress:
-    main:
+  immich:
+    metrics:
       enabled: true
-      ingressClassName: nginx
-      annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
-      hosts:
-        - host: immich-salaserver.linuxadmin.eu
-          paths:
-            - path: "/"
+    persistence:
+      library:
+        existingClaim: virtiofs-psql-immich-claim
+
+  server:
+    enabled: true
+    ingress:
+      main:
+        enabled: true
+        ClassName: nginx
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+          - host: immich-salaserver.linuxadmin.eu
+            paths:
+              - path: "/"

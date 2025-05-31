@@ -46,7 +46,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: immich-postgres-secret
-                  key: POSTGRES_PASSWORD
+                  key: db-password
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data # Default PostgreSQL data directory
