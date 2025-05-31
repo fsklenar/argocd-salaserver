@@ -17,7 +17,7 @@ immich:
       enabled: true
     persistence:
       library:
-        existingClaim: virtiofs-psql-immich-claim
+        existingClaim: virtiofs-immich-claim
 
   server:
     enabled: true
