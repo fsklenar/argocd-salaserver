@@ -24,7 +24,7 @@ immich:
     ingress:
       main:
         enabled: true
-        ClassName: nginx
+        ingressClassName: nginx
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
