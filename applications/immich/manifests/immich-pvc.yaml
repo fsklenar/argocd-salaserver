@@ -1,3 +1,4 @@
+#We use common storage for Immich and for PostgreSQL
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -29,35 +30,6 @@ spec:
           - controlplane
 ---
 apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pvc-virtiofs-immich
-  namespace: immich
-  labels:
-    app: pvc-virtiofs-immich
-spec:
-  accessModes:
-  - ReadWriteOnce
-  storageClassName: local-storage
-  local:
-    path: /srv/virtiofs/immich
-  capacity:
-    storage: 30Gi
-  persistentVolumeReclaimPolicy: Retain
-  volumeMode: Filesystem
-  claimRef:
-    name: virtiofs-immich-claim
-    namespace: immich
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: NotIn
-          values:
-          - controlplane
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: virtiofs-psql-immich-claim
@@ -69,17 +41,49 @@ spec:
   resources:
     requests:
       storage: 20Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: virtiofs-immich-claim
-  namespace: immich # Ensure this matches your deployment namespace
-spec:
-  accessModes:
-    - ReadWriteOnce # PostgreSQL typically needs ReadWriteOnce
-  storageClassName: local-storage # Or your preferred storage class (e.g., nfs-client, aws-ebs)
-  resources:
-    requests:
-      storage: 30Gi # Adjust storage size as needed for Immich data
 
+#If you need special separated storage for Immich
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: pvc-virtiofs-immich
+#   namespace: immich
+#   labels:
+#     app: pvc-virtiofs-immich
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   storageClassName: local-storage
+#   local:
+#     path: /srv/virtiofs/immich
+#   capacity:
+#     storage: 30Gi
+#   persistentVolumeReclaimPolicy: Retain
+#   volumeMode: Filesystem
+#   claimRef:
+#     name: virtiofs-immich-claim
+#     namespace: immich
+#   nodeAffinity:
+#     required:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: kubernetes.io/hostname
+#           operator: NotIn
+#           values:
+#           - controlplane
+#
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: virtiofs-immich-claim
+#   namespace: immich # Ensure this matches your deployment namespace
+# spec:
+#   accessModes:
+#     - ReadWriteOnce # PostgreSQL typically needs ReadWriteOnce
+#   storageClassName: local-storage # Or your preferred storage class (e.g., nfs-client, aws-ebs)
+#   resources:
+#     requests:
+#       storage: 30Gi # Adjust storage size as needed for Immich data
+#
