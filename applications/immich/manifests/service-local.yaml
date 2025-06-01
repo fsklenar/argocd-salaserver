@@ -1,0 +1,21 @@
+#for importing local files purpose
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    argocd.argoproj.io/tracking-id: immich:/Service:immich/immich-server
+  name: immich-server-local
+  namespace: immich
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 2283
+    protocol: TCP
+    targetPort: 2283
+  externalIPs:
+    - 192.168.0.202
+  selector:
+    app.kubernetes.io/instance: immich
+    app.kubernetes.io/name: server
+
