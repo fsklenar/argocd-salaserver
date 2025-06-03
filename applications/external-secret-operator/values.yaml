@@ -1,0 +1,93 @@
+external-secrets:
+
+  # values.yaml for External Secrets Operator with Google Cloud Secret Manager
+
+  # --- General Chart Configuration ---
+  # You generally don't need to change these unless you have specific requirements
+  installCRDs: true
+  replicaCount: 1
+
+  # --- External Secrets Operator Configuration ---
+  # Configuration specific to the External Secrets Operator itself
+  # This section configures the operator's behavior
+  webhook:
+    port: 9443
+
+  # serviceAccount:
+  #   create: true
+  #   name: "external-secrets-operator" # Optional: Specify a custom service account name
+
+  # rbac:
+  #   create: true
+
+  # --- Provider Configuration for Google Cloud Secret Manager ---
+  # This is the most crucial part for Google Cloud Secret Manager integration.
+  # You will configure how the operator authenticates and accesses your secrets.
+
+  # By default, the operator will attempt to use Workload Identity if running on GKE.
+  # If you are not using Workload Identity or need explicit credentials, uncomment
+  # and configure one of the following methods.
+
+  # Option 1: Workload Identity (Recommended for GKE)
+  # If your GKE cluster is configured with Workload Identity and your Kubernetes Service Account
+  # is bound to a Google Cloud Service Account with the necessary permissions (Secret Manager Secret Accessor),
+  # then you typically don't need explicit credentials here. The operator will automatically
+  # pick up the credentials from the environment.
+
+  # Option 2: Service Account Key File (Less recommended for production due to key management)
+  # If you are NOT using Workload Identity or need to specify a service account key directly,
+  # you can provide it as a Kubernetes Secret.
+  # Create a Kubernetes Secret containing your GCP Service Account key file (JSON).
+  # Example:
+  # kubectl create secret generic gcp-secret-manager-sa-key --from-file=key.json=/path/to/your/service-account-key.json
+  #
+  # Then, reference that secret here:
+  google:
+    auth:
+      secretRef:
+        secretAccessKeySecretRef:
+          name: gcp-secret-manager-sa-key
+          key: key.json # The key within the secret that holds the JSON content
+
+  # Option 3: GKE Identity (Less common, but an option for GKE without Workload Identity)
+  # google:
+  #   auth:
+  #     gkeIdentity:
+  #       projectID: "your-gcp-project-id" # Replace with your GCP project ID
+  #       clusterName: "your-gke-cluster-name" # Replace with your GKE cluster name
+  #       clusterLocation: "your-gke-cluster-location" # Replace with your GKE cluster region/zone
+
+  # Option 4: Explicit Project ID (Useful if the operator needs to access secrets in a different project)
+  # You can specify the project ID explicitly if the service account/workload identity
+  # being used doesn't automatically imply the correct project, or if you want to
+  # restrict access to a specific project.
+  # google:
+  #   projectID: "your-gcp-project-id" # Replace with your GCP project ID
+
+  # Example of how you would configure the provider if you are using Workload Identity
+  # and just need to specify the project ID (assuming your KSA is already properly configured):
+  # google:
+  #   projectID: "your-gcp-project-id" # REPLACE WITH YOUR ACTUAL GOOGLE CLOUD PROJECT ID
+
+  # --- Customizing SecretStore and ClusterSecretStore (Optional) ---
+  # External Secrets Operator uses SecretStores (namespaced) or ClusterSecretStores (cluster-wide)
+  # to define how secrets are fetched. You might define these directly as Kubernetes resources,
+  # but the Helm chart can also create a default one for you.
+
+  # If you want the Helm chart to create a default ClusterSecretStore for Google Cloud Secret Manager:
+  clusterSecretStore:
+    create: true
+    name: "gcp-secret-manager-store" # Name of the ClusterSecretStore
+    spec:
+      provider:
+        gcpsm:
+          projectID: "449744778704" # Ensure this matches your project ID
+          # You can also specify an auth method here if you want it different from the operator's global auth
+          # auth:
+          #   secretRef:
+          #     secretAccessKeySecretRef:
+          #       name: gcp-secret-manager-sa-key
+          #       key: key.json
+
+  # If you prefer to define the SecretStore/ClusterSecretStore manually as a separate manifest,
+  # then you can omit the `clusterSecretStore` or `secretStore` sections in `values.yaml`.
