@@ -27,11 +27,6 @@ external-secrets:
   serviceMonitor:
     enabled: true
 
-  metrics:
-    service:
-      # -- Enable if you use another monitoring tool than Prometheus to scrape the metrics
-      enabled: true
-
   grafanaDashboard:
     enabled: true
 
