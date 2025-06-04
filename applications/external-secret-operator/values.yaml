@@ -42,12 +42,12 @@ external-secrets:
   # kubectl create secret generic gcp-secret-manager-sa-key --from-file=key.json=/path/to/your/service-account-key.json
   #
   # Then, reference that secret here:
-  google:
-    auth:
-      secretRef:
-        secretAccessKeySecretRef:
-          name: gcp-secret-manager-sa-key
-          key: key.json # The key within the secret that holds the JSON content
+  # google:
+  #   auth:
+  #     secretRef:
+  #       secretAccessKeySecretRef:
+  #         name: gcp-secret-manager-sa-key
+  #         key: key.json # The key within the secret that holds the JSON content
 
   # Option 3: GKE Identity (Less common, but an option for GKE without Workload Identity)
   # google:
@@ -75,18 +75,18 @@ external-secrets:
   # but the Helm chart can also create a default one for you.
 
   # If you want the Helm chart to create a default ClusterSecretStore for Google Cloud Secret Manager:
-  clusterSecretStore:
-    create: true
-    name: "gcp-secret-manager-store" # Name of the ClusterSecretStore
-    spec:
-      provider:
-        gcpsm:
-          projectID: "449744778704" # Ensure this matches your project ID
-          auth:
-            secretRef:
-              secretAccessKeySecretRef:
-                name: gcp-secret-manager-sa-key
-                key: key.json # The key within the secret that holds the JSON content
+  # clusterSecretStore:
+  #   create: true
+  #   name: "gcp-secret-manager-store" # Name of the ClusterSecretStore
+  #   spec:
+  #     provider:
+  #       gcpsm:
+  #         projectID: "449744778704" # Ensure this matches your project ID
+  #         auth:
+  #           secretRef:
+  #             secretAccessKeySecretRef:
+  #               name: gcp-secret-manager-sa-key
+  #               key: key.json # The key within the secret that holds the JSON content
           # You can also specify an auth method here if you want it different from the operator's global auth
           # auth:
           #   secretRef:
