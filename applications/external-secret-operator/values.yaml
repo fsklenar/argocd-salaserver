@@ -13,12 +13,12 @@ external-secrets:
   webhook:
     port: 9443
 
-  serviceAccount:
-    create: true
-    name: "external-secrets-operator" # Optional: Specify a custom service account name
-
-  rbac:
-    create: true
+  # serviceAccount:
+  #   create: true
+  #   name: "external-secrets-operator" # Optional: Specify a custom service account name
+  #
+  # rbac:
+  #   create: true
 
   # --- Provider Configuration for Google Cloud Secret Manager ---
   # This is the most crucial part for Google Cloud Secret Manager integration.
