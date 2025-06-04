@@ -26,6 +26,8 @@ external-secrets:
 
   serviceMonitor:
     enabled: true
+    additionalLabels:
+      release: monitoring
 
   grafanaDashboard:
     enabled: true
