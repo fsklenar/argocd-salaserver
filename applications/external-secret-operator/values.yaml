@@ -22,6 +22,7 @@ external-secrets:
 
   serviceMonitor:
     enabled: true
+    namspace: monitoring
 
   # metrics:
   #   service:
