@@ -22,6 +22,7 @@ kube-prometheus-stack:
     defaultDashboardsEnabled: true
     defaultDashboardsEditable: true
     forceDeployDashboards: true
+    forceDeployDatasources: true
     ingress:
       enabled: true
       ingressClassName: nginx
@@ -36,6 +37,8 @@ kube-prometheus-stack:
         domain: "k8smaster.local"
         root_url: "%(protocol)s://%(domain)s/"
         serve_from_sub_path: true
+    operator:
+        dashboardsConfigMapRefEnabled: true
     persistence:
       enabled: true
       storageClassName: "local-storage"
