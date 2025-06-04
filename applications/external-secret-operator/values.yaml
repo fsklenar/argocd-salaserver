@@ -13,12 +13,12 @@ external-secrets:
   webhook:
     port: 9443
 
-  # serviceAccount:
-  #   create: true
-  #   name: "external-secrets-operator" # Optional: Specify a custom service account name
+  serviceAccount:
+    create: true
+    name: "external-secrets-operator" # Optional: Specify a custom service account name
 
-  # rbac:
-  #   create: true
+  rbac:
+    create: true
 
   # --- Provider Configuration for Google Cloud Secret Manager ---
   # This is the most crucial part for Google Cloud Secret Manager integration.
@@ -82,6 +82,11 @@ external-secrets:
       provider:
         gcpsm:
           projectID: "449744778704" # Ensure this matches your project ID
+          auth:
+            secretRef:
+              secretAccessKeySecretRef:
+                name: gcp-secret-manager-sa-key
+                key: key.json # The key within the secret that holds the JSON content
           # You can also specify an auth method here if you want it different from the operator's global auth
           # auth:
           #   secretRef:
