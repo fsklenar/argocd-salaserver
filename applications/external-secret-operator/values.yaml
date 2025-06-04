@@ -20,9 +20,9 @@ external-secrets:
   rbac:
     create: true
 
-  serviceMonitor:
-    enabled: true
-    namspace: monitoring
+  # serviceMonitor:
+  #   enabled: true
+  #   namspace: monitoring
 
   # metrics:
   #   service:
