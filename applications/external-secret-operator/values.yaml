@@ -20,6 +20,18 @@ external-secrets:
   rbac:
     create: true
 
+  serviceMonitor:
+    enabled: true
+
+  metrics:
+    service:
+      # -- Enable if you use another monitoring tool than Prometheus to scrape the metrics
+      enabled: true
+
+  grafanaDashboard:
+    # -- If true creates a Grafana dashboard.
+    enabled: true
+
   # --- Provider Configuration for Google Cloud Secret Manager ---
   # This is the most crucial part for Google Cloud Secret Manager integration.
   # You will configure how the operator authenticates and accesses your secrets.
