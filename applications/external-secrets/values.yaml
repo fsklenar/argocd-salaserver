@@ -29,8 +29,8 @@ external-secrets:
     additionalLabels:
       release: monitoring
 
-  grafanaDashboard:
-    enabled: true
+  # grafanaDashboard:
+  #   enabled: true
 
   # --- Provider Configuration for Google Cloud Secret Manager ---
   # This is the most crucial part for Google Cloud Secret Manager integration.
