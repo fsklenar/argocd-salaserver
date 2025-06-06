@@ -27,8 +27,8 @@ spec:
         namespace: '{{.path.basename}}'
       syncPolicy:
         syncOptions:
-        - CreateNamespace=true
         - ServerSideApply=true
+#        - CreateNamespace=true
 #        - Replace=true
 
 
