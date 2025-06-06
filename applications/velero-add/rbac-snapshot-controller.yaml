@@ -17,6 +17,7 @@ kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: snapshot-controller-runner
+  namespace: kube-system
 rules:
   - apiGroups: [""]
     resources: ["persistentvolumes"]
@@ -68,6 +69,7 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: snapshot-controller-role
+  namespace: kube-system
 subjects:
   - kind: ServiceAccount
     name: snapshot-controller
