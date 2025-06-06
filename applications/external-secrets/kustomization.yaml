@@ -6,14 +6,14 @@ kind: Kustomization
 # and render it.
 
 
-# helmCharts:
-# - name: .  # Refers to the Helm chart in the current directory
-#   releaseName: my-app # The release name for the Helm chart
-#   namespace: default # The namespace where the chart will be deployed
-#   # You can also specify values here or a values file:
-#   # valuesFile: values.yaml
-#   values:
-#     replicaCount: 2 # Override replica count from values.yaml
+helmCharts:
+- name: .  # Refers to the Helm chart in the current directory
+  releaseName: external-secrets # The release name for the Helm chart
+  namespace: external-secrets# The namespace where the chart will be deployed
+  # You can also specify values here or a values file:
+  # valuesFile: values.yaml
+  values:
+    replicaCount: 2 # Override replica count from values.yaml
 
 
 
