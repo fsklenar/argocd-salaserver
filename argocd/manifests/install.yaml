@@ -24521,6 +24521,7 @@ subjects:
 ---
 apiVersion: v1
 data:
+  kustomize.buildOptions: --enable-helm
   resource.customizations.ignoreResourceUpdates.ConfigMap: |
     jqPathExpressions:
       # Ignore the cluster-autoscaler status
