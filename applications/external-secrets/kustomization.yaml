@@ -9,7 +9,7 @@ kind: Kustomization
 helmCharts:
 - name: .  # Refers to the Helm chart in the current directory
   releaseName: external-secrets # The release name for the Helm chart
-  namespace: external-secrets# The namespace where the chart will be deployed
+  namespace: external-secrets # The namespace where the chart will be deployed
   # You can also specify values here or a values file:
   # valuesFile: values.yaml
   values:
