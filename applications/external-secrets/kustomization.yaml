@@ -18,8 +18,8 @@ helmCharts:
 
 
 # Include your additional YAML files as resources
-resources:
-- 'manifests/*'
+# resources:
+# - 'manifests/*'
 #- additional-configmap.yaml
 #- additional-serviceaccount.yaml
 
