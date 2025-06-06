@@ -11,9 +11,9 @@ helmCharts:
   releaseName: external-secrets # The release name for the Helm chart
   namespace: external-secrets # The namespace where the chart will be deployed
   # You can also specify values here or a values file:
-  # valuesFile: values.yaml
-  values:
-    replicaCount: 2 # Override replica count from values.yaml
+  valuesFile: values.yaml
+  # values:
+  #   replicaCount: 2 # Override replica count from values.yaml
 
 
 
