@@ -9,8 +9,8 @@ spec:
   generators:
   - git:
       directories:
-      - path: 'applications/**'
-      - path: 'applications/manifests/**'
+      - path: 'applications/*'
+#      - path: 'applications/**/manifests/*'
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
   template:
@@ -19,7 +19,7 @@ spec:
     spec:
       project: "salaserver"
       sources:
-      - repoURL: https://github.com/fsklenar/argocd-salaserver.git
+      - repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
         targetRevision: HEAD
         path: '{{.path.path}}'
       destination:
