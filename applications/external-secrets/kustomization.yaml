@@ -19,7 +19,7 @@ kind: Kustomization
 
 # Include your additional YAML files as resources
 resources:
-- manifests/*.yaml
+- 'manifests/*'
 #- additional-configmap.yaml
 #- additional-serviceaccount.yaml
 
