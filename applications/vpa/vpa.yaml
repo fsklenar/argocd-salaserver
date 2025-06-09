@@ -217,7 +217,7 @@ spec:
                 type: string
             type: object
         type: object
-    served: true
+    served: false
     storage: false
 ---
 apiVersion: apiextensions.k8s.io/v1
@@ -458,6 +458,7 @@ spec:
                     - "Off"
                     - Initial
                     - Recreate
+                    - InPlaceOrRecreate
                     - Auto
                     type: string
                 type: object
@@ -828,7 +829,7 @@ spec:
         required:
         - spec
         type: object
-    served: true
+    served: false
     storage: false
     subresources:
       status: {}
@@ -865,13 +866,16 @@ rules:
       - watch
   - apiGroups:
       - ""
+      - events.k8s.io
     resources:
       - events
     verbs:
+      - create
       - get
       - list
       - watch
-      - create
+      - patch
+      - update
   - apiGroups:
       - "poc.autoscaling.k8s.io"
     resources:
@@ -955,6 +959,32 @@ rules:
       - pods/eviction
     verbs:
       - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: system:vpa-updater-in-place
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - pods/resize
+      - pods # required for patching vpaInPlaceUpdated annotations onto the pod
+    verbs:
+      - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: system:vpa-updater-in-place-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:vpa-updater-in-place
+subjects:
+  - kind: ServiceAccount
+    name: vpa-updater
+    namespace: kube-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -1127,6 +1157,7 @@ rules:
       - delete
       - get
       - list
+      - patch
   - apiGroups:
       - "poc.autoscaling.k8s.io"
     resources:
@@ -1293,7 +1324,7 @@ spec:
         runAsUser: 65534 # nobody
       containers:
         - name: updater
-          image: registry.k8s.io/autoscaling/vpa-updater:1.2.2
+          image: registry.k8s.io/autoscaling/vpa-updater:1.4.1
           imagePullPolicy: IfNotPresent
           env:
             - name: NAMESPACE
@@ -1334,7 +1365,7 @@ spec:
         runAsUser: 65534 # nobody
       containers:
       - name: recommender
-        image: registry.k8s.io/autoscaling/vpa-recommender:1.2.2
+        image: registry.k8s.io/autoscaling/vpa-recommender:1.4.1
         imagePullPolicy: IfNotPresent
         resources:
           limits:
@@ -1370,7 +1401,7 @@ spec:
         runAsUser: 65534 # nobody
       containers:
         - name: admission-controller
-          image: registry.k8s.io/autoscaling/vpa-admission-controller:1.2.2
+          image: registry.k8s.io/autoscaling/vpa-admission-controller:1.4.1
           imagePullPolicy: IfNotPresent
           env:
             - name: NAMESPACE
@@ -1397,17 +1428,5 @@ spec:
         - name: tls-certs
           secret:
             secretName: vpa-tls-certs
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: vpa-webhook
-  namespace: kube-system
-spec:
-  ports:
-    - port: 443
-      targetPort: 8000
-  selector:
-    app: vpa-admission-controller
 
 ---
