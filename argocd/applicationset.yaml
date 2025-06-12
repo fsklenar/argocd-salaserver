@@ -12,7 +12,6 @@ spec:
   - git:
       directories:
       - path: 'applications/*'
-#      - path: 'applications/**/manifests/*'
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
   syncPolicy:
