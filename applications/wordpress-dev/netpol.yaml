@@ -41,25 +41,22 @@ spec:
   policyTypes:
     - Egress # This policy only controls egress (outgoing) traffic.
   egress:
-    # Rule 1: Allow egress to all pods within the same namespace.
-    # An empty 'podSelector: {}' here means "all pods in the NetworkPolicy's own namespace".
+    # Rule 1: Allow egress to pods within the same namespace
     - to:
-        - podSelector: {}
-
-    # Rule 2: Allow DNS resolution.
-    # This is crucial for most applications to function correctly,
-    # as they need to resolve hostnames to IP addresses.
-    # DNS services typically run on UDP port 53.
+        - podSelector: {} # This targets all pods within the same namespace
+    # Rule 2: Allow egress to Kubernetes DNS (CoreDNS)
     - to:
-      - ipBlock:
-          cidr: 0.0.0.0/0
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system # Selects the kube-system namespace
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns # Selects the CoreDNS pods within kube-system
       ports:
-      - protocol: TCP
-        port: 53
-      - protocol: UDP
-        port: 53
-
-
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
     # Rule 3: Allow egress to the internet (all external IPs).
     # This rule uses the 'ipBlock' field with '0.0.0.0/0' to allow traffic
     # to any IP address outside the cluster's service and pod CIDRs.

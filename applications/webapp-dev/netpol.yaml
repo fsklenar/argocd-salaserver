@@ -12,14 +12,22 @@ spec:
   policyTypes:
     - Egress
   egress:
-  - to:
-    - ipBlock:
-        cidr: 0.0.0.0/0
-    ports:
-    - protocol: TCP
-      port: 53
-    - protocol: UDP
-      port: 53
+    # Rule 1: Allow egress to pods within the same namespace
+    - to:
+        - podSelector: {} # This targets all pods within the same namespace
+    # Rule 2: Allow egress to Kubernetes DNS (CoreDNS)
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system # Selects the kube-system namespace
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns # Selects the CoreDNS pods within kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
   # - to:
   #   - ipBlock:
   #       cidr: 0.0.0.0/0
