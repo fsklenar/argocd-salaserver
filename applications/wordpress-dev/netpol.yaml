@@ -22,6 +22,65 @@ spec:
       ports:
         - protocol: TCP
           port: 3306
+---
+# # egress:
+# # - Internet allowed
+# # - block communication to other namespaces in k8s
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: block-egress-to-other-namespaces
+  namespace: wordpress-dev
+spec:
+  # podSelector: {}
+  # This selector applies the policy to ALL pods within the specified 'namespace'.
+  # If you want to apply this policy only to specific pods,
+  # you can use labels, e.g., 'matchLabels: { app: my-app }'.
+  # For this request, we'll apply it to all pods in the namespace.
+  podSelector: {}
+  policyTypes:
+    - Egress # This policy only controls egress (outgoing) traffic.
+  egress:
+    # Rule 1: Allow egress to all pods within the same namespace.
+    # An empty 'podSelector: {}' here means "all pods in the NetworkPolicy's own namespace".
+    - to:
+        - podSelector: {}
+
+    # Rule 2: Allow DNS resolution.
+    # This is crucial for most applications to function correctly,
+    # as they need to resolve hostnames to IP addresses.
+    # DNS services typically run on UDP port 53.
+    - to:
+      - ipBlock:
+          cidr: 0.0.0.0/0
+      ports:
+      - protocol: TCP
+        port: 53
+      - protocol: UDP
+        port: 53
+
+
+    # Rule 3: Allow egress to the internet (all external IPs).
+    # This rule uses the 'ipBlock' field with '0.0.0.0/0' to allow traffic
+    # to any IP address outside the cluster's service and pod CIDRs.
+    # You might want to refine this with 'except' if there are specific internal
+    # IP ranges you want to continue blocking (e.g., other private networks).
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+    # - to:
+    #   - podSelector:
+    #       matchLabels:
+    #         app: mysql-wp-dev
+    #     namespaceSelector:
+    #       matchLabels:
+    #           name: wordpress-dev
+
+
 # ---
 # # egress:
 # # - Internet allowed
