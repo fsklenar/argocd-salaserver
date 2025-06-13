@@ -1,0 +1,69 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: block-egress-to-internet
+  annotations:
+    policies.kyverno.io/description: |
+      This policy automatically generates a NetworkPolicy in new namespaces
+      (excluding kube-system and monitoring) to block all egress traffic.
+      An empty egress rule within a NetworkPolicy with 'policyTypes: [Egress]'
+      effectively denies all outbound connections.
+spec:
+  validationFailureAction: Enforce # Change to 'Audit' for testing initially
+  background: true # Apply to existing namespaces if they don't have the policy
+  rules:
+  - name: generate-block-egress-networkpolicy
+    match:
+      resources:
+        kinds:
+        - Namespace
+        operations:
+        - CREATE
+        - UPDATE
+    exclude:
+      resources:
+        namespaces:
+        - wordpress-dev
+        - kube-system
+        - monitoring
+        - external-secrets
+        - metrics-server
+        - velero
+        - vpa
+        - elastic-system
+        - argocd
+        - kyverno
+        - calico-system
+        - ingress-nginx
+    generate:
+      apiVersion: networking.k8s.io/v1
+      kind: NetworkPolicy
+      name: block-internet-egress
+      namespace: "{{request.object.metadata.name}}" # Generates in the new namespace
+      synchronize: true # Keeps the generated NetworkPolicy in sync with this policy
+      generateExisting: true
+      data:
+        metadata:
+          labels:
+            app.kubernetes.io/managed-by: kyverno
+        spec:
+          podSelector: {} # Applies to all pods in the namespace
+          policyTypes:
+          - Egress
+          egress:
+            # Rule 1: Allow egress to pods within the same namespace
+            - to:
+                - podSelector: {} # This targets all pods within the same namespace
+            # Rule 2: Allow egress to Kubernetes DNS (CoreDNS)
+            - to:
+                - namespaceSelector:
+                    matchLabels:
+                      kubernetes.io/metadata.name: kube-system # Selects the kube-system namespace
+                  podSelector:
+                    matchLabels:
+                      k8s-app: kube-dns # Selects the CoreDNS pods within kube-system
+              ports:
+                - protocol: UDP
+                  port: 53
+                - protocol: TCP
+                  port: 53
