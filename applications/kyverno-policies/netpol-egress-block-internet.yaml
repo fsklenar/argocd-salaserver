@@ -13,6 +13,7 @@ spec:
   background: true # Apply to existing namespaces if they don't have the policy
   rules:
   - name: generate-block-egress-networkpolicy
+    skipBackgroundRequests: true
     match:
       resources:
         kinds:
