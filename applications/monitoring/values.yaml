@@ -53,6 +53,6 @@ kube-prometheus-stack:
     #     - "/etc/alertmanager/secrets/alertmanager-prometheus-kube-prometheus-alertmanager/alertmanager.yaml"
     alertmanagerSpec:
       useExistingSecret: true
-      configSecret: alertmanager.yaml
+      configSecret: alertmanager-prometheus-kube-prometheus-alertmanager
       secrets:
         - alertmanager-prometheus-kube-prometheus-alertmanager
