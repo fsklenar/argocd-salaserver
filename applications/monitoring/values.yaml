@@ -48,10 +48,11 @@ kube-prometheus-stack:
   alertmanager:
     enabled: true
     forceDeployDashboards: true
-    config:
-      templates:
-        - "/etc/alertmanager/secrets/alertmanager-prometheus-kube-prometheus-alertmanager/alertmanager.yaml"
+    # config:
+    #   templates:
+    #     - "/etc/alertmanager/secrets/alertmanager-prometheus-kube-prometheus-alertmanager/alertmanager.yaml"
     alertmanagerSpec:
       useExistingSecret: true
+      configSecret: alertmanager.yaml
       secrets:
         - alertmanager-prometheus-kube-prometheus-alertmanager
