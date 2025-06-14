@@ -47,7 +47,10 @@ kube-prometheus-stack:
         - kubernetes.io/pvc-protection
   alertmanager:
     enabled: true
-#    forceDeployDashboards: true
+    forceDeployDashboards: true
+    config:
+      templates:
+        - "/etc/alertmanager/secrets/alertmanager-prometheus-kube-prometheus-alertmanager/alertmanager.yaml"
     alertmanagerSpec:
       useExistingSecret: true
       secrets:
