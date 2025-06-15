@@ -38,6 +38,7 @@ spec:
         - ingress-nginx
         - kubernetes-dashboard
         - tigera-operator
+        - local-path-storage
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
