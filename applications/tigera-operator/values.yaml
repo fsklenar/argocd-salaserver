@@ -1,8 +1,8 @@
 tigera-operator:
   apiServer:
     enabled: false
-    # spec:
-    #   preserveUnknownFields: false
+    spec:
+      preserveUnknownFields: false
 
 
   # goldmane configures the Calico Goldmane flow aggregator.
