@@ -8,6 +8,7 @@ kube-prometheus-stack:
       hosts:
       - prometheus-salaserver.linuxadmin.eu
     prometheusSpec:
+      retention: 20d
       storageSpec:
         volumeClaimTemplate:
           spec:
