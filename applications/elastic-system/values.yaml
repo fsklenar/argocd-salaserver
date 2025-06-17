@@ -1,5 +1,0 @@
-eck-operator:
-  nameOverride: "eck01"
-
-  # fullnameOverride is the full name for the deployment. Leave empty to let Helm generate a name using chart values.
-  fullnameOverride: "eck01"
