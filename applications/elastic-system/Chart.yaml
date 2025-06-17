@@ -4,8 +4,8 @@ type: application
 version: 3.0.0
 
 dependencies:
-- name: eck-operator
+- name: elastic/eck-operator
   version: 3.0.0
-  repository: https://helm.elastic.co/
+  repository: https://helm.elastic.co
 
 
