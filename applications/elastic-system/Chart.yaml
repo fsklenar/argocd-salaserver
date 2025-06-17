@@ -1,0 +1,11 @@
+apiVersion: v2
+name: elastic/eck-operator
+type: application
+version: 3.0.0
+
+dependencies:
+- name: elastic/eck-operator
+  version: 3.0.0
+  repository: https://helm.elastic.co
+
+

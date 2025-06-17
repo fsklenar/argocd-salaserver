@@ -4,7 +4,7 @@ metadata:
   name: eck-kibana
   namespace: elastic-system
 spec:
-  version: 8.14.1
+  version: 8.18.2
   count: 1
   elasticsearchRef:
     name: eck01
