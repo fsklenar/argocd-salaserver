@@ -68,8 +68,6 @@ spec:
     matchLabels:
       app: wordpress
       tier: frontend
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
