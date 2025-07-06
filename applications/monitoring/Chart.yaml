@@ -4,8 +4,6 @@ name: kube-prometheus-stack
 type: application
 
 version: 70.0.0
-#version: 69.7.2
-
 
 dependencies:
 - name: kube-prometheus-stack
