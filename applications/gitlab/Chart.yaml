@@ -1,0 +1,11 @@
+apiVersion: v2
+name: gitlan
+type: application
+version: 9.1.2
+
+dependencies:
+- name: gitlab
+  version: 9.1.2
+  repository: https://charts.gitlab.io/gitlab
+
+
