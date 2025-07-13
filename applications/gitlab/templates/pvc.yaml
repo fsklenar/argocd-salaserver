@@ -9,7 +9,7 @@ metadata:
   name: data-gitlab-postgresql-0
   namespace: gitlab
 spec:
-  storageClassName: "local-path"
+  storageClassName: "local-storage"
   accessModes:
   - ReadWriteOnce
   resources:
@@ -38,31 +38,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  volumeMode: Filesystem
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  annotations:
-    meta.helm.sh/release-name: gitlab
-    meta.helm.sh/release-namespace: gitlab
-  labels:
-    app.kubernetes.io/component: server
-    app.kubernetes.io/instance: gitlab
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: prometheus
-    app.kubernetes.io/part-of: prometheus
-    app.kubernetes.io/version: v3.4.1
-    helm.sh/chart: prometheus-27.20.0
-  name: gitlab-prometheus-server
-  namespace: gitlab
-spec:
-  storageClassName: "local-path"
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 8Gi
   volumeMode: Filesystem
 ---
 apiVersion: v1
