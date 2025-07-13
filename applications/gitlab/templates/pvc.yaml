@@ -29,7 +29,7 @@ metadata:
   name: gitlab-minio
   namespace: gitlab
 spec:
-  storageClassName: "local-path"
+  storageClassName: "local-storage"
   accessModes:
   - ReadWriteOnce
   resources:
@@ -48,7 +48,7 @@ metadata:
   name: redis-data-gitlab-redis-master-0
   namespace: gitlab
 spec:
-  storageClassName: "local-path"
+  storageClassName: "local-storage"
   accessModes:
   - ReadWriteOnce
   resources:
@@ -66,7 +66,7 @@ metadata:
   name: repo-data-gitlab-gitaly-0
   namespace: gitlab
 spec:
-  storageClassName: "local-path"
+  storageClassName: "local-storage"
   accessModes:
   - ReadWriteOnce
   resources:

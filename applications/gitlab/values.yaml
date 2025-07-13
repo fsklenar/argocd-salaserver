@@ -1,4 +1,4 @@
-gitlab:
+# gitlab:
   prometheus:
     install: false
 
