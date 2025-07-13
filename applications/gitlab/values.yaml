@@ -2,20 +2,24 @@ gitlab:
   prometheus:
     install: false
 
-  postgresql:
-    persistence:
-      volumeName: gitlab-postgres
-  minio:
-    persistence:
-      volumeName: gitlab-minio
-  redis:
-    master:
-      persistence:
-        volumeName: gitlab-redis
-  gitlab:
-    gitaly:
-      persistence:
-        volumeName: gitlab-gitaly
+  # postgresql:
+  #   persistence:
+  #     volumeName: gitlab-postgres
+  #     storageClass: local-storage
+  # minio:
+  #   persistence:
+  #     volumeName: gitlab-minio
+  #     storageClass: local-storage
+  # redis:
+  #   master:
+  #     persistence:
+  #       volumeName: gitlab-redis
+  #       storageClass: local-storage
+  # gitlab:
+  #   gitaly:
+  #     persistence:
+  #       volumeName: gitlab-gitaly
+  #       storageClass: local-storage
 
 
   installCertmanager: false

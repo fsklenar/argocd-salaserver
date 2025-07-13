@@ -198,3 +198,5 @@
 
 # # helm upgrade --install gitlab gitlab/gitlab --timeout 600s --namespace gitlab -f values.yaml
 # # https://gitlab.com/gitlab-org/charts/gitlab
+# kubectl get namespace gitlab -o json   | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/"   | kubectl replace --raw /api/v1/namespaces/gitlab/finalize -f -
+
