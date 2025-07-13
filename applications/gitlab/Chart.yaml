@@ -1,5 +1,5 @@
 apiVersion: v2
-name: gitlan
+name: gitlab
 type: application
 version: 9.1.2
 
