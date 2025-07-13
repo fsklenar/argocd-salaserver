@@ -92,7 +92,7 @@ spec:
   local:
     path: /srv/virtiofs/gitlab/repo-data-gitlab-gitaly-0
   capacity:
-    storage: 50Gi
+    storage: 10Gi
   persistentVolumeReclaimPolicy: Retain
   volumeMode: Filesystem
   claimRef:

@@ -1,6 +1,23 @@
 gitlab:
   prometheus:
     install: false
+
+  postgresql:
+    persistence:
+      volumeName: gitlab-postgres
+  minio:
+    persistence:
+      volumeName: gitlab-minio
+  redis:
+    master:
+      persistence:
+        volumeName: gitlab-redis
+  gitlab:
+    gitaly:
+      persistence:
+        volumeName: gitlab-gitaly
+
+
   installCertmanager: false
   certmanager:
     installCRDs: false

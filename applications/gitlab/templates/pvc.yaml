@@ -16,6 +16,7 @@ spec:
     requests:
       storage: 8Gi
   volumeMode: Filesystem
+  volumeName: gitlab-postgres
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -25,10 +26,6 @@ metadata:
     meta.helm.sh/release-namespace: gitlab
   labels:
     app: minio
-    app.kubernetes.io/managed-by: Helm
-    chart: minio-0.4.3
-    heritage: Helm
-    release: gitlab
   name: gitlab-minio
   namespace: gitlab
 spec:
@@ -39,6 +36,7 @@ spec:
     requests:
       storage: 10Gi
   volumeMode: Filesystem
+  volumeName: gitlab-minio
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -57,6 +55,7 @@ spec:
     requests:
       storage: 8Gi
   volumeMode: Filesystem
+  volumeName: gitlab-redis
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -74,3 +73,4 @@ spec:
     requests:
       storage: 50Gi
   volumeMode: Filesystem
+  volumeName: gitlab-gitaly
