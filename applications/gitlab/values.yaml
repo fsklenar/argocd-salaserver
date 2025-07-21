@@ -21,6 +21,9 @@ gitlab:
   #       volumeName: gitlab-gitaly
   #       storageClass: local-storage
 
+  gitlab:
+    migrations:
+      enabled: false
 
   installCertmanager: false
   certmanager:
