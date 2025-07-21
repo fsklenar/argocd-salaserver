@@ -25,7 +25,7 @@ gitlab:
   #   migrations:
   #     enabled: true
   upgradeCheck:
-    enabled: false
+    enabled: true
   installCertmanager: false
   certmanager:
     installCRDs: false
