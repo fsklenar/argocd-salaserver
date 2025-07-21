@@ -21,10 +21,11 @@ gitlab:
   #       volumeName: gitlab-gitaly
   #       storageClass: local-storage
 
-  gitlab:
-    migrations:
-      enabled: false
-
+  # gitlab:
+  #   migrations:
+  #     enabled: true
+  upgradeCheck:
+    enabled: false
   installCertmanager: false
   certmanager:
     installCRDs: false
