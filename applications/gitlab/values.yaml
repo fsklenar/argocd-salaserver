@@ -6,10 +6,10 @@ gitlab:
   #   persistence:
   #     volumeName: gitlab-postgres
   #     storageClass: local-storage
-  minio:
-    persistence:
-      volumeName: gitlab-minio
-      storageClass: local-storage
+  # minio:
+  #   persistence:
+  #     volumeName: gitlab-minio
+  #     storageClass: local-storage
   # redis:
   #   master:
   #     persistence:
