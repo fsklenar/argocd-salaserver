@@ -4,6 +4,13 @@ kyverno:
       create: true
       clusterRole:
         extraResources: []
+  grafana:
+    grafanaDashboard:
+      create: true
+      folder: kyverno
+      allowCrossNamespaceImport: true
+      matchLabels:
+        dashboards: "grafana"
         # - apiGroups:
         #     - ''
         #   resources:
