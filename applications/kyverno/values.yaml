@@ -5,6 +5,7 @@ kyverno:
       clusterRole:
         extraResources: []
   grafana:
+    enabled: true
     grafanaDashboard:
       create: true
       folder: kyverno
