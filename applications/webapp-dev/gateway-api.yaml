@@ -1,0 +1,31 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: nginx
+  namespace: webapp-dev
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - hostname: webapp.linuxadmin.eu
+    name: webapp-linuxadmin-eu-http
+    port: 80
+    protocol: HTTP
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: ingress-webapp-dev-svc-webapp-linuxadmin-eu
+  namespace: webapp-dev
+spec:
+  hostnames:
+  - webapp.linuxadmin.eu
+  parentRefs:
+  - name: nginx
+  rules:
+  - backendRefs:
+    - name: webapp-dev-svc
+      port: 8090
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
