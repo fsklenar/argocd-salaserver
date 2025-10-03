@@ -14,7 +14,7 @@ immich:
           key: db-password
 
   image:
-    tag: v1.134.0
+    tag: v2.0.0
 
   immich:
     metrics:
