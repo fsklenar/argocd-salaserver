@@ -40,11 +40,11 @@ gitlab:
   #     enabled: true
   upgradeCheck:
     enabled: true
-  installCertmanager: false
+  installCertmanager: true
   certmanager:
     installCRDs: false
-  # certmanager-issuer:
-  #   email: frantisek.sklenar@gmail.com
+  certmanager-issuer:
+    email: frantisek.sklenar@gmail.com
   nginx-ingress: &nginx-ingress
     enabled: false
   global:
