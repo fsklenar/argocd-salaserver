@@ -7,7 +7,7 @@ spec:
   - group: "" # Group is empty for core resources like Secret
     kind: Secret
     jsonPointers:
-    - /metadata/annotations/checksum~1config
+    - /metadata/annotations/
   destination:
     name: 'salaserver'
     namespace: 'argocd'
