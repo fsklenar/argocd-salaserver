@@ -42,7 +42,7 @@ gitlab:
     enabled: true
   installCertmanager: false
   certmanager:
-    installCRDs: false
+    installCRDs: true
   certmanager-issuer:
     email: frantisek.sklenar@gmail.com
   nginx-ingress: &nginx-ingress
