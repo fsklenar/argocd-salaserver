@@ -25,6 +25,10 @@ spec:
         kind: Deployment
         jsonPointers:
         - /metadata/annotations/
+      - group: apiextensions.k8s.io
+        kind: CustomResourceDefinition
+        jsonPointers:
+        - /spec/preserveUnknownFields
       project: "salaserver"
       sources:
       - repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
