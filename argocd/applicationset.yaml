@@ -20,6 +20,11 @@ spec:
     metadata:
       name: '{{.path.basename}}'
     spec:
+      ignoreDifferences:
+      - group: "" # Group is empty for core resources like Secret
+        kind: Deployment
+        jsonPointers:
+        - /metadata/annotations/
       project: "salaserver"
       sources:
       - repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'

@@ -3,11 +3,6 @@ kind: Application
 metadata:
   name: 'argocd'
 spec:
-  ignoreDifferences:
-  - group: "" # Group is empty for core resources like Secret
-    kind: Secret
-    jsonPointers:
-    - /metadata/annotations/
   destination:
     name: 'salaserver'
     namespace: 'argocd'
