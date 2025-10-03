@@ -41,11 +41,6 @@ spec:
         syncOptions:
         - ServerSideApply=true
         - RespectIgnoreDifferences=true
-      ignoreDifferences:
-        - group: ''              # The group for a core Kubernetes Secret is empty
-          kind: Secret
-          name: kubernetes-dashboard-csrf  # Replace with the actual name of your Secret
-          jsonPointers:
-            - /data/private.key
+
 
 
