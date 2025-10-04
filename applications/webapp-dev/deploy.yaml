@@ -18,13 +18,6 @@ spec:
         - name: data-volume
           persistentVolumeClaim:
             claimName: webapp-pvc
-      securityContext:
-        # Enforce the use of a non-root user
-        runAsNonRoot: true
-        # Set the User ID (UID) to a non-root user, like 1000 or the user defined in the image
-        # The nginxinc/nginx-unprivileged image typically runs as UID 101 or 65532 (nginx)
-        runAsUser: 101 # Example UID for non-root user
-        fsGroup: 101 # Allows this UID to own/access mounted volumes
       containers:
       - name: nginx
         image: nginx:1.29
