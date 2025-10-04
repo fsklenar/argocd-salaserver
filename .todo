@@ -1,4 +1,4 @@
 - ElasticSearch - upgrade to 9.1
 - fluentd - nastav type=kubernetes configy pre kubernetes.** vo fluentd.yaml
-- replace calico with cillium
+- replace calico with cillium https://docs.cilium.io/en/stable/installation/k8s-install-helm/
 - prerob na API Gateway
