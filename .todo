@@ -1,3 +1,4 @@
 - ElasticSearch - upgrade to 9.1
 - fluentd - nastav type=kubernetes configy pre kubernetes.** vo fluentd.yaml
+- replace calico with cillium
 - prerob na API Gateway
