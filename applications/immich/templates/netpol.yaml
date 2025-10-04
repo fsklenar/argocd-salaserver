@@ -1,31 +1,42 @@
-# ---
-# # egress:
-# # - Internet not allowed except DNS
-# # - block communication to other namespaces in k8s
-# apiVersion: networking.k8s.io/v1
-# kind: NetworkPolicy
-# metadata:
-#   name: block-egress-external
-#   namespace: immich
-# spec:
-#   podSelector: {}
-#   policyTypes:
-#     - Egress
-#   egress:
-#     # Rule 1: Allow egress to pods within the same namespace
-#     - to:
-#         - podSelector: {} # This targets all pods within the same namespace
-#     # Rule 2: Allow egress to Kubernetes DNS (CoreDNS)
-#     - to:
-#         - namespaceSelector:
-#             matchLabels:
-#               kubernetes.io/metadata.name: kube-system # Selects the kube-system namespace
-#           podSelector:
-#             matchLabels:
-#               k8s-app: kube-dns # Selects the CoreDNS pods within kube-system
-#       ports:
-#         - protocol: UDP
-#           port: 53
-#         - protocol: TCP
-#           port: 53
-#
+---
+# egress:
+# - block communication to other namespaces in k8s
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: block-egress-external
+  namespace: immich
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+  egress:
+    # Rule 1: Allow egress to pods within the same namespace
+    - to:
+        - podSelector: {} # This targets all pods within the same namespace
+    # Rule 2: Allow egress to Kubernetes DNS (CoreDNS)
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system # Selects the kube-system namespace
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns # Selects the CoreDNS pods within kube-system
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+    # Rule 3: Allow egress to the internet (all external IPs).
+    # This rule uses the 'ipBlock' field with '0.0.0.0/0' to allow traffic
+    # to any IP address outside the cluster's service and pod CIDRs.
+    # You might want to refine this with 'except' if there are specific internal
+    # IP ranges you want to continue blocking (e.g., other private networks).
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except:
+              - 10.0.0.0/8
+              - 172.16.0.0/12
+              - 192.168.0.0/16
+
