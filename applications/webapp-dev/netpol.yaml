@@ -28,12 +28,12 @@ spec:
           port: 53
         - protocol: TCP
           port: 53
-    - to:
-      - ipBlock:
-          cidr: 0.0.0.0/0
-          # Exclude traffic to Kubernetes service IPs and pods
-          except:
-            - 10.0.0.0/8
-            - 172.16.0.0/12
-            - 192.168.0.0/16
+    # - to:
+    #   - ipBlock:
+    #       cidr: 0.0.0.0/0
+    #       # Exclude traffic to Kubernetes service IPs and pods
+    #       except:
+    #         - 10.0.0.0/8
+    #         - 172.16.0.0/12
+    #         - 192.168.0.0/16
 
