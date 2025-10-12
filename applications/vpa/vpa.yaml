@@ -1324,7 +1324,7 @@ spec:
         runAsUser: 65534 # nobody
       containers:
         - name: updater
-          image: registry.k8s.io/autoscaling/vpa-updater:1.4.1
+          image: registry.k8s.io/autoscaling/vpa-updater:1.5.1
           imagePullPolicy: IfNotPresent
           env:
             - name: NAMESPACE
@@ -1341,6 +1341,21 @@ spec:
           ports:
             - name: prometheus
               containerPort: 8943
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: prometheus
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health-check
+              port: prometheus
+              scheme: HTTP
+            periodSeconds: 10
+            failureThreshold: 3
 
 ---
 ---
@@ -1365,7 +1380,7 @@ spec:
         runAsUser: 65534 # nobody
       containers:
       - name: recommender
-        image: registry.k8s.io/autoscaling/vpa-recommender:1.4.1
+        image: registry.k8s.io/autoscaling/vpa-recommender:1.5.1
         imagePullPolicy: IfNotPresent
         resources:
           limits:
@@ -1377,6 +1392,21 @@ spec:
         ports:
         - name: prometheus
           containerPort: 8942
+        livenessProbe:
+          httpGet:
+            path: /health-check
+            port: prometheus
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health-check
+            port: prometheus
+            scheme: HTTP
+          periodSeconds: 10
+          failureThreshold: 3
 
 ---
 ---
@@ -1401,7 +1431,7 @@ spec:
         runAsUser: 65534 # nobody
       containers:
         - name: admission-controller
-          image: registry.k8s.io/autoscaling/vpa-admission-controller:1.4.1
+          image: registry.k8s.io/autoscaling/vpa-admission-controller:1.5.1
           imagePullPolicy: IfNotPresent
           env:
             - name: NAMESPACE
@@ -1424,9 +1454,37 @@ spec:
             - containerPort: 8000
             - name: prometheus
               containerPort: 8944
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: prometheus
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health-check
+              port: prometheus
+              scheme: HTTP
+            periodSeconds: 10
+            failureThreshold: 3
       volumes:
         - name: tls-certs
           secret:
             secretName: vpa-tls-certs
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vpa-webhook
+  namespace: kube-system
+spec:
+  ports:
+    - port: 443
+      targetPort: 8000
+  selector:
+    app: vpa-admission-controller
 
 ---
