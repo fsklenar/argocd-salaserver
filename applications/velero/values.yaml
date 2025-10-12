@@ -28,7 +28,7 @@ velero:
       memory: 512Mi
   image:
     repository: velero/velero
-    tag: v1.15.2
+    tag: v1.17.0
   kubectl:
     image:
       repository: bitnamilegacy/kubectl
