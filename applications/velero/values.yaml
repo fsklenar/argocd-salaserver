@@ -31,8 +31,8 @@ velero:
     tag: v1.15.2
   kubectl:
     image:
-      repository: bitnami/kubectl
-      tag: 1.29.10
+      repository: bitnamilegacy/kubectl
+      tag: 1.33.4
   credentials:
     useSecret: true
     name: k8s-sala-backup
