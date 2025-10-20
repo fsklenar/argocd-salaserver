@@ -13,22 +13,19 @@ spec:
           containers:
             - name: kubectl-pod-cleaner
               image: bitnamilegacy/kubectl:1.33.4
-              command: ["/bin/sh", "-c"]
-              args:
+              command:
+                - /bin/sh
+                - -c
                 - |
-                  # Find and delete pods in CrashLoopBackOff state
-                  # The 'grep -v "Terminating"' is to avoid trying to delete pods that are already shutting down
-                  PODS_TO_DELETE=$(kubectl get pods --field-selector=status.phase=Running -o json | \
-                    jq -r '.items[] | select(.status.containerStatuses[]?.state.waiting.reason == "CrashLoopBackOff") | .metadata.name')
-
-                  if [ -z "$PODS_TO_DELETE" ]; then
-                    echo "No CrashLoopBackOff pods found."
-                  else
-                    echo "Deleting the following pods in CrashLoopBackOff: $PODS_TO_DELETE"
-                    # Use --force --grace-period=0 for immediate deletion. Omit for standard deletion.
-                    # Standard deletion: kubectl delete pod $PODS_TO_DELETE
-                    kubectl delete pod $PODS_TO_DELETE
-                  fi
+                  echo "Deleting CrashLoopBackOff pods..."
+                  kubectl get pods --all-namespaces \
+                    --field-selector=status.phase!=Running,status.phase!=Succeeded \
+                    -o json | \
+                  jq -r '.items[] | select(.status.containerStatuses[]?.state.waiting.reason=="CrashLoopBackOff") | [.metadata.namespace, .metadata.name] | @tsv' | \
+                  while IFS=$'\t' read ns pod; do
+                    echo "Deleting pod $pod in namespace $ns"
+                    kubectl delete pod "$pod" -n "$ns"
+                  done
           restartPolicy: OnFailure
 ---
 apiVersion: v1
