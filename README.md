@@ -7,3 +7,5 @@ ArgoCD configuration with applications deployed by:
 ### Examples
 https://github.com/argoproj/argocd-example-apps
 
+### Cilium
+https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/
