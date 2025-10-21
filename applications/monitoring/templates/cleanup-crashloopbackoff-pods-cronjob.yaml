@@ -21,7 +21,7 @@ spec:
                   kubectl get pods --all-namespaces \
                     --field-selector=status.phase!=Running,status.phase!=Succeeded \
                     -o json | \
-                  jq -r '.items[] | select(.status.containerStatuses[]?.state.waiting.reason=="CrashLoopBackOff") | [.metadata.namespace, .metadata.name] | @tsv' | \
+                  jq -r '.items[] | [.metadata.namespace, .metadata.name] | @tsv' | \
                   while IFS=$'\t' read ns pod; do
                     echo "Deleting pod $pod in namespace $ns"
                     kubectl delete pod "$pod" -n "$ns"
