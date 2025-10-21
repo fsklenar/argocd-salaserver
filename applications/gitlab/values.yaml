@@ -40,7 +40,7 @@ gitlab:
   #     enabled: true
   upgradeCheck:
     enabled: true
-  installCertmanager: false
+  installCertmanager: true
   certmanager:
     installCRDs: true
   certmanager-issuer:
