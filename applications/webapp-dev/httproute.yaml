@@ -7,11 +7,15 @@ spec:
   hostnames:
     - webapp.linuxadmin.eu
   parentRefs:
-    - name: cilium-gateway-http
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway-http
       namespace: kube-system
   rules:
     - backendRefs:
-        - name: webapp-dev-svc
+        - group: ''
+          kind: Service
+          name: webapp-dev-svc
           port: 8090
       matches:
         - path:
