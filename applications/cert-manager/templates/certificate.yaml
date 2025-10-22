@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   dnsNames:
-  - *.linuxadmin.eu
+  - linuxadmin.eu
   secretName: cilium-gateway-https-secret
   issuerRef:
     name: selfsigned-cluster-issuer
