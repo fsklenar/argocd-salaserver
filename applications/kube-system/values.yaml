@@ -3,5 +3,8 @@ cilium:
   enableNodePort: true
   gatewayAPI:
     enabled: true
+    nodes:
+      matchLabels:
+        node-role.kubernetes.io/control-plane: ""
     hostNetwork:
       enabled: true
