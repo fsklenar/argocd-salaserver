@@ -5,6 +5,6 @@ cilium:
     enabled: true
     nodes:
       matchLabels:
-        node-role.kubernetes.io/control-plane: ""
+        kubernetes.io/hostname: k8smaster
     hostNetwork:
       enabled: true
