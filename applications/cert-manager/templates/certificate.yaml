@@ -4,6 +4,8 @@ metadata:
   name: cilium-gateway-https-cert
   namespace: kube-system
 spec:
+  dnsNames:
+  - *.linuxadmin.eu
   secretName: cilium-gateway-https-secret
   issuerRef:
     name: selfsigned-cluster-issuer
