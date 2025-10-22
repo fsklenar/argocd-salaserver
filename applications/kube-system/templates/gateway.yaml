@@ -13,22 +13,22 @@ spec:
         namespaces:
           from: All
 
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: Gateway
-# metadata:
-#   name: cilium-gateway-https
-#   namespace: kube-system
-# spec:
-#   gatewayClassName: cilium
-#   listeners:
-#     - name: web-gw-https
-#       protocol: HTTPS
-#       port: 8043
-#       allowedRoutes:
-#         namespaces:
-#           from: All
-#       tls:
-#         certificateRefs:
-#           - kind: Secret
-#             name: cilium-ca
 ---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: cilium-gateway-https
+  namespace: kube-system
+spec:
+  gatewayClassName: cilium
+  listeners:
+    - name: web-gw-https
+      protocol: HTTPS
+      port: 8043
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: cilium-gateway-https-secret
