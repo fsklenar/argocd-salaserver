@@ -1,0 +1,6 @@
+cilium:
+  gatewayAPI:
+    enabled: true
+    kubeProxyReplacement: true
+    hostNetwork:
+      enabled: true
