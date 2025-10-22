@@ -9,7 +9,7 @@ spec:
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
-      name: cilium-gateway-http
+      name: cilium-gateway-https
       namespace: kube-system
   rules:
     - backendRefs:
