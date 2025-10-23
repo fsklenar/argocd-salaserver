@@ -1,18 +1,18 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ingress-wordpress-wp-dev
-  namespace: wordpress-dev
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: wordpress-dev-salaserver.linuxadmin.eu
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: wordpress-wp-dev
-            port:
-              number: 8080
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: ingress-wordpress-wp-dev
+#   namespace: wordpress-dev
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#   - host: wordpress-dev-salaserver.linuxadmin.eu
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: wordpress-wp-dev
+#             port:
+#               number: 8080
