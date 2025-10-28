@@ -40,8 +40,8 @@ spec:
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
-        #namespace: '{{.path.basename}}'
-        namespace: '{{ .Values.namespace | default path.basename }}'
+        namespace: '{{.path.basename}}'
+        #namespace: '{{ .Values.namespace | default path.basename }}'
       syncPolicy:
         syncOptions:
         - ServerSideApply=true
