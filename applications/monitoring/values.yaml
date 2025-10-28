@@ -4,9 +4,9 @@ kube-prometheus-stack:
   prometheus:
     ingress:
       enabled: false
-      # ingressClassName: nginx
-      # hosts:
-      # - prometheus-salaserver.linuxadmin.eu
+      ingressClassName: nginx
+      hosts:
+      - prometheus-salaserver.linuxadmin.eu
     prometheusSpec:
       retention: 20d
       storageSpec:
