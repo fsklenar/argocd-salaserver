@@ -24,11 +24,11 @@ kube-prometheus-stack:
     defaultDashboardsEditable: true
     forceDeployDashboards: true
     forceDeployDatasources: true
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      hosts:
-      - grafana-salaserver.linuxadmin.eu
+    # ingress:
+    #   enabled: true
+    #   ingressClassName: nginx
+    #   hosts:
+    #   - grafana-salaserver.linuxadmin.eu
     # service:
     #   port: 3000
     #   externalIPs:
