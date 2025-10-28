@@ -10,14 +10,14 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
-      # directories:
-      # - path: 'applications/*'
-      # repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
-      # revision: HEAD
+      directories:
+      - path: 'applications/*'
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
-      files:
-      - path: applications/*/appset-values.yaml
+      # files:
+      # - path: applications/*/appset-values.yaml
+      # repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+      # revision: HEAD
   syncPolicy:
     applicationsSync: create-only
   template:
@@ -44,8 +44,9 @@ spec:
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
-        #namespace: '{{.path.basename}}'
-        namespace: '{{ values.namespace | default path.basename }}'
+        namespace: '{{.path.basename}}'
+        #namespace: '{{.values.namespace}}'
+        #namespace: '{{ .values.namespace | default path.basename }}'
       syncPolicy:
         syncOptions:
         - ServerSideApply=true
