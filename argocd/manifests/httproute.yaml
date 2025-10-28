@@ -1,36 +1,12 @@
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: httproute-argocd
-  namespace: argocd
-spec:
-  hostnames:
-    - argocd-salaserver.linuxadmin.eu
-  parentRefs:
-    - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: cilium-gateway-https
-      namespace: kube-system
-  rules:
-    - backendRefs:
-      - group: ''
-        name: argocd-server
-        port: 80
-        kind: Service
-        weight: 1
-      matches:
-      - path:
-          type: PathPrefix
-          value: /
-
+# # httproute-argocd-https.yaml
 # apiVersion: gateway.networking.k8s.io/v1
 # kind: HTTPRoute
 # metadata:
-#   name: httproute-webapp-dev
-#   namespace: webapp-dev
+#   name: httproute-argocd
+#   namespace: argocd
 # spec:
 #   hostnames:
-#     - webapp.linuxadmin.eu
+#     - argocd-salaserver.linuxadmin.eu
 #   parentRefs:
 #     - group: gateway.networking.k8s.io
 #       kind: Gateway
@@ -38,12 +14,38 @@ spec:
 #       namespace: kube-system
 #   rules:
 #     - backendRefs:
-#         - group: ''
-#           kind: Service
-#           name: webapp-dev-svc
-#           port: 8090
+#         - name: argocd-server
+#           port: 443
 #           weight: 1
 #       matches:
 #         - path:
 #             type: PathPrefix
 #             value: /
+
+# ---
+# # httproute-argocd-http-redirect.yaml
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: httproute-argocd-http-redirect
+#   namespace: argocd
+# spec:
+#   hostnames:
+#     - argocd-salaserver.linuxadmin.eu
+#   parentRefs:
+#     - group: gateway.networking.k8s.io
+#       kind: Gateway
+#       name: cilium-gateway-https
+#       namespace: kube-system
+#       # This is crucial: Attach to the Gateway's HTTP listener!
+#       # Assuming your Gateway has an HTTP listener named 'http-listener-name'
+#       # If your Gateway uses 'port', you can use the numerical port instead: port: 80
+#       # You MUST confirm the name of the HTTP Listener on your Gateway!
+#       # If your cilium-gateway-https ONLY has a 443 listener, this route is useless.
+#       sectionName: http-listener-name
+#   rules:
+#     - filters:
+#         - type: RequestRedirect
+#           requestRedirect:
+#             scheme: https
+#             statusCode: 301
