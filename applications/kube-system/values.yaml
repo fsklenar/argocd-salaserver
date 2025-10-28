@@ -1,4 +1,5 @@
 cilium:
+  namespace: kube-system
   kubeProxyReplacement: true
   enableNodePort: true
   gatewayAPI:
