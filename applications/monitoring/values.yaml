@@ -2,11 +2,11 @@ kube-prometheus-stack:
   # nodeExporter:
   #   forceDeployDashboards: true
   prometheus:
-    ingress:
-      enabled: false
-      ingressClassName: nginx
-      hosts:
-      - prometheus-salaserver.linuxadmin.eu
+    # ingress:
+    #   enabled: true
+    #   ingressClassName: nginx
+    #   hosts:
+    #   - prometheus-salaserver.linuxadmin.eu
     prometheusSpec:
       retention: 20d
       storageSpec:
