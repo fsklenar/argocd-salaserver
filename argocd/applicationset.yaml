@@ -10,10 +10,14 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
-      directories:
-      - path: 'applications/*'
+      # directories:
+      # - path: 'applications/*'
+      # repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+      # revision: HEAD
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
+      files:
+      - path: applications/*/appset-values.yaml
   syncPolicy:
     applicationsSync: create-only
   template:
