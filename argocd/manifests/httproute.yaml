@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: argocd-linuxadmin-eu
+  namespace: argocd
+spec:
+  hostnames:
+  - argocd-salaserver.linuxadmin.eu
+  parentRefs:
+  - name: nginx
+  rules:
+  - backendRefs:
+    - name: argocd-server
+      port: 80
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
