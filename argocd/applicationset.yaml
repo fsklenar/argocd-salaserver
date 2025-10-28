@@ -14,6 +14,9 @@ spec:
       - path: 'applications/*'
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
+  # valueFiles:
+  #   - path: values.yaml
+  #   - default: '{{path.basename}}'
   syncPolicy:
     applicationsSync: create-only
   template:
@@ -40,7 +43,8 @@ spec:
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.path.basename}}'
+        #namespace: '{{.path.basename}}'
+        namespace: '{{ .Values.namespace | default path.basename }}'
       syncPolicy:
         syncOptions:
         - ServerSideApply=true
