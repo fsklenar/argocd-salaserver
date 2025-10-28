@@ -14,9 +14,6 @@ spec:
       - path: 'applications/*'
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
-  # valueFiles:
-  #   - path: values.yaml
-  #   - default: '{{path.basename}}'
   syncPolicy:
     applicationsSync: create-only
   template:
