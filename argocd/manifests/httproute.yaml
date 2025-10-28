@@ -5,13 +5,16 @@ metadata:
   namespace: argocd
 spec:
   hostnames:
-  - argocd-salaserver.linuxadmin.eu
+    - argocd-salaserver.linuxadmin.eu
   parentRefs:
-  - name: nginx
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway-https
+      namespace: kube-system
   rules:
   - backendRefs:
     - name: argocd-server
-      port: 80
+      port: 443
     matches:
     - path:
         type: PathPrefix
