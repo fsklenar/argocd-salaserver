@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: argocd-linuxadmin-eu
+  name: httproute-argocd
   namespace: argocd
 spec:
   hostnames:
@@ -12,10 +12,38 @@ spec:
       name: cilium-gateway-https
       namespace: kube-system
   rules:
-  - backendRefs:
-    - name: argocd-server
-      port: 443
-    matches:
-    - path:
-        type: PathPrefix
-        value: /
+    - backendRefs:
+      - group: ''
+        name: argocd-server
+        port: 80
+        kind: Service
+        weight: 1
+      matches:
+      - path:
+          type: PathPrefix
+          value: /
+
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: httproute-webapp-dev
+#   namespace: webapp-dev
+# spec:
+#   hostnames:
+#     - webapp.linuxadmin.eu
+#   parentRefs:
+#     - group: gateway.networking.k8s.io
+#       kind: Gateway
+#       name: cilium-gateway-https
+#       namespace: kube-system
+#   rules:
+#     - backendRefs:
+#         - group: ''
+#           kind: Service
+#           name: webapp-dev-svc
+#           port: 8090
+#           weight: 1
+#       matches:
+#         - path:
+#             type: PathPrefix
+#             value: /
