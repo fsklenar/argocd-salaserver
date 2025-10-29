@@ -1,7 +1,7 @@
 cilium:
   hubble:
-    # ui:
-    #   enabled: true
+    ui:
+      enabled: true
     relay:
       enabled: true
   kubeProxyReplacement: true
