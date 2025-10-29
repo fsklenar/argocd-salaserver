@@ -1,4 +1,9 @@
 cilium:
+  hubble:
+    ui:
+      enabled: true
+    relay:
+      enabled: true
   kubeProxyReplacement: true
   enableNodePort: true
   gatewayAPI:
