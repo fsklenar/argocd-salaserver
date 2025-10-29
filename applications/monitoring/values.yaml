@@ -12,6 +12,7 @@ kube-prometheus-stack:
         enabled: true
         apiVersion: gateway.networking.k8s.io/v1
         kind: HTTPRoute
+        httpsRedirect: true
         hostnames:
           - monitoring-kube-prometheus-prometheus
         parentRefs:
