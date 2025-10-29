@@ -14,7 +14,7 @@ kube-prometheus-stack:
         kind: HTTPRoute
         httpsRedirect: true
         hostnames:
-          - monitoring-kube-prometheus-prometheus
+          - prometheus-salaserver.linuxadmin.eu
         parentRefs:
           - group: gateway.networking.k8s.io
             kind: Gateway
