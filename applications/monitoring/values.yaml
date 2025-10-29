@@ -39,8 +39,7 @@ kube-prometheus-stack:
     forceDeployDatasources: true
     operator:
       dashboardsConfigMapRefEnabled: true
-       matchLabels:
-         app: "grafana"
+       matchLabels: { app: "grafana" }
     # ingress:
     #   enabled: true
     #   ingressClassName: nginx
