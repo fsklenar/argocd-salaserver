@@ -7,6 +7,19 @@ kube-prometheus-stack:
     #   ingressClassName: nginx
     #   hosts:
     #   - prometheus-salaserver.linuxadmin.eu
+    ingress:
+      route:
+        main:
+          enabled: true
+          apiVersion: gateway.networking.k8s.io/v1
+          kind: HTTPRoute
+          hostnames:
+            - monitoring-kube-prometheus-prometheus
+          parentRefs:
+            - group: gateway.networking.k8s.io
+              kind: Gateway
+              name: cilium-gateway-https
+              namespace: kube-system
     prometheusSpec:
       retention: 20d
       storageSpec:
@@ -24,6 +37,8 @@ kube-prometheus-stack:
     defaultDashboardsEditable: true
     forceDeployDashboards: true
     forceDeployDatasources: true
+    operator:
+      dashboardsConfigMapRefEnabled: true
     # ingress:
     #   enabled: true
     #   ingressClassName: nginx
