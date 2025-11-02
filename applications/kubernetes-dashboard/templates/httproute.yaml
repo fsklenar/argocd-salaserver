@@ -1,23 +1,4 @@
 apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: dashboard-gateway
-  namespace: kubernetes-dashboard
-spec:
-  gatewayClassName: cilium
-  listeners:
-    - name: https
-      hostname: "dashboard-salaserver.linuxadmin.eu"
-      port: 443
-      protocol: HTTPS
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: kubernetes-dashboard-certs-tbvvw
-            kind: Secret
-
----
-apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: httproute-dashboard
@@ -28,8 +9,8 @@ spec:
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
-      name: dashboard-gateway
-      namespace: kubernetes-dashboard
+      name: cilium-gateway-https
+      namespace: kube-system
   rules:
     - backendRefs:
         - group: ''
