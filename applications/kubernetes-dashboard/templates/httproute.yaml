@@ -13,7 +13,7 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-          - name: kubernetes-dashboard-certs
+          - name: kubernetes-dashboard-certs-tbvvw
             kind: Secret
 
 ---
