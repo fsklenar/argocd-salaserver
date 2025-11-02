@@ -6,6 +6,8 @@ kubernetes-dashboard:
           cpu: 150m
           memory: 250Mi
   app:
+    httproute:
+      enable: true
     ingress:
       enabled: true
       hosts:

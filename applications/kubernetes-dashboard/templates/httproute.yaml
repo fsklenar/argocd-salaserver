@@ -1,26 +1,26 @@
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: httproute-dashboard
-  namespace: kubernetes-dashboard
-spec:
-  hostnames:
-    - dashboard-salaserver.linuxadmin.eu
-  tls:
-    enabled: true
-  parentRefs:
-    - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: cilium-gateway-https
-      namespace: kube-system
-  rules:
-    - backendRefs:
-        - group: ''
-          kind: Service
-          name: kubernetes-dashboard-kong-proxy
-          port: 443
-          weight: 1
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: httproute-dashboard
+#   namespace: kubernetes-dashboard
+# spec:
+#   hostnames:
+#     - dashboard-salaserver.linuxadmin.eu
+#   tls:
+#     enabled: true
+#   parentRefs:
+#     - group: gateway.networking.k8s.io
+#       kind: Gateway
+#       name: cilium-gateway-https
+#       namespace: kube-system
+#   rules:
+#     - backendRefs:
+#         - group: ''
+#           kind: Service
+#           name: kubernetes-dashboard-kong-proxy
+#           port: 443
+#           weight: 1
+#       matches:
+#         - path:
+#             type: PathPrefix
+#             value: /
