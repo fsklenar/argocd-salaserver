@@ -55,7 +55,8 @@ spec:
     spec:
       destination:
       {{- if eq {{.path.basename}} "grafana-operator" }}
-        namespace: monitoring
+        server: "https://kubernetes.default.svc"
+        namespace: "monitoring'
       {{ end }}
 
 
