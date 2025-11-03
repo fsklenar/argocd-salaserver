@@ -21,6 +21,9 @@ metadata:
   namespace: kube-system
 spec:
   gatewayClassName: cilium
+  # addresses:
+  #   - type: IPAddress
+  #     value: 10.192.168.202
   listeners:
     - name: web-gw-https
       protocol: HTTPS
@@ -33,3 +36,22 @@ spec:
           - group: ''
             kind: Secret
             name: cilium-gateway-https-secret
+---
+# apiVersion: metallb.io/v1beta1
+# kind: IPAddressPool
+# metadata:
+#   name: bare-metal-pool
+#   namespace: metallb-system
+# spec:
+#   addresses:
+#   - 192.168.11.240/28
+#
+# ---
+# apiVersion: metallb.io/v1beta1
+# kind: L2Advertisement
+# metadata:
+#   name: bare-metal-l2-advertisement
+#   namespace: metallb-system
+# spec:
+#   ipAddressPools:
+#   - bare-metal-pool

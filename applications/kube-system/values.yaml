@@ -6,6 +6,9 @@ cilium:
       enabled: true
   kubeProxyReplacement: true
   enableNodePort: true
+  l2announcements:
+    enable: true
+  enabled: false
   gatewayAPI:
     enabled: true
     hostNetwork:
