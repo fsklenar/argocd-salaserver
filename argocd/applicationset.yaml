@@ -51,13 +51,12 @@ spec:
         syncOptions:
         - ServerSideApply=true
         - RespectIgnoreDifferences=true
-  templatePatch: |
-    spec:
-      destination:
-      {{- if eq {{.path.basename}} "grafana-operator" }}
-        server: "https://kubernetes.default.svc"
-        namespace: "monitoring'
-      {{ end }}
+  templatePatch:
+    name: 'grafana-operator'
+    patch: |
+      - op: replace
+        path: /spec/destination/namespace
+        value: monitoring
 
 
 
