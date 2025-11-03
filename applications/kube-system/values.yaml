@@ -17,10 +17,10 @@ cilium:
   enabled: false
   gatewayAPI:
     enabled: true
-    hostNetwork:
-      enabled: true
-      nodes:
-        matchLabels:
-          node-role.kubernetes.io/control-plane: ""
+    # hostNetwork:
+    #   enabled: true
+    #   nodes:
+    #     matchLabels:
+    #       node-role.kubernetes.io/control-plane: ""
 
 #https://github.com/cilium/cilium/blob/v1.18.3/install/kubernetes/cilium/values.yaml
