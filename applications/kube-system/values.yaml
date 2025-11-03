@@ -14,10 +14,6 @@ cilium:
   dashboards:
     enabled: true
     label: grafana_dashboard
-  operator:
-    dashboards:
-    enabled: true
-    label: grafana_dashboard
   enabled: false
   gatewayAPI:
     enabled: true
