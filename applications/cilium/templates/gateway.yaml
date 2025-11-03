@@ -43,12 +43,10 @@ apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
 metadata:
   name: bare-metal-pool
-  # Spravidla sa deployuje do namespace, kde beží Cilium (často kube-system)
   namespace: kube-system
 spec:
-  # Definuj rozsah IP adries vo svojej lokálnej sieti, ktoré sú voľné!
   blocks:
-  - cidr: "192.168.0.202/32" # Príklad: rozsah od 192.168.1.240 do 192.168.1.255
+  - cidr: "192.168.0.202/32"
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
@@ -56,24 +54,10 @@ metadata:
   name: default-l2-policy
   namespace: kube-system
 spec:
-  # Zoznam rozhraní (interface) na tvojich uzloch, cez ktoré má Cilium inzerovať IP.
-  # Ak nevieš, nechaj prázdne (alebo použite regex: "eth.*" ak je to potrebné)
   interfaces:
     - ^enp$
-
-  # Príklad: - ^eth0$
-  # Príklad 2: Nechaj prázdne, ak má inzerovať na všetkých
-
-  # Ak má inzerovať IP adresy, ktoré mu pridelil CiliumLoadBalancerIPPool
   loadBalancerIPs: true
-  # Ak má inzerovať IP adresy ručne zadané v Service.spec.externalIPs
   externalIPs: true
-
-  # Voliteľné: Ak chceš, aby táto politika platila len pre pool
-  # loadBalancerIPPoolSelector:
-  #   matchLabels:
-  #     pool: bare-metal-pool
-
 
 
 # apiVersion: metallb.io/v1beta1
