@@ -4,6 +4,8 @@ cilium:
       enabled: true
     relay:
       enabled: true
+    metrics:
+      enabled: true
   kubeProxyReplacement: true
   enableNodePort: true
   lbExternalClusterIP: true
@@ -17,13 +19,14 @@ cilium:
   operator:
     dashboards:
       enabled: true
-    # prometheus:
-    #   metricsService: true
-    #   enabled: true
+    prometheus:
+      enabled: true
     #   port: 9963
     #   serviceMonitor:
     #     enabled: true
   gatewayAPI:
+    enabled: true
+  prometheus:
     enabled: true
     # hostNetwork:
     #   enabled: true
