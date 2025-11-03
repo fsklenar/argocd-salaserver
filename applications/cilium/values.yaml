@@ -26,8 +26,8 @@ cilium:
     #     enabled: true
   gatewayAPI:
     enabled: true
-  prometheus:
-    enabled: false
+  serviceMonitor:
+    enabled: true
     # hostNetwork:
     #   enabled: true
     #   nodes:
