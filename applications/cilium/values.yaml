@@ -34,11 +34,11 @@ cilium:
       enabled: true
       port: 9963
       serviceMonitor:
-        enabled: true
+        enabled: false
   prometheus:
     enabled: true
     serviceMonitor:
-      enabled: true
+      enabled: false
   gatewayAPI:
     enabled: true
     # hostNetwork:
