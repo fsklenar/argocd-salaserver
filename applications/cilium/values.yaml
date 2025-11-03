@@ -17,12 +17,12 @@ cilium:
   operator:
     dashboards:
       enabled: true
-    prometheus:
-      metricsService: true
-      enabled: true
-      port: 9963
-      serviceMonitor:
-        enabled: true
+    # prometheus:
+    #   metricsService: true
+    #   enabled: true
+    #   port: 9963
+    #   serviceMonitor:
+    #     enabled: true
   gatewayAPI:
     enabled: true
     # hostNetwork:
