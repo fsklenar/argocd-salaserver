@@ -52,6 +52,7 @@ kube-prometheus-stack:
       dashboardsConfigMapRefEnabled: true
       matchLabels:
         app: "grafana_dashboard"
+        app: "kube-prometheus-stack-grafana"
     # ingress:
     #   enabled: true
     #   ingressClassName: nginx
