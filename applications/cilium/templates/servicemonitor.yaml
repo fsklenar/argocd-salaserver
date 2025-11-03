@@ -16,3 +16,25 @@ spec:
   - port: prometheus
     interval: 5s
     honorLabels: true
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: cilium-operator
+  namespace: kube-system
+  labels:
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      name: cilium-operator
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  endpoints:
+  - port: prometheus
+    interval: 5s
+    honorLabels: true
+
+
+
