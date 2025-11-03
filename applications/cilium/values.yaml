@@ -35,10 +35,14 @@ cilium:
       port: 9963
       serviceMonitor:
         enabled: true
+        labels:
+          release: monitoring
   prometheus:
     enabled: true
     serviceMonitor:
       enabled: true
+      labels:
+        release: monitoring
   gatewayAPI:
     enabled: true
     # hostNetwork:
