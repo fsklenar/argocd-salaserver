@@ -50,8 +50,8 @@ kube-prometheus-stack:
             namespace: kube-system
     operator:
       dashboardsConfigMapRefEnabled: true
-      matchLabels:
-        - app: kube-prometheus-stack-grafana
+      # matchLabels:
+      #   - app: kube-prometheus-stack-grafana
     # ingress:
     #   enabled: true
     #   ingressClassName: nginx
