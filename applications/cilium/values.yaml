@@ -1,4 +1,7 @@
 cilium:
+  metrics:
+    enabled:
+      - prometheus
   hubble:
     ui:
       enabled: true
