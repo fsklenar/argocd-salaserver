@@ -5,7 +5,7 @@ cilium:
     relay:
       enabled: true
     metrics:
-      enabled: true
+      enabled: ~
   kubeProxyReplacement: true
   enableNodePort: true
   lbExternalClusterIP: true
