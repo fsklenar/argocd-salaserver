@@ -23,9 +23,9 @@ metadata:
   namespace: kube-system
 spec:
   gatewayClassName: cilium
-  # addresses:
-  #   - type: IPAddress
-  #     value: 192.168.0.202
+  addresses:
+    - type: IPAddress
+      value: 192.168.0.202
   listeners:
     - name: web-gw-https
       protocol: HTTPS
