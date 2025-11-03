@@ -51,6 +51,12 @@ spec:
         syncOptions:
         - ServerSideApply=true
         - RespectIgnoreDifferences=true
+  templatePatch: |
+    spec:
+      destination:
+      {{- if eq {{.path.basename}} "grafana-operator" }}
+        namespace: monitoring
+      {{ end }}
 
 
 
