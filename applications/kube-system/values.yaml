@@ -6,12 +6,13 @@ cilium:
       enabled: true
   kubeProxyReplacement: true
   enableNodePort: true
+  lbExternalClusterIP: true
   monitor:
     enabled: true
   l2announcements:
     enable: true
   dashboards:
-    enabled: false
+    enabled: true
     label: grafana_dashboard
   enabled: false
   gatewayAPI:
@@ -21,3 +22,5 @@ cilium:
       nodes:
         matchLabels:
           node-role.kubernetes.io/control-plane: ""
+
+#https://github.com/cilium/cilium/blob/v1.18.3/install/kubernetes/cilium/values.yaml
