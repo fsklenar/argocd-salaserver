@@ -40,7 +40,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: cilium-agent2
-  namespace: monitoring  # alebo kde máš nainštalovaný Prometheus
+  namespace: kube-system  # alebo kde máš nainštalovaný Prometheus
   labels:
     release: monitoring       # veľmi dôležité! musí sedieť s hodnotou .Values.prometheus.prometheusSpec.serviceMonitorSelector
 spec:
