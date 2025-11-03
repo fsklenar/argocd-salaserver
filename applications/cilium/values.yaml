@@ -24,9 +24,9 @@ cilium:
     #   port: 9963
     #   serviceMonitor:
     #     enabled: true
-  gatewayAPI:
-    enabled: true
   serviceMonitor:
+    enabled: true
+  gatewayAPI:
     enabled: true
     # hostNetwork:
     #   enabled: true
