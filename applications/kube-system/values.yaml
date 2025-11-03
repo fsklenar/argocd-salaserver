@@ -6,8 +6,13 @@ cilium:
       enabled: true
   kubeProxyReplacement: true
   enableNodePort: true
+  monitor:
+    enabled: true
   l2announcements:
     enable: true
+  dashboards:
+    enabled: false
+    label: grafana_dashboard
   enabled: false
   gatewayAPI:
     enabled: true

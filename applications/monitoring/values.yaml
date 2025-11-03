@@ -48,10 +48,10 @@ kube-prometheus-stack:
             kind: Gateway
             name: cilium-gateway-https
             namespace: kube-system
-    # operator:
-    #   dashboardsConfigMapRefEnabled: true
-    #   matchLabels:
-    #     app: "grafana"
+    operator:
+      dashboardsConfigMapRefEnabled: true
+      matchLabels:
+        app: "grafana_dashboard"
     # ingress:
     #   enabled: true
     #   ingressClassName: nginx
