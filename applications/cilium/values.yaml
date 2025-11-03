@@ -5,7 +5,15 @@ cilium:
     relay:
       enabled: true
     metrics:
-      enabled: ~
+      enabled:
+        - dns
+        - drop
+        - tcp
+        - flow
+        - port-distribution
+        - icmp
+        - httpV2:exemplars=true
+    enableOpenMetrics: true
   kubeProxyReplacement: true
   enableNodePort: true
   lbExternalClusterIP: true
@@ -24,7 +32,7 @@ cilium:
     #   port: 9963
     #   serviceMonitor:
     #     enabled: true
-  serviceMonitor:
+  prometheus:
     enabled: true
   gatewayAPI:
     enabled: true
