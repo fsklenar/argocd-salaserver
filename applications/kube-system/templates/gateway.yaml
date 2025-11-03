@@ -1,4 +1,4 @@
-#https://github.com/cilium/cilium/blob/v1.18.3/install/kubernetes/cilium/values.yaml
+
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -59,6 +59,8 @@ spec:
   # Zoznam rozhraní (interface) na tvojich uzloch, cez ktoré má Cilium inzerovať IP.
   # Ak nevieš, nechaj prázdne (alebo použite regex: "eth.*" ak je to potrebné)
   interfaces:
+    - ^enp$
+
   # Príklad: - ^eth0$
   # Príklad 2: Nechaj prázdne, ak má inzerovať na všetkých
 
