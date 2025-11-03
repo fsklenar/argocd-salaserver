@@ -51,7 +51,7 @@ spec:
     matchNames:
       - kube-system
   endpoints:
-    - port: prometheus
+    - port: metrics
       interval: 30s
       scrapeTimeout: 10s
       path: /metrics
