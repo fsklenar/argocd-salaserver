@@ -45,18 +45,17 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.path.basename}}'
-        #namespace: '{{.values.namespace}}'
-        #namespace: '{{ .values.namespace | default path.basename }}'
       syncPolicy:
         syncOptions:
         - ServerSideApply=true
         - RespectIgnoreDifferences=true
-  templatePatch:
-    name: 'grafana-operator'
-    patch: |
-      - op: replace
-        path: /spec/destination/namespace
-        value: monitoring
-
-
-
+  templatePatch: |
+    {{- if eq .path.basename "grafana-operator" }}
+    spec:
+      destination:
+        namespace: monitoring
+    {{- else if eq .path.basename "cilium" }}
+    spec:
+      destination:
+        namespace: kube-system
+    {{- end }}
