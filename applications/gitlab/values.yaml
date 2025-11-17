@@ -45,9 +45,11 @@ gitlab:
     installCRDs: false
   certmanager-issuer:
     email: frantisek.sklenar@gmail.com
-  # nginx-ingress: &nginx-ingress
-  #   enabled: false
+  nginx-ingress: &nginx-ingress
+    enabled: false
   global:
+    ingress:
+      enabled: false
     # ingress:
     #   apiVersion: "networking.k8s.io/v1"
     #   class: "nginx"
