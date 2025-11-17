@@ -28,15 +28,15 @@ immich:
 
   server:
     enabled: true
-    ingress:
-      main:
-        enabled: true
-        className: nginx
-        annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        hosts:
-          - host: immich-salaserver.linuxadmin.eu
-            paths:
-              - path: "/"
-                service:
-                  identifier: main
+    # ingress:
+    #   main:
+    #     enabled: true
+    #     className: nginx
+    #     annotations:
+    #       nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    #     hosts:
+    #       - host: immich-salaserver.linuxadmin.eu
+    #         paths:
+    #           - path: "/"
+    #             service:
+    #               identifier: main
