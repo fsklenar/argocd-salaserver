@@ -16,8 +16,8 @@ immich:
                 secretKeyRef:
                   name: immich-postgres-secret
                   key: db-password
-          # image:
-          #   tag: v2.0.0
+          image:
+            tag: v2.0.0
 
   immich:
     metrics:
@@ -38,3 +38,5 @@ immich:
           - host: immich-salaserver.linuxadmin.eu
             paths:
               - path: "/"
+              service:
+                identifier: main
