@@ -24,23 +24,27 @@
 #             value: /
 #
 
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: gitlab-gateway
-  namespace: gitlab
-spec:
-  gatewayClassName: cilium
-  listeners:
-  - name: https
-    protocol: HTTPS
-    port: 443
-    hostname: gitlab.linuxadmin.eu
-    tls:
-      mode: Terminate
-      certificateRefs:
-      - name: gitlab-gitlab-tls
+# ---
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: Gateway
+# metadata:
+#   name: gitlab-gateway
+#   namespace: gitlab
+# spec:
+#   gatewayClassName: cilium
+#   addresses:
+#     - type: IPAddress
+#       value: 192.168.0.222
+#   listeners:
+#   - name: https
+#     protocol: HTTPS
+#     port: 8043
+#     hostname: gitlab.linuxadmin.eu
+#     tls:
+#       certificateRefs:
+#         - group: ''
+#           kind: Secret
+#           name: gitlab-gitlab-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -49,8 +53,13 @@ metadata:
   namespace: gitlab
 spec:
   parentRefs:
-  - name: gitlab-gateway
-    namespace: gitlab
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway-https
+      namespace: kube-system
+  # parentRefs:
+  # - name: gitlab-gateway
+  #   namespace: gitlab
   hostnames:
   - gitlab.linuxadmin.eu
   rules:
