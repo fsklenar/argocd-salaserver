@@ -1,20 +1,23 @@
 immich:
 
-  env:
-    REDIS_HOSTNAME: redis-service
-    TZ: "Europe/Bratislava"
-    IMMICH_TELEMETRY_INCLUDE: all
-    DB_HOSTNAME: "immich-postgres-service"
-    DB_USERNAME: "immich"
-    DB_DATABASE_NAME: "immich"
-    DB_PASSWORD:
-      valueFrom:
-        secretKeyRef:
-          name: immich-postgres-secret
-          key: db-password
-
-  # image:
-  #   tag: v2.0.0
+  controllers:
+    main:
+      containers:
+        main:
+          env:
+            REDIS_HOSTNAME: redis-service
+            TZ: "Europe/Bratislava"
+            IMMICH_TELEMETRY_INCLUDE: all
+            DB_HOSTNAME: "immich-postgres-service"
+            DB_USERNAME: "immich"
+            DB_DATABASE_NAME: "immich"
+            DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: immich-postgres-secret
+                  key: db-password
+          # image:
+          #   tag: v2.0.0
 
   immich:
     metrics:
