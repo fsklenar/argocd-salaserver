@@ -49,10 +49,10 @@ gitlab:
     enabled: false
   global:
     ingress:
-      enabled: false
-    # ingress:
-    #   apiVersion: "networking.k8s.io/v1"
-    #   class: "nginx"
+      enabled: true
+    ingress:
+      apiVersion: "networking.k8s.io/v1"
+      class: "nginx"
     hosts:
       domain: linuxadmin.eu
       externalIP: 192.168.0.202
