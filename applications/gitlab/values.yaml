@@ -45,12 +45,12 @@ gitlab:
     installCRDs: false
   certmanager-issuer:
     email: frantisek.sklenar@gmail.com
-  nginx-ingress: &nginx-ingress
-    enabled: false
-  global:
-    ingress:
-      apiVersion: "networking.k8s.io/v1"
-      class: "nginx"
-    hosts:
-      domain: linuxadmin.eu
-      externalIP: 192.168.0.202
+  # nginx-ingress: &nginx-ingress
+  #   enabled: false
+  # global:
+  #   ingress:
+  #     apiVersion: "networking.k8s.io/v1"
+  #     class: "nginx"
+  #   hosts:
+  #     domain: linuxadmin.eu
+  #     externalIP: 192.168.0.202
