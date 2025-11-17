@@ -23,7 +23,7 @@ immich:
     metrics:
       enabled: true
     persistence:
-      data:
+      library:
         existingClaim: virtiofs-psql-immich-claim #common storage for Immich and PostgreSQL (use different if you need to split them)
 
   server:
