@@ -38,5 +38,5 @@ immich:
           - host: immich-salaserver.linuxadmin.eu
             paths:
               - path: "/"
-              service:
-                identifier: main
+                service:
+                  identifier: main
