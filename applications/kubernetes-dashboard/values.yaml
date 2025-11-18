@@ -1,4 +1,9 @@
 kubernetes-dashboard:
+  kong:
+    proxy:
+      type: ClusterIP
+      http:
+        enabled: true
   web:
     containers:
       resources:
