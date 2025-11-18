@@ -9,8 +9,6 @@ spec:
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
-      # name: kubedash-gateway
-      # namespace: kubernetes-dashboard
       name: cilium-gateway-https
       namespace: kube-system
   rules:
@@ -18,100 +16,9 @@ spec:
         - group: ''
           kind: Service
           name: kubernetes-dashboard-kong-proxy
-          port: 443
+          port: 80
           weight: 1
-          # protocol: HTTPS
       matches:
         - path:
             type: PathPrefix
             value: /
-# ---
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: HTTPRoute
-# metadata:
-#   name: cafe-tls-redirect
-#   namespace: kubernetes-dashboard
-# spec:
-#   # parentRefs:
-#   #   - group: gateway.networking.k8s.io
-#   #     kind: Gateway
-#   #     name: cilium-gateway-https
-#   #     namespace: kube-system
-#   parentRefs:
-#   - name: gateway
-#     sectionName: http
-#   hostnames:
-#   - "dashboard-salaserver.linuxadmin.eu"
-#   rules:
-#   - filters:
-#     - type: RequestRedirect
-#       requestRedirect:
-#         scheme: https
-#         port: 443
-# ---
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: HTTPRoute
-# metadata:
-#   name: http-filter-redirect
-# spec:
-#   parentRefs:
-#   - name: kubedash-gateway
-#     sectionName: https-passthrough
-#   hostnames:
-#   - dashboard-salaserver.linuxadmin.eu
-#   rules:
-#   - filters:
-#     - type: RequestRedirect
-#       requestRedirect:
-#         scheme: https
-#         statusCode: 301
-# ---
-# apiVersion: gateway.networking.k8s.io/v1
-# kind: Gateway
-# metadata:
-#   name: kubedash-gateway
-#   namespace: kubernetes-dashboard
-# spec:
-#   gatewayClassName: cilium
-#   addresses:
-#     - type: IPAddress
-#       value: 192.168.0.222
-#   listeners:
-#     - name: https-passthrough
-#       protocol: TLS # Use TLS protocol for HTTPS/TLS passthrough
-#       port: 8044
-#       hostname: dashboard-salaserver.linuxadmin.eu # Optional but good practice
-#       tls:
-#         mode: Passthrough # This mirrors nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-#         certificateRefs:
-#           - group: ''
-#             kind: Secret
-#             name: kubedash-gateway-https-secret
-#             namespace: kubernetes-dashboard
-#       allowedRoutes:
-#         kinds:
-#         - kind: TLSRoute
-#         namespaces:
-#           from: Same
-
-  # listeners:
-  # - name: https
-  #   protocol: HTTPS
-  #   port: 8044
-  #   hostname: dashboard-salaserver.linuxadmin.eu
-  #   tls:
-  #     certificateRefs:
-  #       - group: ''
-  #         kind: Secret
-  #         name: kubedash-gateway-https-secret
-  #         namespace: kubernetes-dashboard
-  # tls:
-  #   mode: Passthrough
-  #   certificates:
-  #   - name: kubernetes-dashboard-certs
-  #     kind: Secret
-    # tls:
-    #   certificateRefs:
-    #     - group: ''
-    #       kind: Secret
-    #       name: kubernetes-dashboard-csrf
