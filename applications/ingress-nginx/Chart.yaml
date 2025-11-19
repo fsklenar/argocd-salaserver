@@ -1,7 +1,0 @@
-###replaced by Cilium Gateway API
-
-# apiVersion: v2
-# name: ingress-nginx
-# type: application
-# version: 1.13.3
-#
