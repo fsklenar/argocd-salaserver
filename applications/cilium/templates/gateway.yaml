@@ -15,6 +15,25 @@
 #         namespaces:
 #           from: All
 
+apiVersion: v1
+kind: List
+metadata:
+  resourceVersion: ""
+items:
+- apiVersion: gateway.networking.k8s.io/v1
+  kind: GatewayClass
+  metadata:
+    annotations:
+      argocd.argoproj.io/tracking-id: cilium:gateway.networking.k8s.io/GatewayClass:kube-system/cilium
+      meta.helm.sh/release-name: cilium
+      meta.helm.sh/release-namespace: kube-system
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: cilium
+  spec:
+    controllerName: io.cilium/gateway-controller
+    description: The default Cilium GatewayClass
+
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
