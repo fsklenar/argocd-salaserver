@@ -2,6 +2,7 @@ cilium:
   encryption:
     enabled: true
     type: wireguard
+    nodeEncryption: true
   metrics:
     enabled:
       - prometheus
