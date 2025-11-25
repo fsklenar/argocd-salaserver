@@ -7,10 +7,10 @@ cilium:
     enabled:
       - prometheus
   hubble:
-    ui:
-      enabled: true
-    relay:
-      enabled: true
+    # ui:
+    #   enabled: true
+    # relay:
+    #   enabled: true
     metrics:
       enabled:
         - dns
