@@ -29,6 +29,11 @@ spec:
       - resources:
           kinds:
           - Pod
+    exclude:
+      any:
+      - resources:
+          names:
+          - "k9s-shell-*"
     validate:
       allowExistingViolations: true
       message: "Using 'default' namespace is not allowed."
