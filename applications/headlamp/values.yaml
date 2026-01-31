@@ -1,4 +1,6 @@
 headlamp:
+  config:
+    clusterName: "salaserver-cluster"
   resources:
     limits:
       memory: 512Mi
