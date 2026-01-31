@@ -1,26 +1,9 @@
 headlamp:
-  # httpRoute:
-  #   enabled: true
-  #   parentRefs:
-  #     - group: gateway.networking.k8s.io
-  #       kind: Gateway
-  #       name: cilium-gateway-https
-  #       namespace: kube-system
-  #   hostnames:
-  #     - dashboard-salaserver.linuxadmin.eu
-  # env:
-  #   - name: KUBERNETES_SERVICE_HOST
-  #     value: "localhost"
-  #   - name: KUBERNETES_SERVICE_PORT
-  #     value: "6443"
   config:
-    # The empty string for kubeConfigPath tells it not to look for a specific file
     kubeConfigPath: ""
     clusterName: "local"
     args:
-      - "-in-cluster"
       - "-allow-all-namespaces"
-      - "-log-level=debug"
     oidc:
       secret:
         create: false
@@ -36,18 +19,10 @@ headlamp:
       cpu: 50m
       memory: 128Mi
   pluginsManager:
-    enabled: false
+    enabled: true
     resources:
       requests:
         cpu: "100m"
         memory: "1024Mi"
       limits:
         memory: "4Gi"
-    # env:
-    #   - name: HTTPS_PROXY
-    #     value: ""
-  # env:
-  #   - name: KUBERNETES_SERVICE_HOST
-  #     value: "192.168.0.202"
-  #   - name: KUBERNETES_SERVICE_PORT
-  #     value: "6443"
