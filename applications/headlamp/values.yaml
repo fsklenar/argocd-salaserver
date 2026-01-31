@@ -1,4 +1,7 @@
 headlamp:
+  config:
+    inCluster: true
+    baseURL: "https://dashboard-salaserver.linuxadmin.eu"
   resources:
     limits:
       memory: 512Mi
