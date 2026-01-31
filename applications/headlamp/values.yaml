@@ -6,13 +6,16 @@ headlamp:
       cpu: 50m
       memory: 128Mi
   pluginsManager:
-    enabled: true
+    enabled: false
     resources:
       requests:
         cpu: "100m"
         memory: "1024Mi"
       limits:
         memory: "4Gi"
+    env:
+      - name: HTTPS_PROXY
+        value: ""
   env:
     - name: KUBERNETES_SERVICE_HOST
       value: "192.168.0.202"
