@@ -6,5 +6,15 @@ headlamp:
       cpu: 50m
       memory: 128Mi
   pluginsManager:
-    enabled: false
-
+    enabled: true
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "1024Mi"
+      limits:
+        memory: "4Gi"
+  env:
+    - name: KUBERNETES_SERVICE_HOST
+      value: "192.168.0.202"
+    - name: KUBERNETES_SERVICE_PORT
+      value: "6443"
