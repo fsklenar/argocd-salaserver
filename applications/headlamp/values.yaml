@@ -14,8 +14,11 @@ headlamp:
   #   - name: KUBERNETES_SERVICE_PORT
   #     value: "6443"
   config:
+    # The empty string for kubeConfigPath tells it not to look for a specific file
+    kubeConfigPath: ""
     clusterName: "local"
     args:
+      - "-in-cluster"
       - "-allow-all-namespaces"
       - "-log-level=debug"
     oidc:
@@ -23,6 +26,9 @@ headlamp:
         create: false
   clusterRoleBinding:
     create: true
+  serviceAccount:
+    create: true
+    name: "headlamp"
   resources:
     limits:
       memory: 512Mi
