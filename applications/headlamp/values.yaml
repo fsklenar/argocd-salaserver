@@ -1,0 +1,59 @@
+# velero:
+#   snapshotsEnabled: false
+#
+#   initContainers:
+#     - name: velero-plugin-for-aws
+#       image: velero/velero-plugin-for-aws:v1.2.0
+#       imagePullPolicy: IfNotPresent
+#       volumeMounts:
+#         - mountPath: /target
+#           name: plugins
+#
+#   defaultVolumesToFsBackup: true
+#   deployNodeAgent: true
+#   nodeAgent:
+#     resources:
+#       requests:
+#         cpu: 50m
+#         memory: 512Mi
+#       limits:
+#         cpu: 1000m
+#         memory: 1024Mi
+#   resources:
+#     requests:
+#       cpu: 50m
+#       memory: 128Mi
+#     limits:
+#       cpu: 1000m
+#       memory: 512Mi
+#   image:
+#     repository: velero/velero
+#     tag: v1.17.0
+#   kubectl:
+#     image:
+#       repository: bitnamilegacy/kubectl
+#       tag: 1.33.4
+#   credentials:
+#     useSecret: true
+#     name: k8s-sala-backup
+#     existingSecret: k8s-sala-backup
+#   configuration:
+#     backupStorageLocation:
+#     - name: default
+#       provider: aws
+#       bucket: k8s-sala-backup
+#       accessMode: ReadWrite
+#       credential:
+#         name: k8s-sala-backup
+#         key: cloud
+#       config:
+#         region: eu-central-1
+#     volumeSnapshotLocation:
+#     - name: aws-default
+#       provider: aws
+#       config:
+#         region: eu-central-1
+#         profile: "default"
+#     features: EnableCSI
+#
+#
