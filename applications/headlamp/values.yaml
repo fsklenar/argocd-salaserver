@@ -1,6 +1,8 @@
 headlamp:
   config:
     clusterName: "salaserver-cluster"
+    args:
+      - "-allow-all-namespaces"
   clusterRoleBinding:
     create: true
   resources:
