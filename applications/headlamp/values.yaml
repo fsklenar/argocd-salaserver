@@ -1,4 +1,13 @@
 headlamp:
+  httpRoute:
+    enabled: true
+    parentRefs:
+      - name: gateway.networking.k8s.io
+        kind: Gateway
+        name: cilium-gateway-https
+        namespace: kube-system
+    hostnames:
+      - dashboard-salaserver.linuxadmin.eu
   env:
     - name: KUBERNETES_SERVICE_HOST
       value: "localhost"
