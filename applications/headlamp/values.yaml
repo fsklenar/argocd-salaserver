@@ -4,6 +4,9 @@ headlamp:
     args:
       - "-allow-all-namespaces"
       - "-log-level=debug"
+    oidc:
+      secret:
+        create: false
   clusterRoleBinding:
     create: true
   resources:
