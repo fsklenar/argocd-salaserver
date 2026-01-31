@@ -42,6 +42,7 @@ spec:
         - gitlab
         - nginx-gateway
         - immich
+        - headlamp
     generate:
       apiVersion: networking.k8s.io/v1
       kind: NetworkPolicy
