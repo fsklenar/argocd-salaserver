@@ -1,8 +1,9 @@
 headlamp:
   config:
-    clusterName: "salaserver-cluster"
+    clusterName: "local"
     args:
       - "-allow-all-namespaces"
+      - "-log-level=debug"
   clusterRoleBinding:
     create: true
   resources:
@@ -19,9 +20,9 @@ headlamp:
         memory: "1024Mi"
       limits:
         memory: "4Gi"
-    env:
-      - name: HTTPS_PROXY
-        value: ""
+    # env:
+    #   - name: HTTPS_PROXY
+    #     value: ""
   # env:
   #   - name: KUBERNETES_SERVICE_HOST
   #     value: "192.168.0.202"
