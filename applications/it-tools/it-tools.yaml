@@ -51,11 +51,12 @@ metadata:
   namespace: it-tools
 spec:
   parentRefs:
-  - name: my-gateway         # <--- SEM DOPLŇ NÁZOV SVOJEJ GATEWAY
-    namespace: default       # <--- SEM DOPLŇ NAMESPACE SVOJEJ GATEWAY
-    sectionName: http        # (Voliteľné) Názov listenera v Gateway definícii
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: cilium-gateway-https
+      namespace: kube-system
   hostnames:
-  - "it-tools.linuxadmin.eu"
+  - it-tools.linuxadmin.eu
   rules:
   - matches:
     - path:
