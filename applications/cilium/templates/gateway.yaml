@@ -54,7 +54,8 @@ spec:
           from: All
       tls:
         certificateRefs:
-          - kind: Secret
+          - group: ''
+            kind: Secret
             name: cilium-gateway-https-secret
     - name: headlamp-https
       protocol: HTTPS
@@ -63,8 +64,9 @@ spec:
       tls:
         mode: Terminate
         certificateRefs:
-        - name: headlamp-tls-secret
-          kind: Secret
+          - group: ''
+            name: headlamp-tls-secret
+            kind: Secret
       allowedRoutes:
         namespaces:
           from: All
