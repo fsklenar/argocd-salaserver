@@ -57,18 +57,18 @@ spec:
           - group: ''
             kind: Secret
             name: cilium-gateway-https-secret
-    - name: headlamp-https
-      protocol: HTTPS
-      port: 8043
-      hostname: headlamp.linuxadmin.eu
-      tls:
-        mode: Terminate
-        certificateRefs:
-        - name: headlamp-tls-secret
-          kind: Secret
-      allowedRoutes:
-        namespaces:
-          from: All
+    # - name: headlamp-https
+    #   protocol: HTTPS
+    #   port: 8043
+    #   hostname: headlamp.linuxadmin.eu
+    #   tls:
+    #     mode: Terminate
+    #     certificateRefs:
+    #     - name: headlamp-tls-secret
+    #       kind: Secret
+    #   allowedRoutes:
+    #     namespaces:
+    #       from: All
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
