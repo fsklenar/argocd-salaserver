@@ -23,3 +23,12 @@ spec:
       allowedRoutes:
         namespaces:
           from: Same
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: bare-metal-pool
+  namespace: headlamp
+spec:
+  blocks:
+  - cidr: "192.168.0.0/24"
