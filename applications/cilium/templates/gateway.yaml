@@ -78,7 +78,6 @@ metadata:
 spec:
   blocks:
   - cidr: "192.168.0.0/24"
-  - cidr: "10.0.0.200/24"
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
