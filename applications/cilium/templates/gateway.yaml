@@ -54,7 +54,6 @@ spec:
           from: All
       tls:
         certificateRefs:
-          - group: ''
             kind: Secret
             name: cilium-gateway-https-secret
     - name: headlamp-https
