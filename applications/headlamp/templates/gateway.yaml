@@ -25,7 +25,7 @@ spec:
           from: Same
 ---
 apiVersion: cilium.io/v2alpha1
-kind: CiliumLoadBalancerIPPool
+kind: CiliumLoadBalancerIPPool2
 metadata:
   name: bare-metal-pool
   namespace: headlamp
