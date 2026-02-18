@@ -66,6 +66,7 @@ spec:
         certificateRefs:
         - name: headlamp-tls-secret
           kind: Secret
+          namespace: headlamp
       allowedRoutes:
         namespaces:
           from: Same
