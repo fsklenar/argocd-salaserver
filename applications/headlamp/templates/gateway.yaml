@@ -24,11 +24,3 @@ spec:
         namespaces:
           from: Same
 ---
-apiVersion: cilium.io/v2alpha1
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: bare-metal-pool2
-  namespace: headlamp
-spec:
-  blocks:
-  - cidr: "192.168.0.0/24"
