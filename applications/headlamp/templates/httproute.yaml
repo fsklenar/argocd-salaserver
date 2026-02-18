@@ -5,7 +5,7 @@ metadata:
   namespace: headlamp
 spec:
   hostnames:
-    - dashboard-salaserver.linuxadmin.eu
+    - headlamp.linuxadmin.eu
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
