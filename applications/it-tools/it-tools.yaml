@@ -63,5 +63,7 @@ spec:
         type: PathPrefix
         value: /
     backendRefs:
-    - name: it-tools-service
-      port: 80
+        - group: ''
+          kind: Service
+          name: it-tools-service
+          port: 80
