@@ -59,7 +59,7 @@ spec:
             name: cilium-gateway-https-secret
     - name: headlamp-https
       protocol: HTTPS
-      port: 8043
+      port: 443
       hostname: headlamp.linuxadmin.eu
       tls:
         mode: Terminate
