@@ -7,7 +7,7 @@ metadata:
 spec:
   secretName: headlamp-tls-secret  # cert will be stored here
   issuerRef:
-    name: letsencrypt-staging   # swap to letsencrypt-prod when ready
+    name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
   - headlamp.linuxadmin.eu
