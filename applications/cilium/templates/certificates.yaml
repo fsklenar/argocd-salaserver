@@ -9,4 +9,4 @@ spec:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-  - headlamp.linxadmin.eu
+  - headlamp.linuxadmin.eu
