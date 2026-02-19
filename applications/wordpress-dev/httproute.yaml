@@ -5,7 +5,7 @@ metadata:
   namespace: wordpress-dev
 spec:
   hostnames:
-    - wordpress-dev-salaserver.linuxadmin.eu
+    - wordpress-salaserver.linuxadmin.eu
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
