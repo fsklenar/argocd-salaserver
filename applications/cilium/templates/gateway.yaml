@@ -57,15 +57,15 @@ spec:
           - group: ''
             kind: Secret
             name: cilium-gateway-https-secret
-    - name: headlamp-https
+    - name: wild-linuxadmin-eu-https
       protocol: HTTPS
       port: 443
-      hostname: headlamp.linuxadmin.eu
+      hostname: *.linuxadmin.eu
       tls:
         mode: Terminate
         certificateRefs:
           - group: ''
-            name: headlamp-tls-secret
+            name: wild-linuxadmin-eu-tls-secret
             kind: Secret
       allowedRoutes:
         namespaces:
