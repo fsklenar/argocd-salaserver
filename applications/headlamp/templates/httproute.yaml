@@ -6,6 +6,7 @@ metadata:
 spec:
   hostnames:
     - headlamp.linuxadmin.eu
+    - headlamp.vpn.linuxadmin.eu
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
