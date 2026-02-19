@@ -57,19 +57,19 @@ spec:
           - group: ''
             kind: Secret
             name: cilium-gateway-https-secret
-    # - name: wild-linuxadmin-eu-https
-    #   protocol: HTTPS
-    #   port: 443
-    #   hostname: *.linuxadmin.eu
-    #   tls:
-    #     mode: Terminate
-    #     certificateRefs:
-    #       - group: ''
-    #         name: wild-linuxadmin-eu-tls-secret
-    #         kind: Secret
-    #   allowedRoutes:
-    #     namespaces:
-    #       from: All
+    - name: wild-linuxadmin-eu-https
+      protocol: HTTPS
+      port: 443
+      hostname: "*.linuxadmin.eu"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - group: ''
+            name: wild-linuxadmin-eu-tls-secret
+            kind: Secret
+      allowedRoutes:
+        namespaces:
+          from: All
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
