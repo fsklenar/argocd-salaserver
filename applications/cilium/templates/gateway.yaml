@@ -70,6 +70,19 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: wild-vpn-linuxadmin-eu-https
+      protocol: HTTPS
+      port: 443
+      hostname: "*.vpn.linuxadmin.eu"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - group: ''
+            name: wild-vpn-linuxadmin-eu-tls-secret
+            kind: Secret
+      allowedRoutes:
+        namespaces:
+          from: All
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
