@@ -6,6 +6,7 @@ metadata:
 spec:
   hostnames:
     - immich-salaserver.linuxadmin.eu
+    - immich-salaserver.vpn.linuxadmin.eu
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
