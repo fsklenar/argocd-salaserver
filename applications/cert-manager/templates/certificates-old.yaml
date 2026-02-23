@@ -1,0 +1,25 @@
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: wild-linuxadmin-eu-tls
+#   namespace: kube-system
+# spec:
+#   secretName: wild-linuxadmin-eu-tls-secret
+#   issuerRef:
+#     name: letsencrypt-prod
+#     kind: ClusterIssuer
+#   dnsNames:
+#     - "*.linuxadmin.eu"
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: wild-vpn-linuxadmin-eu-tls
+#   namespace: kube-system
+# spec:
+#   secretName: wild-vpn-linuxadmin-eu-tls-secret
+#   issuerRef:
+#     name: letsencrypt-prod
+#     kind: ClusterIssuer
+#   dnsNames:
+#     - "*.vpn.linuxadmin.eu"
