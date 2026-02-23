@@ -14,6 +14,7 @@ kube-prometheus-stack:
         kind: HTTPRoute
         hostnames:
           - prometheus-salaserver.linuxadmin.eu
+          - prometheus-salaserver.vpn.linuxadmin.eu
         parentRefs:
           - group: gateway.networking.k8s.io
             kind: Gateway
@@ -43,6 +44,7 @@ kube-prometheus-stack:
         kind: HTTPRoute
         hostnames:
           - grafana-salaserver.linuxadmin.eu
+          - grafana-salaserver.vpn.linuxadmin.eu
         parentRefs:
           - group: gateway.networking.k8s.io
             kind: Gateway
