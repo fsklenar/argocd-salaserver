@@ -686,8 +686,8 @@
       <div class="tunnel-badge-value">Port 8043</div>
     </div>
     <div class="tunnel-line"></div>
-    <div class="internet-bubble">🌐 Internet</div>
-    <div class="tunnel-line" style="animation-delay:1.2s;"></div>
+    <!-- <div class="internet-bubble">🌐 Internet</div>
+    <div class="tunnel-line" style="animation-delay:1.2s;"></div> -->
   </div>
 
   <!-- ═══════════════ PUBLIC SERVER ═══════════════ -->
@@ -711,7 +711,7 @@
         <span class="tag tag-yellow">:80 · :443</span>
       </div>
       <div style="font-size:0.68rem; color:var(--text-muted); margin-top:10px; padding-top:10px; border-top:1px solid var(--border);">
-        → Forwards traffic to K8S Gateway API via SSH tunnel on :8043
+        → Forwards every traffic from ports 80/443 to K8S Gateway API via SSH tunnel on :8043
       </div>
     </div>
 
@@ -731,7 +731,7 @@
         <span class="tag tag-purple">Encrypted Tunnel</span>
       </div>
       <div style="font-size:0.68rem; color:var(--text-muted); margin-top:10px; padding-top:10px; border-top:1px solid var(--border);">
-        → Secure management channel to K8S cluster
+        → For applications restricted to users connected via the WireGuard VPN.
       </div>
     </div>
 
