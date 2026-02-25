@@ -46,17 +46,17 @@ spec:
     - type: IPAddress
       value: 192.168.0.202
   listeners:
-    - name: web-gw-https
-      protocol: HTTPS
-      port: 8043
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        certificateRefs:
-          - group: ''
-            kind: Secret
-            name: cilium-gateway-https-secret
+    # - name: web-gw-https
+    #   protocol: HTTPS
+    #   port: 8043
+    #   allowedRoutes:
+    #     namespaces:
+    #       from: All
+    #   tls:
+    #     certificateRefs:
+    #       - group: ''
+    #         kind: Secret
+    #         name: cilium-gateway-https-secret
     - name: wild-linuxadmin-eu-https
       protocol: HTTPS
       port: 443
