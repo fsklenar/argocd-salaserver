@@ -1,6 +1,6 @@
 gitlab:
   gitlab-runner:
-    install: false
+    install: true
     rbac:
       create: true
     runners:
