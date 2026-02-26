@@ -2,17 +2,19 @@
 # Go to your GitLab → Admin Area → CI/CD → Runners → New runner (GitLab 16+), create it and copy the token. It starts with glrt-.
 #
 # Step 2 — Create the Kubernetes secret
-# kubectl create secret generic gitlab-runner-secret-psql18 \
-#   --from-literal=runner-registration-token="glrt-token" \
-#   --from-literal=runner-token="" \
-#   -n gitlab-runner
+kubectl create secret generic gitlab-runner-secret-psql18 \
+  --from-literal=runner-registration-token="glrt-D1DiBGzxYlR4lC3B5r991G86MQp0OjEKdToxCw.01.121jtryx6" \
+  --from-literal=runner-token="" \
+  -n gitlab-runner
 
 gitlab-runner:
+  hostNetwork: true
   gitlabUrl: "https://gitlab.linuxadmin.eu"
   jobNamespace: "gitlab-runner"
   rbac:
     create: true
   runners:
+    hostNetwork: true
     locked: false
     tags: "psql-18"
     runUntagged: false
