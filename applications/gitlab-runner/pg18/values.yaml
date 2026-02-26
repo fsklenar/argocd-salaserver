@@ -5,10 +5,10 @@
 # kubectl create secret generic gitlab-runner-secret-psql18 \
 #   --from-literal=runner-registration-token="glrt-token" \
 #   --from-literal=runner-token="" \
-#   -n gitlab
+#   -n gitlab-runner
 
 gitlab-runner:
-  namespace: gitlab
+  namespace: gitlab-runner
   gitlabUrl: "https://gitlab.linuxadmin.eu"
   rbac:
     create: true
@@ -16,6 +16,7 @@ gitlab-runner:
     locked: false
     tags: "psql-18"
     runUntagged: false
+    jobNamespace: "gitlab-runner"
     secret: gitlab-runner-secret-psql18
     config: |
       [[runners]]
