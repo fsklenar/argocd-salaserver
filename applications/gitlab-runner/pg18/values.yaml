@@ -6,8 +6,17 @@ gitlab-runner:
     locked: false
     tags: "psql-18"
     runUntagged: false
-    secret: "nonempty"
+    secret: "gitlab-runner-secret-psql18"
     config: |
       [[runners]]
         [runners.kubernetes]
           image = "postgres:18"
+
+# Step 1 — Get your runner token from GitLab UI
+# Go to your GitLab → Admin Area → CI/CD → Runners → New runner (GitLab 16+), create it and copy the token. It starts with glrt-.
+#
+# Step 2 — Create the Kubernetes secret
+# kubectl create secret generic gitlab-runner-secret-psql18 \
+#   --from-literal=runner-registration-token="" \
+#   --from-literal=runner-token="glrt-token" \
+#   -n gitlab-runner
