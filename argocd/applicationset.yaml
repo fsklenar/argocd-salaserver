@@ -17,10 +17,6 @@ spec:
         exclude: true
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
-      # files:
-      # - path: applications/*/appset-values.yaml
-      # repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
-      # revision: HEAD
   syncPolicy:
     applicationsSync: create-only
   template:

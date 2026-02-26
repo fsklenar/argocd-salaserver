@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applicationset-gitlab-runners
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      directories:
+      - path: 'applications/gitlab-runner/*'
+      repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+      revision: HEAD
+  syncPolicy:
+    applicationsSync: create-only
+  template:
+    metadata:
+      name: 'gitlab-runner-{{.path.basename}}'
+    spec:
+      project: "salaserver"
+      sources:
+      - repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'gitlab-runner'
+      syncPolicy:
+        syncOptions:
+        - ServerSideApply=true
