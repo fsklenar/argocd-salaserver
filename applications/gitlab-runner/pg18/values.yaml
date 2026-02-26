@@ -8,13 +8,12 @@
 #   -n gitlab-runner
 
 gitlab-runner:
-  hostNetwork: true
+  logLevel: debug
   gitlabUrl: "https://gitlab.linuxadmin.eu"
   jobNamespace: "gitlab-runner"
   rbac:
     create: true
   runners:
-    hostNetwork: true
     locked: false
     tags: "psql-18"
     runUntagged: false
