@@ -13,7 +13,7 @@ gitlab:
           [runners.kubernetes]
             image = "ubuntu:24.04"
             run_untagged = true
-          [runners.kubernetes]
+          [runners.psql]
             tags = ["psql"]
             run_untagged = false
             image = "postgres:18"
