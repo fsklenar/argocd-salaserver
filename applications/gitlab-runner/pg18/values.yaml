@@ -8,7 +8,7 @@
 #   -n gitlab-runner
 
 gitlab-runner:
-  gitlabUrl: "https://gitlab.linuxadmin.eu/"
+  gitlabUrl: "https://gitlab.linuxadmin.eu"
   rbac:
     create: true
   runners:
