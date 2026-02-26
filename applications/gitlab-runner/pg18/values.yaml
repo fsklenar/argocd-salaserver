@@ -1,4 +1,4 @@
-gitlab-runner-psql18:
+gitlab-runner:
   gitlabUrl: "https://gitlab.linuxadmin.eu/"
   rbac:
     create: true
