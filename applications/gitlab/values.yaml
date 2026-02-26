@@ -11,12 +11,11 @@ gitlab:
       config: |
         [[runners]]
           [runners.kubernetes]
-          image = "ubuntu:24.04"
-
-        [[runners]]
-          tags = ["psql"]
-          run_untagged = false
+            image = "ubuntu:24.04"
+            run_untagged = true
           [runners.kubernetes]
+            tags = ["psql"]
+            run_untagged = false
             image = "postgres:18"
 
 
