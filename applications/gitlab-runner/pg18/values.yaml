@@ -19,5 +19,6 @@ gitlab-runner:
     secret: gitlab-runner-secret-psql18
     config: |
       [[runners]]
+        request_concurrency = 2
         [runners.kubernetes]
           image = "postgres:18"
