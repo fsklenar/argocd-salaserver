@@ -8,6 +8,7 @@
 #   -n gitlab-runner
 
 gitlab-runner:
+  namespace: gitlab
   logLevel: debug
   gitlabUrl: "https://gitlab.linuxadmin.eu"
   jobNamespace: "gitlab-runner"
