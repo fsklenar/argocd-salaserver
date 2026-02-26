@@ -1,5 +1,5 @@
 apiVersion: v2
-name: gitlab-runner-psql18
+name: gitlab-runner
 type: application
 version: 18.9.0
 
