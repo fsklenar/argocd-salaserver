@@ -12,6 +12,12 @@ gitlab:
         [[runners]]
           [runners.kubernetes]
           image = "ubuntu:24.04"
+        [[runners]]
+          tags = ["psql"]
+          run_untagged = false
+          [runners.kubernetes]
+            image = "postgres:18"
+
 
   prometheus:
     install: false
