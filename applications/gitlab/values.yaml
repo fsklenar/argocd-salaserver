@@ -10,7 +10,7 @@ gitlab:
       secret: "nonempty"
       config: |
         [[runners]]
-          name = default-k8s
+          name = "default-k8s"
           run_untagged = true
           [runners.kubernetes]
             image = "ubuntu:24.04"
@@ -18,7 +18,7 @@ gitlab:
         [[runners]]
           tags = ["psql"]
           run_untagged = false
-          name = postgres-k8s
+          name = "postgres-k8s"
           [runners.kubernetes]
             image = "postgres:18"
 
