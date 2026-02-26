@@ -1,0 +1,9 @@
+apiVersion: v2
+name: gitlab-runner
+type: application
+version: 18.9.0
+
+dependencies:
+- name: gitlab-runner
+  version: 0.86.0
+  repository: gitlab/gitlab-runner

@@ -1,0 +1,13 @@
+gitlab-runner:
+  gitlabUrl: https://gitlab.linuxadmin.eu/
+  rbac:
+    create: true
+  runners:
+    locked: false
+    tags: "psql-18"
+    runUntagged: false
+    secret: "nonempty"
+    config: |
+      [[runners]]
+        [runners.kubernetes]
+          image = "postgres:18"

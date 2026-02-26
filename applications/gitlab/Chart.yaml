@@ -7,5 +7,8 @@ dependencies:
   - name: gitlab
     version: 9.9.1
     repository: https://charts.gitlab.io/
-
+dependencies:
+  - name: gitlab-runner
+    version: 0.86.0
+    repository: https://charts.gitlab.io/
 

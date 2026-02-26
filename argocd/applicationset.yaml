@@ -12,6 +12,9 @@ spec:
   - git:
       directories:
       - path: 'applications/*'
+        exclude: false
+      - path: 'applications/gitlab-runner'
+        exclude: true
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
       # files:
