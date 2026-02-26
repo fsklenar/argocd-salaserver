@@ -9,12 +9,10 @@
 
 gitlab-runner:
   namespace: gitlab
-  logLevel: debug
   gitlabUrl: "https://gitlab.linuxadmin.eu"
-  jobNamespace: "gitlab-runner"
   rbac:
     create: true
-    clusterWideAccess: true
+    clusterWideAccess: false
   runners:
     locked: false
     tags: "psql-18"
