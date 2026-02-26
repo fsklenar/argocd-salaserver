@@ -7,5 +7,3 @@ dependencies:
 - name: kyverno
   version: 3.7.0
   repository: https://kyverno.github.io/kyverno/
-
-

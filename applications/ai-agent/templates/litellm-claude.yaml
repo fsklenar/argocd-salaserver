@@ -1,0 +1,226 @@
+# # k8sgpt.yaml
+# apiVersion: core.k8sgpt.ai/v1alpha1
+# kind: K8sGPT
+# metadata:
+#   name: k8sgpt
+#   namespace: ai-agent
+# spec:
+#   ai:
+#     enabled: true
+#     model: gpt-4o
+#     backend: openai
+#     secret:
+#       name: k8sgpt-openai-secret
+#       key: openai-api-key
+#   noCache: false
+#   version: v0.3.41
+#   enableAIAnalysis: true
+#   serviceAccountName: readonly-sa   # ← your read-only SA from before!
+
+
+###############################################################################
+# K8sGPT + Claude — Two options:
+#
+#   OPTION A: Amazon Bedrock  (recommended — officially supported by K8sGPT)
+#             Requires AWS credentials & Bedrock access to Claude models.
+#
+#   OPTION B: LiteLLM Proxy  (direct Anthropic API key, no AWS needed)
+#             Deploys a small LiteLLM pod as an OpenAI-compatible proxy,
+#             then points K8sGPT's `openai` backend at it.
+#
+# Apply only ONE option. Comments indicate which blocks belong to which.
+###############################################################################
+
+# # =============================================================================
+# # OPTION A — Amazon Bedrock
+# # =============================================================================
+#
+# # Step 1: Create a secret with your AWS credentials
+# ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: k8sgpt-bedrock-secret
+#   namespace: ai-agent
+# type: Opaque
+# stringData:
+#   AWS_ACCESS_KEY_ID: "REPLACE_WITH_YOUR_ACCESS_KEY"
+#   AWS_SECRET_ACCESS_KEY: "REPLACE_WITH_YOUR_SECRET_KEY"
+#
+# # Step 2: K8sGPT CR using Amazon Bedrock + Claude
+# ---
+# apiVersion: core.k8sgpt.ai/v1alpha1
+# kind: K8sGPT
+# metadata:
+#   name: k8sgpt-claude-bedrock
+#   namespace: ai-agent
+# spec:
+#   ai:
+#     enabled: true
+#     backend: amazonbedrock
+#     # Claude model options (pick one):
+#     #   claude-sonnet-4-6:            anthropic.claude-sonnet-4-6-20250514-v1:0  (latest, recommended)
+#     #   claude-3-7-sonnet:            anthropic.claude-3-7-sonnet-20250219-v1:0
+#     #   claude-3-5-sonnet:            anthropic.claude-3-5-sonnet-20241022-v2:0
+#     #   claude-3-haiku (fast/cheap):  anthropic.claude-3-haiku-20240307-v1:0
+#     model: anthropic.claude-3-5-sonnet-20241022-v2:0
+#     region: eu-central-1        # ← change to your AWS region
+#     secret:
+#       name: k8sgpt-bedrock-secret
+#       key: AWS_ACCESS_KEY_ID    # operator reads both keys from the secret
+#   noCache: false
+#   repository: ghcr.io/k8sgpt-ai/k8sgpt
+#   version: v0.4.17
+#   serviceAccountName: readonly-sa   # your read-only SA from earlier
+#   # Continuously analyze these resource types:
+#   filters:
+#     - Pod
+#     - Deployment
+#     - ReplicaSet
+#     - StatefulSet
+#     - DaemonSet
+#     - Service
+#     - Ingress
+#     - Node
+#     - PersistentVolumeClaim
+#     - HorizontalPodAutoscaler
+#   # Optional: anonymize resource names before sending to AI
+#   # anonymize: true
+#   # Optional: post results to Slack
+#   # sink:
+#   #   type: slack
+#   #   webhook: https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+
+# =============================================================================
+# OPTION B — Direct Anthropic API via LiteLLM proxy (no AWS required)
+# =============================================================================
+
+# Step 1: Secret with your Anthropic API key
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8sgpt-anthropic-secret
+  namespace: ai-agent
+type: Opaque
+stringData:
+  # LiteLLM master key — set any random string, used internally
+  litellm-master-key: "b4637052-f438-45ee-9e85-9812fe0f4789"
+
+# Step 2: LiteLLM ConfigMap
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: litellm-config
+  namespace: ai-agent
+data:
+  config.yaml: |
+    model_list:
+      - model_name: claude-sonnet        # alias K8sGPT will use
+        litellm_params:
+          model: anthropic/claude-sonnet-4-6-20250514
+          api_key: os.environ/ANTHROPIC_API_KEY
+    general_settings:
+      master_key: os.environ/LITELLM_MASTER_KEY
+
+# Step 3: LiteLLM Deployment (OpenAI-compatible proxy)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: litellm-proxy
+  namespace: ai-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: litellm-proxy
+  template:
+    metadata:
+      labels:
+        app: litellm-proxy
+    spec:
+      serviceAccountName: readonly-sa
+      containers:
+        - name: litellm
+          image: ghcr.io/berriai/litellm:main-latest
+          args:
+            - "--config"
+            - "/app/config.yaml"
+            - "--port"
+            - "4000"
+          env:
+            - name: ANTHROPIC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: k8sgpt-anthropic-secret-apikey
+                  key: anthropic-api-key
+            - name: LITELLM_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: k8sgpt-anthropic-secret
+                  key: litellm-master-key
+          volumeMounts:
+            - name: config
+              mountPath: /app/config.yaml
+              subPath: config.yaml
+          ports:
+            - containerPort: 4000
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 4000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+      volumes:
+        - name: config
+          configMap:
+            name: litellm-config
+
+# Step 4: LiteLLM Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: litellm-proxy
+  namespace: ai-agent
+spec:
+  selector:
+    app: litellm-proxy
+  ports:
+    - port: 4000
+      targetPort: 4000
+  type: ClusterIP
+
+# Step 5: K8sGPT CR pointing to LiteLLM proxy (using openai backend)
+---
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt-claude-anthropic
+  namespace: ai-agent
+spec:
+  ai:
+    enabled: true
+    backend: openai                         # LiteLLM is OpenAI-compatible
+    model: claude-sonnet                    # alias defined in litellm config.yaml
+    baseUrl: http://litellm-proxy.ai-agent.svc.cluster.local:4000/v1
+    secret:
+      name: k8sgpt-anthropic-secret
+      key: litellm-master-key              # used as the "openai" API key
+  noCache: false
+  repository: ghcr.io/k8sgpt-ai/k8sgpt
+  version: v0.4.30
+  serviceAccountName: readonly-sa
+  filters:
+    - Pod
+    - Deployment
+    - ReplicaSet
+    - StatefulSet
+    - DaemonSet
+    - Service
+    - Ingress
+    - Node
+    - PersistentVolumeClaim
+    - HorizontalPodAutoscaler

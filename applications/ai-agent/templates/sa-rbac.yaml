@@ -1,0 +1,202 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: readonly-sa
+  namespace: ai-agent
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: readonly-no-secrets
+rules:
+  # Core API group — all readable resources EXCEPT secrets
+  - apiGroups: [""]
+    resources:
+      - bindings
+      - componentstatuses
+      - configmaps
+      - endpoints
+      - events
+      - limitranges
+      - namespaces
+      - namespaces/status
+      - nodes
+      - nodes/proxy
+      - nodes/status
+      - persistentvolumeclaims
+      - persistentvolumeclaims/status
+      - persistentvolumes
+      - pods
+      - pods/attach
+      - pods/binding
+      - pods/eviction
+      - pods/exec
+      - pods/log
+      - pods/portforward
+      - pods/proxy
+      - pods/status
+      - podtemplates
+      - replicationcontrollers
+      - replicationcontrollers/scale
+      - replicationcontrollers/status
+      - resourcequotas
+      - resourcequotas/status
+      - serviceaccounts
+      - services
+      - services/proxy
+      - services/status
+    verbs: ["get", "list", "watch"]
+
+  # apps
+  - apiGroups: ["apps"]
+    resources:
+      - controllerrevisions
+      - daemonsets
+      - daemonsets/status
+      - deployments
+      - deployments/scale
+      - deployments/status
+      - replicasets
+      - replicasets/scale
+      - replicasets/status
+      - statefulsets
+      - statefulsets/scale
+      - statefulsets/status
+    verbs: ["get", "list", "watch"]
+
+  # autoscaling
+  - apiGroups: ["autoscaling"]
+    resources:
+      - horizontalpodautoscalers
+      - horizontalpodautoscalers/status
+    verbs: ["get", "list", "watch"]
+
+  # batch
+  - apiGroups: ["batch"]
+    resources:
+      - cronjobs
+      - cronjobs/status
+      - jobs
+      - jobs/status
+    verbs: ["get", "list", "watch"]
+
+  # networking
+  - apiGroups: ["networking.k8s.io"]
+    resources:
+      - ingressclasses
+      - ingresses
+      - ingresses/status
+      - networkpolicies
+    verbs: ["get", "list", "watch"]
+
+  # policy
+  - apiGroups: ["policy"]
+    resources:
+      - poddisruptionbudgets
+      - poddisruptionbudgets/status
+      - podsecuritypolicies
+    verbs: ["get", "list", "watch"]
+
+  # rbac
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources:
+      - clusterrolebindings
+      - clusterroles
+      - rolebindings
+      - roles
+    verbs: ["get", "list", "watch"]
+
+  # storage
+  - apiGroups: ["storage.k8s.io"]
+    resources:
+      - csidrivers
+      - csinodes
+      - csistoragecapacities
+      - storageclasses
+      - volumeattachments
+      - volumeattachments/status
+    verbs: ["get", "list", "watch"]
+
+  # admissionregistration
+  - apiGroups: ["admissionregistration.k8s.io"]
+    resources:
+      - mutatingwebhookconfigurations
+      - validatingwebhookconfigurations
+    verbs: ["get", "list", "watch"]
+
+  # apiextensions (CRDs)
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources:
+      - customresourcedefinitions
+      - customresourcedefinitions/status
+    verbs: ["get", "list", "watch"]
+
+  # apiregistration
+  - apiGroups: ["apiregistration.k8s.io"]
+    resources:
+      - apiservices
+      - apiservices/status
+    verbs: ["get", "list", "watch"]
+
+  # certificates
+  - apiGroups: ["certificates.k8s.io"]
+    resources:
+      - certificatesigningrequests
+      - certificatesigningrequests/approval
+      - certificatesigningrequests/status
+    verbs: ["get", "list", "watch"]
+
+  # coordination
+  - apiGroups: ["coordination.k8s.io"]
+    resources:
+      - leases
+    verbs: ["get", "list", "watch"]
+
+  # events
+  - apiGroups: ["events.k8s.io"]
+    resources:
+      - events
+    verbs: ["get", "list", "watch"]
+
+  # node
+  - apiGroups: ["node.k8s.io"]
+    resources:
+      - runtimeclasses
+    verbs: ["get", "list", "watch"]
+
+  # scheduling
+  - apiGroups: ["scheduling.k8s.io"]
+    resources:
+      - priorityclasses
+    verbs: ["get", "list", "watch"]
+
+  # discovery
+  - apiGroups: ["discovery.k8s.io"]
+    resources:
+      - endpointslices
+    verbs: ["get", "list", "watch"]
+
+  # flowcontrol
+  - apiGroups: ["flowcontrol.apiserver.k8s.io"]
+    resources:
+      - flowschemas
+      - flowschemas/status
+      - prioritylevelconfigurations
+      - prioritylevelconfigurations/status
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: readonly-no-secrets-binding
+subjects:
+  - kind: ServiceAccount
+    name: readonly-sa
+    namespace: ai-agent
+roleRef:
+  kind: ClusterRole
+  name: readonly-no-secrets
+  apiGroup: rbac.authorization.k8s.io
