@@ -9,15 +9,15 @@
 
 gitlab-runner:
   gitlabUrl: "https://gitlab.linuxadmin.eu"
+  jobNamespace: "gitlab-runner"
   rbac:
     create: true
   runners:
     locked: false
     tags: "psql-18"
     runUntagged: false
-    secret: "gitlab-runner-secret-psql18"
+    secret: gitlab-runner-secret-psql18
     config: |
       [[runners]]
         [runners.kubernetes]
           image = "postgres:18"
-
