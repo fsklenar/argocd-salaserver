@@ -11,8 +11,7 @@ gitlab-runner:
   namespace: gitlab
   gitlabUrl: "https://gitlab.linuxadmin.eu"
   rbac:
-    create: true
-    clusterWideAccess: false
+    create: false
   runners:
     locked: false
     tags: "psql-18"
