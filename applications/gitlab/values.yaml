@@ -12,15 +12,9 @@ gitlab:
         [[runners]]
           name = "default-k8s"
           run_untagged = true
+          request_concurrency = 2
           [runners.kubernetes]
             image = "ubuntu:24.04"
-        # [[runners]]
-        #   tags = ["psql"]
-        #   run_untagged = false
-        #   name = "postgres-k8s"
-        #   [runners.kubernetes]
-        #     image = "postgres:18"
-
 
   prometheus:
     install: false

@@ -1,5 +1,13 @@
 # https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/values.yaml?ref_type=heads#L1399
 
+
+        # [[runners]]
+        #   tags = ["psql"]
+        #   run_untagged = false
+        #   name = "postgres-k8s"
+        #   [runners.kubernetes]
+        #     image = "postgres:18"
+
 # ---
 # apiVersion: v1
 # kind: PersistentVolumeClaim
