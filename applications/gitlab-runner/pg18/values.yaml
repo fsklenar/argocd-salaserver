@@ -1,5 +1,5 @@
-gitlab-runner:
-  gitlabUrl: https://gitlab.linuxadmin.eu/
+gitlab-runner-psql18:
+  gitlabUrl: "https://gitlab.linuxadmin.eu/"
   rbac:
     create: true
   runners:
