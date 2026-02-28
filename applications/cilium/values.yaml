@@ -54,8 +54,8 @@ cilium:
     #externalTrafficPolicy: Local
     hostNetwork:
       enabled: true
-    #   nodes:
-    #     matchLabels:
-    #       node-role.kubernetes.io/control-plane: ""
+        nodes:
+          matchLabels:
+            node-role.kubernetes.io/control-plane: ""
 
 #https://github.com/cilium/cilium/blob/v1.18.3/install/kubernetes/cilium/values.yaml
