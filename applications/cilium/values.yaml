@@ -1,4 +1,6 @@
 cilium:
+  authentication:
+    enabled: true
   encryption:
     enabled: true
     type: wireguard
