@@ -21,9 +21,6 @@ kube-prometheus-stack:
             name: cilium-gateway-https
             namespace: kube-system
     prometheusSpec:
-      webConfigFileFields:
-        basic_auth_users:
-          admin: "$2y$12$nHIw1xQ5ADATkeZIiFwToOqnl4tp.BJbJktUxA19UmngWdcVuFJ3e"
       retention: 20d
       storageSpec:
         volumeClaimTemplate:
