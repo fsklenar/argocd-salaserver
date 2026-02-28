@@ -52,8 +52,8 @@ cilium:
   gatewayAPI:
     enabled: true
     #externalTrafficPolicy: Local
-    # hostNetwork:
-    #   enabled: true
+    hostNetwork:
+      enabled: true
     #   nodes:
     #     matchLabels:
     #       node-role.kubernetes.io/control-plane: ""
