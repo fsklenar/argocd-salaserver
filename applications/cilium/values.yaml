@@ -49,6 +49,7 @@ cilium:
         release: monitoring
   gatewayAPI:
     enabled: true
+    externalTrafficPolicy: Local
     # hostNetwork:
     #   enabled: true
     #   nodes:
