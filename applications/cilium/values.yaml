@@ -1,6 +1,6 @@
 cilium:
-  authentication:
-    enabled: true
+  # authentication:
+  #   enabled: true
   # loadBalancer:
   #   algorithm: maglev
   lbipam:
