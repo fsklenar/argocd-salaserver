@@ -56,7 +56,7 @@ cilium:
         release: monitoring
   gatewayAPI:
     enabled: true
-    serviceType: "LoadBalancer"
+    #serviceType: "LoadBalancer"
     #externalTrafficPolicy: Local
     hostNetwork:
       enabled: false
