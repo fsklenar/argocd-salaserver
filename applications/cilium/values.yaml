@@ -10,6 +10,8 @@ cilium:
   #   type: wireguard
   #   nodeEncryption: true
   routingMode: native
+  envoy:
+    enabled: true
   metrics:
     enabled:
       - prometheus
@@ -59,7 +61,7 @@ cilium:
     #serviceType: "LoadBalancer"
     #externalTrafficPolicy: Local
     hostNetwork:
-      enabled: false
+      enabled: true
       # nodes:
       #   matchLabels:
       #     node-role.kubernetes.io/control-plane: ""
