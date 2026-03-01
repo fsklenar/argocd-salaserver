@@ -59,7 +59,7 @@ cilium:
     serviceType: "LoadBalancer"
     #externalTrafficPolicy: Local
     hostNetwork:
-      enabled: true
+      enabled: false
       # nodes:
       #   matchLabels:
       #     node-role.kubernetes.io/control-plane: ""
