@@ -13,7 +13,7 @@ cilium:
   ipv4-native-routing-cidr: "192.168.0.0/24"
   enable-ipv4: true
   enable-ipv4-masquerade: true
-  # enable-ip-masq-agent: false
+  enable-ip-masq-agent: false
   # ipam: "cluster-pool"
   envoy:
     enabled: true
