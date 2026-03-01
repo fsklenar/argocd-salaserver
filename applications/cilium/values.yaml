@@ -58,10 +58,14 @@ cilium:
         release: monitoring
   gatewayAPI:
     enabled: true
-    #serviceType: "LoadBalancer"
-    #externalTrafficPolicy: Local
     hostNetwork:
       enabled: false
+      ports:
+        https: 443
+    serviceType: ClusterIP
+
+    #serviceType: "LoadBalancer"
+    #externalTrafficPolicy: Local
       # nodes:
       #   matchLabels:
       #     node-role.kubernetes.io/control-plane: ""
