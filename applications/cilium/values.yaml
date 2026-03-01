@@ -10,7 +10,7 @@ cilium:
   #   type: wireguard
   #   nodeEncryption: true
   routingMode: native
-  # ipv4-native-routing-cidr: "192.168.0.0/24"
+  ipv4-native-routing-cidr: "192.168.0.0/24"
   enable-ipv4: true
   # enable-ipv4-masquerade: true
   # enable-ip-masq-agent: false
