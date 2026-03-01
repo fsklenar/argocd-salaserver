@@ -41,14 +41,14 @@ kind: Gateway
 metadata:
   name: cilium-gateway-https
   namespace: kube-system
-  annotations:
-    io.cilium/gateway-service-type: LoadBalancer
-    io.cilium/lb-ipam-pool: bare-metal-pool
+  # annotations:
+  #   io.cilium/gateway-service-type: LoadBalancer
+  #   io.cilium/lb-ipam-pool: bare-metal-pool
 spec:
   gatewayClassName: cilium
-  addresses:
-    - type: IPAddress
-      value: 192.168.0.202
+  # addresses:
+  #   - type: IPAddress
+  #     value: 192.168.0.202
   listeners:
     # - name: web-gw-https
     #   protocol: HTTPS
@@ -96,9 +96,9 @@ metadata:
 spec:
   blocks:
   - cidr: "192.168.0.0/24"
-  serviceSelector:
-    matchLabels:
-      io.cilium.gateway/owning-gateway: cilium-gateway-https
+  # serviceSelector:
+  #   matchLabels:
+  #     io.cilium.gateway/owning-gateway: cilium-gateway-https
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
