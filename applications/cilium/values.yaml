@@ -3,17 +3,17 @@ cilium:
   #   enabled: true
   # loadBalancer:
   #   algorithm: maglev
-  lbipam:
-    enabled: true
+  # lbipam:
+  #   enabled: true
   # encryption:
   #   enabled: true
   #   type: wireguard
   #   nodeEncryption: true
   # routingMode: native
-  ipv4-native-routing-cidr: "192.168.0.0/24"
-  enable-ipv4: true
-  enable-ipv4-masquerade: true
-  enable-ip-masq-agent: false
+  # ipv4-native-routing-cidr: "192.168.0.0/24"
+  # enable-ipv4: true
+  # enable-ipv4-masquerade: true
+  # enable-ip-masq-agent: false
   # ipam: "bare-metal-pool"
   envoy:
     enabled: true
@@ -63,11 +63,11 @@ cilium:
         release: monitoring
   gatewayAPI:
     enabled: true
-    hostNetwork:
-      enabled: true
-      ports:
-        https: 443
-    serviceType: ClusterIP
+    # hostNetwork:
+    #   enabled: true
+    #   ports:
+    #     https: 443
+    # serviceType: ClusterIP
 
     #serviceType: "LoadBalancer"
     #externalTrafficPolicy: Local
