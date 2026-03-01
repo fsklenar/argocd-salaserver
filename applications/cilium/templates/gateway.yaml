@@ -37,9 +37,13 @@
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
+
 metadata:
   name: cilium-gateway-https
   namespace: kube-system
+  annotations:
+    io.cilium/gateway-service-type: LoadBalancer
+    io.cilium/lb-ipam-pool: bare-metal-pool
 spec:
   gatewayClassName: cilium
   addresses:
@@ -92,6 +96,9 @@ metadata:
 spec:
   blocks:
   - cidr: "192.168.0.0/24"
+  serviceSelector:
+    matchLabels:
+      io.cilium.gateway/owning-gateway: cilium-gateway-https
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
