@@ -17,9 +17,9 @@ cilium:
   # ipam: "bare-metal-pool"
   envoy:
     enabled: true
-  metrics:
-    enabled:
-      - prometheus
+  # metrics:
+  #   enabled:
+  #     - prometheus
   hubble:
     ui:
       enabled: true
@@ -41,7 +41,7 @@ cilium:
   monitor:
     enabled: true
   l2announcements:
-    enable: true
+    enabled: true
   dashboards:
     enabled: true
     label: grafana_dashboard
