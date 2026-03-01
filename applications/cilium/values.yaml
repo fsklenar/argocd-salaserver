@@ -9,6 +9,7 @@ cilium:
   #   enabled: true
   #   type: wireguard
   #   nodeEncryption: true
+  routingMode: native
   metrics:
     enabled:
       - prometheus
