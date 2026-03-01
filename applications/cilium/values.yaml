@@ -59,7 +59,7 @@ cilium:
   gatewayAPI:
     enabled: true
     hostNetwork:
-      enabled: false
+      enabled: true
       ports:
         https: 443
     serviceType: ClusterIP
