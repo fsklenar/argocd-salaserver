@@ -14,7 +14,7 @@ cilium:
   enable-ipv4: true
   enable-ipv4-masquerade: true
   enable-ip-masq-agent: false
-  ipam: "cluster-pool"
+  ipam: "kubernetes"
   envoy:
     enabled: true
   metrics:
