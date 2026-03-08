@@ -118,6 +118,16 @@ data:
       # ca_file /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
       # bearer_token_file /var/run/secrets/kubernetes.io/serviceaccount/token
     </filter>
+
+    <filter kubernetes.**>
+      @type record_transformer
+      <record>
+        namespace   ${record.dig("kubernetes", "namespace_name")}
+        pod         ${record.dig("kubernetes", "pod_name")}
+        container   ${record.dig("kubernetes", "container_name")}
+        k8s_labels  ${record.dig("kubernetes", "labels")}
+      </record>
+    </filter>
 ---
 apiVersion: v1
 kind: ServiceAccount
