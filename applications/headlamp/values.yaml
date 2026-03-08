@@ -1,5 +1,6 @@
 headlamp:
   httpRoute:
+    enabled: true
     hostnames:
       - headlamp.linuxadmin.eu
       - headlamp.vpn.linuxadmin.eu
