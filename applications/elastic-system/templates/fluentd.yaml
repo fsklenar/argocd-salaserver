@@ -113,10 +113,10 @@ data:
     <filter kubernetes.**>
       @type kubernetes_metadata
       @id filter_kube_metadata
-      kubernetes_url "https://#{ENV['KUBERNETES_SERVICE_HOST']}:#{ENV['KUBERNETES_SERVICE_PORT']}/api"
-      verify_ssl true
-      ca_file /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-      bearer_token_file /var/run/secrets/kubernetes.io/serviceaccount/token
+      # kubernetes_url "https://#{ENV['KUBERNETES_SERVICE_HOST']}:#{ENV['KUBERNETES_SERVICE_PORT']}/api"
+      # verify_ssl true
+      # ca_file /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      # bearer_token_file /var/run/secrets/kubernetes.io/serviceaccount/token
     </filter>
 ---
 apiVersion: v1
