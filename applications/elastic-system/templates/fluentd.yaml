@@ -81,13 +81,24 @@ data:
       # bearer_token_file /var/run/secrets/kubernetes.io/serviceaccount/token
     </filter>
 
+    # <filter kubernetes.**>
+    #   @type record_transformer
+    #   <record>
+    #     namespace  ${$.kubernetes.namespace_name}
+    #     pod        ${$.kubernetes.pod_name}
+    #     container  ${$.kubernetes.container_name}
+    #     k8s_labels ${$.kubernetes.labels}
+    #   </record>
+    # </filter>
+
     <filter kubernetes.**>
       @type record_transformer
+      enable_ruby true
       <record>
-        namespace  ${$.kubernetes.namespace_name}
-        pod        ${$.kubernetes.pod_name}
-        container  ${$.kubernetes.container_name}
-        k8s_labels ${$.kubernetes.labels}
+        namespace  ${record["kubernetes"]["namespace_name"]}
+        pod        ${record["kubernetes"]["pod_name"]}
+        container  ${record["kubernetes"]["container_name"]}
+        k8s_labels ${record["kubernetes"]["labels"].to_s}
       </record>
     </filter>
 
