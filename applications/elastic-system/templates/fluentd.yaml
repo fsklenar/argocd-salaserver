@@ -72,6 +72,25 @@ data:
       max_lines 1000
     </match>
 
+    <filter kubernetes.**>
+      @type kubernetes_metadata
+      @id filter_kube_metadata
+      # kubernetes_url "https://#{ENV['KUBERNETES_SERVICE_HOST']}:#{ENV['KUBERNETES_SERVICE_PORT']}/api"
+      # verify_ssl true
+      # ca_file /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      # bearer_token_file /var/run/secrets/kubernetes.io/serviceaccount/token
+    </filter>
+
+    <filter kubernetes.**>
+      @type record_transformer
+      <record>
+        namespace   ${record.dig("kubernetes", "namespace_name")}
+        pod         ${record.dig("kubernetes", "pod_name")}
+        container   ${record.dig("kubernetes", "container_name")}
+        k8s_labels  ${record.dig("kubernetes", "labels")}
+      </record>
+    </filter>
+
     <match **>
       @type elasticsearch
       @id out_es
@@ -110,24 +129,7 @@ data:
       </buffer>
     </match>
 
-    <filter kubernetes.**>
-      @type kubernetes_metadata
-      @id filter_kube_metadata
-      # kubernetes_url "https://#{ENV['KUBERNETES_SERVICE_HOST']}:#{ENV['KUBERNETES_SERVICE_PORT']}/api"
-      # verify_ssl true
-      # ca_file /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-      # bearer_token_file /var/run/secrets/kubernetes.io/serviceaccount/token
-    </filter>
 
-    <filter kubernetes.**>
-      @type record_transformer
-      <record>
-        namespace   ${record.dig("kubernetes", "namespace_name")}
-        pod         ${record.dig("kubernetes", "pod_name")}
-        container   ${record.dig("kubernetes", "container_name")}
-        k8s_labels  ${record.dig("kubernetes", "labels")}
-      </record>
-    </filter>
 ---
 apiVersion: v1
 kind: ServiceAccount
