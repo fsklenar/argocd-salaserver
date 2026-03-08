@@ -84,10 +84,10 @@ data:
     <filter kubernetes.**>
       @type record_transformer
       <record>
-        namespace   ${record.dig("kubernetes", "namespace_name")}
-        pod         ${record.dig("kubernetes", "pod_name")}
-        container   ${record.dig("kubernetes", "container_name")}
-        k8s_labels  ${record.dig("kubernetes", "labels")}
+        namespace  ${$.kubernetes.namespace_name}
+        pod        ${$.kubernetes.pod_name}
+        container  ${$.kubernetes.container_name}
+        k8s_labels ${$.kubernetes.labels}
       </record>
     </filter>
 
