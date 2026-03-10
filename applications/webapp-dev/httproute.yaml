@@ -6,6 +6,7 @@ metadata:
 spec:
   hostnames:
     - webapp.linuxadmin.eu
+    - webapp-int.linuxadmin.eu
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway
