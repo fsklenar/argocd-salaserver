@@ -36,3 +36,16 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - "*.vpn.linuxadmin.eu"
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: proxy-linuxadmin-eu-tls
+  namespace: kube-system
+spec:
+  secretName: proxy-linuxadmin-eu-tls-secret
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - "proxy.linuxadmin.eu"
