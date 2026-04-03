@@ -5,6 +5,7 @@ cilium:
   #   algorithm: maglev
   # lbipam:
   #   enabled: true
+  defaultLBServiceIPAM: none
   encryption:
     enabled: true
     type: wireguard
