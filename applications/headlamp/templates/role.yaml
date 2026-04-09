@@ -1,0 +1,178 @@
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: headlamp
+#   namespace: headlamp
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: headlamp-read-only
+rules:
+  # Core resources
+  - apiGroups: [""]
+    resources:
+      - namespaces
+      - nodes
+      - pods
+      - pods/log
+      - services
+      - endpoints
+      - configmaps
+      - persistentvolumes
+      - persistentvolumeclaims
+      - serviceaccounts
+      - events
+      - replicationcontrollers
+      - resourcequotas
+      - limitranges
+    verbs: ["get", "list", "watch"]
+
+  # Secrets — metadata only is safer; omit if you don't need secret visibility
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["list", "watch"]
+
+  # Workloads
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+      - replicasets
+      - statefulsets
+      - daemonsets
+      - controllerrevisions
+    verbs: ["get", "list", "watch"]
+
+  # Batch
+  - apiGroups: ["batch"]
+    resources:
+      - jobs
+      - cronjobs
+    verbs: ["get", "list", "watch"]
+
+  # Networking
+  - apiGroups: ["networking.k8s.io"]
+    resources:
+      - ingresses
+      - ingressclasses
+      - networkpolicies
+    verbs: ["get", "list", "watch"]
+
+  # Storage
+  - apiGroups: ["storage.k8s.io"]
+    resources:
+      - storageclasses
+      - volumeattachments
+    verbs: ["get", "list", "watch"]
+
+  # Autoscaling
+  - apiGroups: ["autoscaling"]
+    resources: ["horizontalpodautoscalers"]
+    verbs: ["get", "list", "watch"]
+
+  # Policy
+  - apiGroups: ["policy"]
+    resources: ["poddisruptionbudgets"]
+    verbs: ["get", "list", "watch"]
+
+  # RBAC visibility (so Headlamp can show role bindings)
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources:
+      - roles
+      - rolebindings
+      - clusterroles
+      - clusterrolebindings
+    verbs: ["get", "list", "watch"]
+
+  # CRD discovery
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources: ["customresourcedefinitions"]
+    verbs: ["get", "list", "watch"]
+
+  # Metrics (optional — requires metrics-server)
+  - apiGroups: ["metrics.k8s.io"]
+    resources: ["nodes", "pods"]
+    verbs: ["get", "list"]
+
+  # Gateway API
+  - apiGroups: ["gateway.networking.k8s.io"]
+    resources:
+      - gatewayclasses        # cluster-scoped — defines gateway infrastructure
+      - gateways              # namespaced — instantiates a gateway
+      - httproutes            # namespaced — HTTP/HTTPS routing rules
+      - grpcroutes            # namespaced — gRPC routing rules
+      - tcproutes             # namespaced — TCP routing (experimental)
+      - tlsroutes             # namespaced — TLS passthrough routing (experimental)
+      - udproutes             # namespaced — UDP routing (experimental)
+      - referencegrants       # namespaced — cross-namespace reference permissions
+      - backendtlspolicies    # namespaced — TLS config for backends (v1.3+)
+    verbs: ["get", "list", "watch"]
+
+  # Cilium — Network Policy
+  - apiGroups: ["cilium.io"]
+    resources:
+      - ciliumnetworkpolicies          # namespaced CNP
+      - ciliumnetworkpolicies/status
+      - ciliumclusterwidenetworkpolicies   # cluster-scoped CCNP
+      - ciliumclusterwidenetworkpolicies/status
+      - ciliumlocalredirectpolicies    # local redirect policies
+    verbs: ["get", "list", "watch"]
+
+  # Cilium — Endpoint & Identity visibility
+  - apiGroups: ["cilium.io"]
+    resources:
+      - ciliumendpoints                # per-pod endpoint state
+      - ciliumendpoints/status
+      - ciliumidentities               # security identities
+      - ciliumnodes                    # Cilium's view of nodes
+      - ciliumnodes/status
+      - ciliumexternalworkloads        # VMs / external workloads
+    verbs: ["get", "list", "watch"]
+
+  # Cilium — Load Balancing & IP Management
+  - apiGroups: ["cilium.io"]
+    resources:
+      - ciliumloadbalancerippools      # LB IP pools
+      - ciliumpodippools               # pod CIDR pools
+      - ciliuml2announcementpolicies   # L2 announcements (ARP/NDP)
+      - ciliuml2announcementpolicies/status
+    verbs: ["get", "list", "watch"]
+
+  # Cilium — BGP
+  - apiGroups: ["cilium.io"]
+    resources:
+      - ciliumbgpclusterconfigs        # BGP cluster-wide config
+      - ciliumbgpnodeconfigs           # per-node BGP config
+      - ciliumbgpnodeconfigs/status
+      - ciliumbgpadvertisements        # what prefixes to advertise
+      - ciliumbgppeeringpolicies       # legacy BGP peering (pre-v1.14)
+    verbs: ["get", "list", "watch"]
+
+  # Cilium — Envoy (used when Gateway API is enabled via Cilium)
+  - apiGroups: ["cilium.io"]
+    resources:
+      - ciliumenvoyconfigs             # namespaced Envoy xDS config
+      - ciliumenvoyconfigs/status
+      - ciliumclusterwideenvoyconfigs  # cluster-scoped Envoy xDS config
+      - ciliumclusterwideenvoyconfigs/status
+    verbs: ["get", "list", "watch"]
+
+  # Cilium — Egress
+  - apiGroups: ["cilium.io"]
+    resources:
+      - ciliumegressgatewaypolicies    # egress gateway policies
+      - ciliumegressgatewaypolicies/status
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: headlamp-read-only
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: headlamp-read-only
+subjects:
+  - kind: ServiceAccount
+    name: headlamp
+    namespace: headlamp

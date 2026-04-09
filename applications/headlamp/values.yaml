@@ -32,7 +32,7 @@ headlamp:
         create: false
   clusterRoleBinding:
     create: true
-    clusterRoleName: headlamp-nodes-read
+    clusterRoleName: headlamp-read-only
   serviceAccount:
     create: true
     name: "headlamp"
