@@ -12,6 +12,18 @@ kyverno:
       allowCrossNamespaceImport: true
       matchLabels:
         dashboards: "grafana"
+  admissionController:
+    metricsService:
+      create: true
+  backgroundController:
+    metricsService:
+      create: true
+  cleanupController:
+    metricsService:
+      create: true
+  reportsController:
+    metricsService:
+      create: true
         # - apiGroups:
         #     - ''
         #   resources:
