@@ -17,19 +17,16 @@ kyverno:
       enabled: true
       additionalLabels:
         release: monitoring # Replace with your prometheus-stack release name
-
   backgroundController:
     serviceMonitor:
       enabled: true
       additionalLabels:
         release: monitoring
-
   cleanupController:
     serviceMonitor:
       enabled: true
       additionalLabels:
         release: monitoring
-
   reportsController:
     serviceMonitor:
       enabled: true
