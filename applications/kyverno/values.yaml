@@ -16,25 +16,25 @@ kyverno:
     serviceMonitor:
       enabled: true
       additionalLabels:
-        release: kube-prometheus-stack # Replace with your prometheus-stack release name
+        release: monitoring # Replace with your prometheus-stack release name
 
   backgroundController:
     serviceMonitor:
       enabled: true
       additionalLabels:
-        release: kube-prometheus-stack
+        release: monitoring
 
   cleanupController:
     serviceMonitor:
       enabled: true
       additionalLabels:
-        release: kube-prometheus-stack
+        release: monitoring
 
   reportsController:
     serviceMonitor:
       enabled: true
       additionalLabels:
-        release: kube-prometheus-stack
+        release: monitoring
   metricsConfig:
     enabled: true
         # - apiGroups:
