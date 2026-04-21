@@ -35,6 +35,8 @@ kyverno:
       enabled: true
       additionalLabels:
         release: kube-prometheus-stack
+  metricsConfig:
+    enabled: true
         # - apiGroups:
         #     - ''
         #   resources:
