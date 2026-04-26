@@ -3,7 +3,7 @@ velero:
 
   initContainers:
     - name: velero-plugin-for-aws
-      image: velero/velero-plugin-for-aws:v1.2.0
+      image: velero/velero-plugin-for-aws:v1.14.0
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - mountPath: /target
@@ -28,11 +28,11 @@ velero:
       memory: 512Mi
   image:
     repository: velero/velero
-    tag: v1.17.0
+    tag: v1.18.0
   kubectl:
     image:
-      repository: bitnamilegacy/kubectl
-      tag: 1.33.4
+      repository: registry.k8s.io/kubectl
+      tag: 1.35.1
   credentials:
     useSecret: true
     name: k8s-sala-backup
