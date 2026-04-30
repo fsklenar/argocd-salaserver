@@ -6,12 +6,12 @@ cilium:
   # lbipam:
   #   enabled: true
   defaultLBServiceIPAM: none
-  # encryption:
-  #   enabled: true
-  #   type: wireguard
-  #   nodeEncryption: true
   encryption:
-    enabled: false
+    enabled: true
+    type: wireguard
+    nodeEncryption: true
+  # encryption:
+  #   enabled: false
   # routingMode: native
   # ipv4-native-routing-cidr: "192.168.0.0/24"
   # enable-ipv4: true
@@ -80,3 +80,7 @@ cilium:
 
 #https://github.com/cilium/cilium/blob/v1.18.3/install/kubernetes/cilium/values.yaml
 #https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
+        # - name: KUBERNETES_SERVICE_HOST
+        #   value: 100.122.57.50
+        # - name: KUBERNETES_SERVICE_PORT
+        #   value: "6443"
