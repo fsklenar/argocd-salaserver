@@ -80,7 +80,8 @@ cilium:
 
 #https://github.com/cilium/cilium/blob/v1.18.3/install/kubernetes/cilium/values.yaml
 #https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
-        # - name: KUBERNETES_SERVICE_HOST
-        #   value: 100.122.57.50
-        # - name: KUBERNETES_SERVICE_PORT
-        #   value: "6443"
+# - name: KUBERNETES_SERVICE_HOST
+#   value: 100.122.57.50
+# - name: KUBERNETES_SERVICE_PORT
+#   value: "6443"
+#cilium encryption status
