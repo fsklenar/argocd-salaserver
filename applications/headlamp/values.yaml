@@ -20,8 +20,8 @@ headlamp:
           - path:
               type: PathPrefix
               value: /
-  image:
-    tag: "v0.40.1"
+  # image:
+  #   tag: "v0.41.0"
   config:
     kubeConfigPath: ""
     clusterName: "local"
