@@ -21,7 +21,7 @@ kube-prometheus-stack:
             name: cilium-gateway-https
             namespace: kube-system
     prometheusSpec:
-      retention: 20d
+      retention: 30d
       storageSpec:
         volumeClaimTemplate:
           spec:
