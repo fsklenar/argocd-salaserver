@@ -1,4 +1,15 @@
-
+#Upgrade
+# -- Find all columns using pgvecto-rs types
+# SELECT table_name, column_name, data_type, udt_name
+# FROM information_schema.columns
+# WHERE udt_name IN ('vector', 'svector', 'bvector');
+#
+# -- Find all vector indexes
+# SELECT indexname, indexdef
+# FROM pg_indexes
+# WHERE indexdef ILIKE '%using hnsw%'
+#    OR indexdef ILIKE '%using ivfflat%'
+#    OR indexdef ILIKE '%using flat%';
 ---
 apiVersion: v1
 kind: ConfigMap
