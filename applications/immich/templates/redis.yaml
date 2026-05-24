@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:7.0.12-alpine # Using a stable and lightweight Redis image
+          image: redis:7-alpine # Using a stable and lightweight Redis image
           ports:
             - containerPort: 6379
           volumeMounts:
