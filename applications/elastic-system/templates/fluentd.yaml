@@ -217,7 +217,7 @@ spec:
                 key: password
         resources:
           limits:
-            memory: 300Mi
+            memory: 500Mi
           requests:
             cpu: 100m
             memory: 200Mi
