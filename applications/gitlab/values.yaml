@@ -65,4 +65,6 @@ gitlab:
     hosts:
       domain: linuxadmin.eu
       externalIP: 192.168.0.202
+
 #upgrade 19: https://docs.gitlab.com/charts/installation/migration/bundled_chart_migration/
+#gitlab helm chart values: https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/values.yaml
