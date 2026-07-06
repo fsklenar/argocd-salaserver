@@ -42,3 +42,25 @@ spec:
     protocol: TCP
   selector:
     app: redis
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: redis-allow-gitlab
+  namespace: gitlab
+spec:
+  podSelector:
+    matchLabels:
+      app: redis
+
+  policyTypes:
+  - Ingress
+
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          release: gitlab
+    ports:
+    - protocol: TCP
+      port: 6379
