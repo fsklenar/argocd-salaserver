@@ -27,6 +27,8 @@ gitlab:
     persistence:
       volumeName: pv-gitlab-minio
       storageClass: local-storage
+  redis:
+    host: redis-service.gitlab.svc.cluster.local
   # redis:
   #   master:
   #     persistence:
