@@ -46,21 +46,19 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: redis-allow-gitlab
+  name: redis-allow-gitlab-namespace
   namespace: gitlab
 spec:
   podSelector:
     matchLabels:
       app: redis
-
   policyTypes:
   - Ingress
-
   ingress:
   - from:
-    - podSelector:
+    - namespaceSelector:
         matchLabels:
-          release: gitlab
+          kubernetes.io/metadata.name: gitlab
     ports:
     - protocol: TCP
       port: 6379
