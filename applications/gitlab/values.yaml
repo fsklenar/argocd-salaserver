@@ -28,7 +28,7 @@ gitlab:
       volumeName: pv-gitlab-minio
       storageClass: local-storage
   redis:
-    host: redis-service.gitlab.svc.cluster.local
+    install: false
   # redis:
   #   master:
   #     persistence:
@@ -53,6 +53,8 @@ gitlab:
   nginx-ingress: &nginx-ingress
     enabled: false
   global:
+    redis:
+      host: redis-service.gitlab.svc.cluster.local
     ingress:
       enabled: false
     # ingress:
