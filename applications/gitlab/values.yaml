@@ -54,6 +54,8 @@ gitlab:
     enabled: false
   global:
     redis:
+      auth:
+        enabled: false
       host: redis-service.gitlab.svc.cluster.local
     ingress:
       enabled: false
