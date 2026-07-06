@@ -7,4 +7,3 @@ dependencies:
   - name: gitlab
     version: 9.11.7
     repository: https://charts.gitlab.io/
-
