@@ -17,7 +17,7 @@ immich:
                   name: immich-postgres-secret
                   key: db-password
           image:
-            tag: v2.7.5
+            tag: v3.0.2
 
   immich:
     metrics:
