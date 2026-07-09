@@ -29,7 +29,7 @@ immich:
       backup:
         database:
           enabled: true
-          cronExpression: "10 23 * * *"   # daily at 2 AM
+          cronExpression: "5 23 * * *"   # daily at 2 AM
           keepLastAmount: 3            # how many backups to retain
 
   server:
