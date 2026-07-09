@@ -25,6 +25,12 @@ immich:
     persistence:
       library:
         existingClaim: virtiofs-psql-immich-claim #common storage for Immich and PostgreSQL (use different if you need to split them)
+    configuration:
+      backup:
+        database:
+          enabled: true
+          cronExpression: "10 23 * * *"   # daily at 2 AM
+          keepLastAmount: 3            # how many backups to retain
 
   server:
     enabled: true
