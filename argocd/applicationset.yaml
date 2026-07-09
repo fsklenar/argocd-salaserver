@@ -17,28 +17,21 @@ spec:
         exclude: true
       repoURL: 'https://github.com/fsklenar/argocd-salaserver.git'
       revision: HEAD
-  syncPolicy:
-    applicationsSync: create-only
+  # syncPolicy:
+  #   applicationsSync: create-only
   template:
     metadata:
       name: '{{.path.basename}}'
     spec:
       ignoreDifferences:
-      - group: apiextensions.k8s.io
-            kind: CustomResourceDefinition
-            name: deletingpolicies.policies.kyverno.io
-            jsonPointers:
-              - /metadata/annotations
-              - /metadata/labels
-      - group: apiextensions.k8s.io
-        kind: CustomResourceDefinition
-        name: generatingpolicies.policies.kyverno.io
-        jsonPointers:
-          - /metadata/annotations
-          - /metadata/labels
-      - group: batch # Kubernetes API group for Job
-        kind: Job      # Kubernetes resource kind
-        name: gitlab-issuer-e860305 # The specific name of the Job to ignore
+        - group: apiextensions.k8s.io
+          kind: CustomResourceDefinition
+          jqPathExpressions:
+            - '.metadata.labels'
+            - '.metadata.annotations'
+        - group: batch # Kubernetes API group for Job
+          kind: Job      # Kubernetes resource kind
+          name: gitlab-issuer-e860305 # The specific name of the Job to ignore
       # ignoreDifferences:
       # - group: "" # Group is empty for core resources like Secret
       #   kind: Deployment
