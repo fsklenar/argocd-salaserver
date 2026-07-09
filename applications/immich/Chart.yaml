@@ -9,4 +9,4 @@ dependencies:
   repository: oci://ghcr.io/immich-app/immich-charts
   #repository: https://immich-app.github.io/immich-charts
 
-
+#helm chart values: https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
