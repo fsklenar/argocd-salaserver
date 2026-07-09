@@ -45,10 +45,10 @@ spec:
       containers:
         - name: postgres
           #image: pgvector/pgvector:pg17 # Image with pgvector pre-installed. You can specify a version like 'ankane/pgvector:pg15'
-          #image: ghcr.io/tensorchord/pgvecto-rs:pg16-v0.3.0
+          image: ghcr.io/tensorchord/pgvecto-rs:pg16-v0.3.0
           #image: ghcr.io/immich-app/postgres:16-vectorchord0.5.3
           #image: ghcr.io/immich-app/postgres:16-vectorchord0.5.3-pgvector0.8.1
-          image: ghcr.io/immich-app/postgres:16-vectorchord0.5.3-pgvector0.8.1-pgvectors0.2.1
+          #image: ghcr.io/immich-app/postgres:16-vectorchord0.5.3-pgvector0.8.1-pgvectors0.2.1
           #image: ghcr.io/tensorchord/cloudnative-vectorchord:16.14
           ports:
             - containerPort: 5432 # Default PostgreSQL port
