@@ -46,4 +46,6 @@ spec:
           values:
           - controlplane
 
+kubectl exec -i -n gitlab $OLD_PG_POD -- env PGPASSWORD="$OLD_PG_PASSWORD" pg_dump -U postgres -Fc -b -v gitlabhq_production | \
+kubectl exec -i -n gitlab $NEW_CNPG_POD -- env PGPASSWORD="$NEW_CNPG_PASSWORD" pg_restore -U gitlab -d gitlabhq_production -h gitlab-rails-db-rw.gitlab --clean --if-exists -v
 

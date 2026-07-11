@@ -19,6 +19,9 @@ gitlab:
   prometheus:
     install: false
 
+  postgresql:
+    install: false
+
   # postgresql:
   #   persistence:
   #     volumeName: gitlab-postgres
@@ -53,6 +56,11 @@ gitlab:
   nginx-ingress: &nginx-ingress
     enabled: false
   global:
+    psql:
+      host: gitlab-rails-db-rw.gitlab.svc.cluster.local
+      password:
+        secret: gitlab-rails-db-app
+        key: password
     redis:
       auth:
         enabled: false
