@@ -31,6 +31,8 @@ gitlab:
     persistence:
       volumeName: pv-gitlab-minio
       storageClass: local-storage
+      annotations:
+        helm.sh/resource-policy: "keep"
   redis:
     install: false
   # redis:
