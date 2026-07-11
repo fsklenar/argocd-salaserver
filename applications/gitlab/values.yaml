@@ -27,6 +27,7 @@ gitlab:
   #     volumeName: gitlab-postgres
   #     storageClass: local-storage
   minio:
+    install: true
     persistence:
       volumeName: pv-gitlab-minio
       storageClass: local-storage
