@@ -3,3 +3,6 @@ cloudnative-pg:
     podMonitorEnabled: true
     grafanaDashboard:
       create: true
+      labels:
+        dashboards: "grafana"
+
