@@ -27,7 +27,7 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: local-storage
+  storageClassName: "local-storage"
   local:
     path: /srv/virtiofs/gitlab/data-gitlab-postgresql-cn
   capacity:
