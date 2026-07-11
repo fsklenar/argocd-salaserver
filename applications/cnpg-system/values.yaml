@@ -5,4 +5,5 @@ cloudnative-pg:
       create: true
       labels:
         dashboards: "grafana"
+        grafana_dashboard: "1"
 
