@@ -18,3 +18,32 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS plpgsql;
         - CREATE EXTENSION IF NOT EXISTS amcheck;
         - CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-gitlab-rails-db-1
+  namespace: gitlab
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: local-storage
+  local:
+    path: /srv/virtiofs/gitlab/data-gitlab-postgresql-cn
+  capacity:
+    storage: 5Gi
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+  claimRef:
+    name: gitlab-rails-db-1
+    namespace: gitlab
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: NotIn
+          values:
+          - controlplane
+
+
