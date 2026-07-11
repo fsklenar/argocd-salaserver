@@ -31,9 +31,9 @@ kube-prometheus-stack:
               requests:
                 storage: 10Gi
   grafana:
-    sidecar:
-        dashboards:
-          searchNamespace: ALL
+    # sidecar:
+    #     dashboards:
+    #       searchNamespace: ALL
     defaultDashboardsTimezone: Europe/Bratislava
     enabled: true
     defaultDashboardsEnabled: true
