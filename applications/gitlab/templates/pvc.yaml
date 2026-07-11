@@ -81,10 +81,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  annotations:
-    cnpg.io/nodeSerial: "1"
-    cnpg.io/operatorVersion: 1.30.0
-    cnpg.io/pvcStatus: ready
   labels:
     app.kubernetes.io/component: database
     app.kubernetes.io/managed-by: cloudnative-pg
@@ -96,11 +92,6 @@ metadata:
     role: primary
   name: gitlab-rails-db-1
   namespace: gitlab
-  ownerReferences:
-  - apiVersion: postgresql.cnpg.io/v1
-    controller: true
-    kind: Cluster
-    name: gitlab-rails-db
 spec:
   storageClassName: "local-storage"
   accessModes:
