@@ -101,9 +101,6 @@ metadata:
     controller: true
     kind: Cluster
     name: gitlab-rails-db
-    uid: 165a8707-5a62-4f1c-b7c4-8d0b258dbea1
-  resourceVersion: "18238126"
-  uid: 9738968a-72db-4175-bd58-b6267d10fc3a
 spec:
   storageClassName: "local-storage"
   accessModes:
