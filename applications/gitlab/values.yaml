@@ -22,19 +22,23 @@ gitlab:
   postgresql:
     install: false
 
+  redis:
+    install: false
+
+  minio:
+    enabled: false
+
   # postgresql:
   #   persistence:
   #     volumeName: gitlab-postgres
   #     storageClass: local-storage
-  minio:
-    install: true
-    persistence:
-      volumeName: pv-gitlab-minio
-      storageClass: local-storage
-      annotations:
-        helm.sh/resource-policy: "keep"
-  redis:
-    install: false
+  # minio:
+  #   install: false
+  #   persistence:
+  #     volumeName: pv-gitlab-minio
+  #     storageClass: local-storage
+  #     annotations:
+  #       helm.sh/resource-policy: "keep"
   # redis:
   #   master:
   #     persistence:
