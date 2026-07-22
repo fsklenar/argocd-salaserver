@@ -25,8 +25,6 @@ gitlab:
   redis:
     install: false
 
-  minio:
-    enabled: false
 
   # postgresql:
   #   persistence:
@@ -63,6 +61,8 @@ gitlab:
   nginx-ingress: &nginx-ingress
     enabled: false
   global:
+    minio:
+      enabled: false
     psql:
       host: gitlab-rails-db-rw.gitlab.svc.cluster.local
       password:
