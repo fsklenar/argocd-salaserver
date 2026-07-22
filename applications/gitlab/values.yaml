@@ -1,4 +1,11 @@
 gitlab:
+  gitlab:
+    toolbox:
+      backups:
+        objectStorage:
+          config:
+            secret: gitlab-object-storage-s3cmd
+            key: config
   gitlab-runner:
     install: true
     rbac:
@@ -63,6 +70,40 @@ gitlab:
   global:
     minio:
       enabled: false
+  appConfig:
+    object_store:
+      enabled: true
+      # If you aren't exposing Garage through the Ingress Gateway API, set object storage download proxying to true
+      proxy_download: true
+      connection:
+        secret: gitlab-object-storage
+        key: config
+    # Set to buckets created in Garage. Can be omitted if you used the default bucket names.
+    artifacts:
+      bucket: gitlab-artifacts
+    lfs:
+      bucket: git-lfs
+    uploads:
+      bucket: gitlab-uploads
+    packages:
+      bucket: gitlab-packages
+    externalDiffs:
+      enabled: true
+      bucket: gitlab-mr-diffs
+    terraformState:
+      enabled: true
+      bucket: gitlab-terraform-state
+    ciSecureFiles:
+      enabled: true
+      bucket: gitlab-ci-secure-files
+    agentPlanContent:
+      enabled: true
+      bucket: gitlab-agent-plan-content
+    dependencyProxy:
+      enabled: true
+      bucket: gitlab-dependency-proxy
+
+
     psql:
       host: gitlab-rails-db-rw.gitlab.svc.cluster.local
       password:
