@@ -104,23 +104,23 @@ gitlab:
       bucket: gitlab-dependency-proxy
 
 
-    psql:
-      host: gitlab-rails-db-rw.gitlab.svc.cluster.local
-      password:
-        secret: gitlab-rails-db-app
-        key: password
-    redis:
-      auth:
-        enabled: false
-      host: redis-service.gitlab.svc.cluster.local
-    ingress:
+  psql:
+    host: gitlab-rails-db-rw.gitlab.svc.cluster.local
+    password:
+      secret: gitlab-rails-db-app
+      key: password
+  redis:
+    auth:
       enabled: false
-    # ingress:
-    #   apiVersion: "networking.k8s.io/v1"
-    #   class: "nginx"
-    hosts:
-      domain: linuxadmin.eu
-      externalIP: 192.168.0.202
+    host: redis-service.gitlab.svc.cluster.local
+  ingress:
+    enabled: false
+  # ingress:
+  #   apiVersion: "networking.k8s.io/v1"
+  #   class: "nginx"
+  hosts:
+    domain: linuxadmin.eu
+    externalIP: 192.168.0.202
 
 #upgrade 19: https://docs.gitlab.com/charts/installation/migration/bundled_chart_migration/
 #gitlab helm chart values: https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/values.yaml
