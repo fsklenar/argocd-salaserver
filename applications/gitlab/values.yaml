@@ -1,3 +1,14 @@
+garage:
+  # Data persistence
+  persistence:
+    enabled: true
+    meta:
+      storageClass: local-path
+      size: 200Mi
+    data:
+      storageClass: local-path
+      size: 500Mi
+
 gitlab:
   gitlab:
     toolbox:
