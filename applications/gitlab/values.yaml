@@ -143,13 +143,14 @@ gitlab:
 #
 # helm install garage garage-helm/garage -n gitlab -f values.yaml
 #
-# kubectl exec garage-0 -n gitlab  -- /garage status
+# pod_prefix=garage
+# kubectl exec ${pod_prefix}-0 -n gitlab  -- /garage status
 #
-# kubectl exec garage-0 -n gitlab  -- /garage layout assign -z gitlab1 -c 5Gi <node1id>
-# kubectl exec garage-1 -n gitlab  -- /garage layout assign -z gitlab2 -c 5Gi <node2id>
-# kubectl exec garage-2 -n gitlab  -- /garage layout assign -z gitlab3 -c 5Gi <node3id>
+# kubectl exec ${pod_prefix}-0 -n gitlab  -- /garage layout assign -z gitlab1 -c 5Gi <node1id>
+# kubectl exec ${pod_prefix}-1 -n gitlab  -- /garage layout assign -z gitlab2 -c 5Gi <node2id>
+# kubectl exec ${pod_prefix}-2 -n gitlab  -- /garage layout assign -z gitlab3 -c 5Gi <node3id>
 #
-# kubectl exec garage-0 -n gitlab -- /garage layout apply --version 1
+# kubectl exec ${pod_prefix}-0 -n gitlab -- /garage layout apply --version 1
 #
 #
 # buckets=("git-lfs" "gitlab-agent-plan-content" "gitlab-artifacts" "gitlab-backups" \
@@ -157,7 +158,7 @@ gitlab:
 #          "gitlab-packages" "gitlab-pages" "gitlab-terraform-state" "gitlab-uploads" \
 #          "registry" "runner-cache" "tmp" )
 # for bucket in "${buckets[@]}"; do
-#   kubectl exec -n gitlab garage-0  -- /garage bucket create "${bucket}";
+#   kubectl exec -n gitlab ${pod_prefix}-0  -- /garage bucket create "${bucket}";
 # done
 #
 #
@@ -165,7 +166,7 @@ gitlab:
 #
 #
 # local KEY_OUTPUT
-# KEY_OUTPUT=$(kubectl exec -n gitlab garage-0 -- \
+# KEY_OUTPUT=$(kubectl exec -n gitlab ${pod_prefix}-0 -- \
 #     /garage key create gitlab-app-key)
 #
 # local GARAGE_ACCESS_KEY GARAGE_SECRET_KEY
@@ -174,7 +175,7 @@ gitlab:
 #
 # # Grant permissions to the GitLab key.
 # for bucket in "${buckets[@]}"; do
-#   kubectl exec -n gitlab garage-0  -- /garage bucket allow --read --write --key gitlab-app-key "${bucket}";
+#   kubectl exec -n gitlab ${pod_prefix}-0  -- /garage bucket allow --read --write --key gitlab-app-key "${bucket}";
 # done
 #
 #
@@ -184,7 +185,7 @@ gitlab:
 # region: garage
 # aws_access_key_id: ${GARAGE_ACCESS_KEY}
 # aws_secret_access_key: ${GARAGE_SECRET_KEY}
-# endpoint: "http://garage.gitlab.svc.cluster.local:3900"
+# endpoint: "http://${pod_prefix}.gitlab.svc.cluster.local:3900"
 # path_style: true
 # EOF
 #
@@ -193,11 +194,11 @@ gitlab:
 # [default]
 # access_key = ${GARAGE_ACCESS_KEY}
 # secret_key = ${GARAGE_SECRET_KEY}
-# host_base = garage.gitlab.svc.cluster.local:3900
-# host_bucket = garage.gitlab.svc.cluster.local:3900
+# host_base = ${pod_prefix}.gitlab.svc.cluster.local:3900
+# host_bucket = ${pod_prefix}.gitlab.svc.cluster.local:3900
 # use_https = False
 # EOF
-#
+
 #
 # cat <<EOF | kubectl create secret generic gitlab-registry-storage -n gitlab --from-file=config=/dev/stdin
 # s3:
@@ -205,11 +206,11 @@ gitlab:
 #   secretkey: ${GARAGE_SECRET_KEY}
 #   bucket: registry
 #   region: garage
-#   regionendpoint: http://garage.gitlab.svc.cluster.local:3900
+#   regionendpoint: http://${pod_prefix}.gitlab.svc.cluster.local:3900
 #   secure: false
 #   v4auth: true
 #   pathstyle: true
 # EOF
-#
+
 
 
