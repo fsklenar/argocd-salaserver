@@ -1,13 +1,13 @@
-# garage:
-#   # Data persistence
-#   persistence:
-#     enabled: true
-#     meta:
-#       storageClass: local-path
-#       size: 200Mi
-#     data:
-#       storageClass: local-path
-#       size: 500Mi
+garage:
+  # Data persistence
+  persistence:
+    enabled: true
+    meta:
+      storageClass: local-path
+      size: 200Mi
+    data:
+      storageClass: local-path
+      size: 5Gi
 
 gitlab:
   gitlab:
@@ -145,9 +145,9 @@ gitlab:
 #
 # kubectl exec garage-0 -n gitlab  -- /garage status
 #
-# kubectl exec garage-0 -n gitlab  -- /garage layout assign -z gitlab1 -c 500Mi <node1id>
-# kubectl exec garage-1 -n gitlab  -- /garage layout assign -z gitlab2 -c 500Mi <node2id>
-# kubectl exec garage-2 -n gitlab  -- /garage layout assign -z gitlab3 -c 500Mi <node3id>
+# kubectl exec garage-0 -n gitlab  -- /garage layout assign -z gitlab1 -c 5Gi <node1id>
+# kubectl exec garage-1 -n gitlab  -- /garage layout assign -z gitlab2 -c 5Gi <node2id>
+# kubectl exec garage-2 -n gitlab  -- /garage layout assign -z gitlab3 -c 5Gi <node3id>
 #
 # kubectl exec garage-0 -n gitlab -- /garage layout apply --version 1
 #
