@@ -52,33 +52,33 @@ spec:
           operator: NotIn
           values:
           - controlplane
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-gitlab-minio
-  namespace: gitlab
-spec:
-  accessModes:
-  - ReadWriteOnce
-  storageClassName: local-storage
-  local:
-    path: /srv/virtiofs/gitlab/gitlab-minio
-  capacity:
-    storage: 10Gi
-  persistentVolumeReclaimPolicy: Retain
-  volumeMode: Filesystem
-  claimRef:
-    name: gitlab-minio
-    namespace: gitlab
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: NotIn
-          values:
-          - controlplane
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: pv-gitlab-minio
+#   namespace: gitlab
+# spec:
+#   accessModes:
+#   - ReadWriteOnce
+#   storageClassName: local-storage
+#   local:
+#     path: /srv/virtiofs/gitlab/gitlab-minio
+#   capacity:
+#     storage: 10Gi
+#   persistentVolumeReclaimPolicy: Retain
+#   volumeMode: Filesystem
+#   claimRef:
+#     name: gitlab-minio
+#     namespace: gitlab
+#   nodeAffinity:
+#     required:
+#       nodeSelectorTerms:
+#       - matchExpressions:
+#         - key: kubernetes.io/hostname
+#           operator: NotIn
+#           values:
+#           - controlplane
 ---
 apiVersion: v1
 kind: PersistentVolume
