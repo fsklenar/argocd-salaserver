@@ -81,6 +81,8 @@ gitlab:
   nginx-ingress: &nginx-ingress
     enabled: false
   global:
+    gatewayApi:
+      enabled: false
     minio:
       enabled: false
     appConfig:
