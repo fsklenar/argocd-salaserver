@@ -10,6 +10,8 @@ garage:
       size: 5Gi
 
 gitlab:
+  registry:
+    enabled: false
   gitlab:
     toolbox:
       backups:
