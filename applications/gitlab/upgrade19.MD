@@ -4,6 +4,7 @@ gitlab helm chart values: https://gitlab.com/gitlab-org/charts/gitlab/-/blob/mas
 
 ## !!!!!IMPORTANT!!!!!
 ### Garage Installation:
+```
  helm repo add garage-helm https://datahub-local.github.io/garage-helm
 
  helm install garage garage-helm/garage -n gitlab -f values.yaml
@@ -73,3 +74,4 @@ gitlab helm chart values: https://gitlab.com/gitlab-org/charts/gitlab/-/blob/mas
    v4auth: true
    pathstyle: true
  EOF
+ ```
