@@ -57,6 +57,8 @@ spec:
           ports:
             - containerPort: 5432 # Default PostgreSQL port
           env:
+            - name: IGNORE_DATABASE_FSTYPE
+              value: "true"
             - name: POSTGRES_DB
               value: immich # The database name for Immich
             - name: POSTGRES_USER
