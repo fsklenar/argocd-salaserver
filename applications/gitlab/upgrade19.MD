@@ -1,8 +1,10 @@
 ## Upgrade to Gutlab 19 - helm chart breaking changes
 https://docs.gitlab.com/charts/installation/migration/bundled_chart_migration/
-gitlab helm chart values: https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/values.yaml
 
-## Migration from bundled PostgreSQL:
+Gitlab helm chart values: https://gitlab.com/gitlab-org/charts/gitlab/-/blob/master/values.yaml
+
+
+### Migration from bundled PostgreSQL:
 ```
 export OLD_PG_POD=$(kubectl get pods -n gitlab -l app.kubernetes.io/name=postgresql -o jsonpath="{.items[0].metadata.name}")
 export NEW_CNPG_POD=gitlab-rails-db-1
