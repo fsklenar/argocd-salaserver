@@ -40,6 +40,11 @@ metadata:
   name: headlamp-token-rotator
   namespace: headlamp
 rules:
+  - apiGroups: [""]
+    resources:
+      - serviceaccounts/token
+    verbs:
+      - create
   - apiGroups:
       - "gateway.networking.k8s.io"
     resources:
