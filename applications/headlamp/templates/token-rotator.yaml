@@ -40,22 +40,19 @@ metadata:
   name: headlamp-token-rotator
   namespace: headlamp
 rules:
-  - apiGroups: [""]
+  - apiGroups:
+      - "gateway.networking.k8s.io"
     resources:
-      - serviceaccounts/token
+      - "httproutes"
+      - "httproutes/status"
     verbs:
-      - create
-  - apiGroups: ["traefik.io"]
-    resources:
-      - middlewares
-    verbs:
-      - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
+      - "get"
+      - "list"
+      - "watch"
+      - "create"
+      - "update"
+      - "patch"
+      - "delete"
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
