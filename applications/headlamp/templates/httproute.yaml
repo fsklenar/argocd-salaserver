@@ -24,7 +24,7 @@ spec:
     filters:
     - requestHeaderModifier:
         add:
-        - name: Authorization
+        - name: "Authorization"
           value: "Bearer <secbear>"
     matches:
     - path:
