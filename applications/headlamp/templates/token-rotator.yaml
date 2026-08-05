@@ -1,0 +1,73 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: headlamp-token-rotator
+  namespace: headlamp
+spec:
+  schedule: "*/30 * * * *"   # every 30 minutes
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          serviceAccountName: headlamp-token-rotator
+          restartPolicy: Never
+          containers:
+          - name: rotate
+            image: alpine/kubectl:1.35.4
+            command:
+              - /bin/sh
+              - -c
+              - |
+                set -e
+                echo -e "apiVersion: gateway.networking.k8s.io/v1\nkind: HTTPRoute\nmetadata:\n  labels:\n    app.kubernetes.io/instance: headlamp\n  name: headlamp\n  namespace: headlamp\nspec:\n  hostnames:\n  - headlamp.linuxadmin.eu\n  - headlamp.vpn.linuxadmin.eu\n  parentRefs:\n  - group: gateway.networking.k8s.io\n    kind: Gateway\n    name: cilium-gateway-https\n    namespace: kube-system\n  rules:\n  - backendRefs:\n    - group: ""\n      kind: Service\n      name: headlamp\n      port: 80\n      weight: 1\n    filters:\n    - type: RequestHeaderModifier\n      requestHeaderModifier:\n        add:\n        - name: Authorization\n          value: Bearer <secbear>\n    matches:\n    - path:\n        type: PathPrefix\n        value: /"> httproute.yaml.tpl
+                echo "Generating new token"
+                sed "s|<secbear>|$(kubectl create token headlamp -n headlamp)|g" httproute.yaml.tpl > httproute.yaml
+                echo "Applying new token to the Httproute"
+                kubectl apply -f httproute.yaml -n headlamp
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: headlamp-token-rotator
+  namespace: headlamp
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: headlamp-token-rotator
+  namespace: headlamp
+rules:
+  - apiGroups: [""]
+    resources:
+      - serviceaccounts/token
+    verbs:
+      - create
+  - apiGroups: ["traefik.io"]
+    resources:
+      - middlewares
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: headlamp-token-rotator
+  namespace: headlamp
+subjects:
+  - kind: ServiceAccount
+    name: headlamp-token-rotator
+    namespace: headlamp
+roleRef:
+  kind: Role
+  name: headlamp-token-rotator
+  apiGroup: rbac.authorization.k8s.io
