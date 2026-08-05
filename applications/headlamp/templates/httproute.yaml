@@ -22,7 +22,8 @@ spec:
       port: 80
       weight: 1
     filters:
-    - requestHeaderModifier:
+    - type: requestHeaderModifier
+      responseHeaderModifier:
         add:
         - name: Authorization
           value: Bearer <secbear>
