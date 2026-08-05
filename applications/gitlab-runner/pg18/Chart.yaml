@@ -7,3 +7,5 @@ dependencies:
 - name: gitlab-runner
   version: 0.91.0
   repository: https://charts.gitlab.io/
+
+#kubectl delete validatingadmissionpolicybinding safe-upgrades.gateway.networking.k8s.io
