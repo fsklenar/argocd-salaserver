@@ -24,8 +24,13 @@ headlamp:
         - type: RequestHeaderModifier
           requestHeaderModifier:
             add:
-              - name: X-App-Source
-                value: gateway-api
+              - name: X-App-Source-Request
+                value: gateway-api-r1
+        - type: ResponseHeaderModifier  # <--- Changed from RequestHeaderModifier
+          responseHeaderModifier:       # <--- Changed from requestHeaderModifier
+            add:
+              - name: X-App-Source-Response
+                value: gateway-api-r2
   # image:
   #   tag: "v0.41.0"
   config:
