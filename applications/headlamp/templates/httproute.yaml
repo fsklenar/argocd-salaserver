@@ -23,7 +23,7 @@ spec:
       weight: 1
     filters:
     - type: requestHeaderModifier
-      responseHeaderModifier:
+      requestHeaderModifier:
         add:
         - name: Authorization
           value: Bearer <secbear>
