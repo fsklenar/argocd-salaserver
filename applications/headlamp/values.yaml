@@ -20,6 +20,12 @@ headlamp:
           - path:
               type: PathPrefix
               value: /
+        filters:
+        - type: RequestHeaderModifier
+          requestHeaderModifier:
+            add:
+              - name: X-App-Source
+                value: gateway-api
   # image:
   #   tag: "v0.41.0"
   config:
