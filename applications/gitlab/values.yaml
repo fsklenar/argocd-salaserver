@@ -78,9 +78,10 @@ gitlab:
     installCRDs: false
   certmanager-issuer:
     email: frantisek.sklenar@gmail.com
-  nginx-ingress: &nginx-ingress
+  nginx-ingress:
     enabled: false
   global:
+    installEnvoy: false
     gatewayApi:
       enabled: false
     minio:
