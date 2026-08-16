@@ -81,9 +81,9 @@ gitlab:
   nginx-ingress:
     enabled: false
   global:
-    installEnvoy: false
     gatewayApi:
       enabled: false
+      installEnvoy: false
     minio:
       enabled: false
     appConfig:
