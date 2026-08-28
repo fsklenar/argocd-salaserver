@@ -38,7 +38,7 @@ kube-prometheus-stack:
     forceDeployDashboards: true
     forceDeployDatasources: true
     image:
-      tag: "12.4.2"
+      tag: "13.1.1"
     admin:
       existingSecret: "monitoring-grafana"
       userKey: admin-user
