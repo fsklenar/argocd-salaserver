@@ -138,6 +138,8 @@ gitlab:
       domain: linuxadmin.eu
       externalIP: 192.168.0.202
 
+#Fix: kubectl delete validatingadmissionpolicybinding safe-upgrades.gateway.networking.k8s.io
+
 
 
 
