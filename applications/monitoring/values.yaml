@@ -37,6 +37,7 @@ kube-prometheus-stack:
     defaultDashboardsEditable: true
     forceDeployDashboards: true
     forceDeployDatasources: true
+    #remove this tag after Grafana fix upgrade to 13.2.0
     image:
       tag: "13.1.4"
     admin:
