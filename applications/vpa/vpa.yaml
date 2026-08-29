@@ -1495,6 +1495,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+          args: ["--feature-gates=InPlace=true"]
           resources:
             limits:
               cpu: 200m
@@ -1604,7 +1605,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          args: ["--v=4", "--stderrthreshold=info", "--reload-cert"]
+          args: ["--v=4", "--stderrthreshold=info", "--reload-cert", "--feature-gates=InPlace=true"]
           volumeMounts:
             - name: tls-certs
               mountPath: "/etc/tls-certs"
