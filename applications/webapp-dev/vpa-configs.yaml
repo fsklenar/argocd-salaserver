@@ -23,4 +23,4 @@ spec:
     kind: Deployment
     name: webapp-dev-deployment
   updatePolicy:
-    updateMode: Auto
+    updateMode: InPlace
