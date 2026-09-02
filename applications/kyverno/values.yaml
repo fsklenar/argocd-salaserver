@@ -13,21 +13,29 @@ kyverno:
       matchLabels:
         dashboards: "grafana"
   admissionController:
+    metricsService:
+      create: true
     serviceMonitor:
       enabled: true
       additionalLabels:
         release: monitoring # Replace with your prometheus-stack release name
   backgroundController:
+    metricsService:
+      create: true
     serviceMonitor:
       enabled: true
       additionalLabels:
         release: monitoring
   cleanupController:
+    metricsService:
+      create: true
     serviceMonitor:
       enabled: true
       additionalLabels:
         release: monitoring
   reportsController:
+    metricsService:
+      create: true
     serviceMonitor:
       enabled: true
       additionalLabels:
