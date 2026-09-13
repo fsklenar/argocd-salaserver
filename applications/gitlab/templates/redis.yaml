@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:8.8.0
+        image: redis:8.10
         command: ["redis-server", "--appendonly", "yes", "--protected-mode", "no"]
         ports:
         - containerPort: 6379

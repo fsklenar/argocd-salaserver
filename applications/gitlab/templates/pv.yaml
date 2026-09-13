@@ -52,6 +52,60 @@ spec:
           operator: NotIn
           values:
           - controlplane
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-gitlab-rails-db-2
+  namespace: gitlab
+spec:
+  storageClassName: "local-storage"
+  accessModes:
+  - ReadWriteOnce
+  local:
+    path: /srv/virtiofs/gitlab/data-gitlab-postgresql-cn-2
+  capacity:
+    storage: 5Gi
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+  claimRef:
+    name: gitlab-rails-db-2
+    namespace: gitlab
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: NotIn
+          values:
+          - controlplane
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-gitlab-rails-db-3
+  namespace: gitlab
+spec:
+  storageClassName: "local-storage"
+  accessModes:
+  - ReadWriteOnce
+  local:
+    path: /srv/virtiofs/gitlab/data-gitlab-postgresql-cn-3
+  capacity:
+    storage: 5Gi
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+  claimRef:
+    name: gitlab-rails-db-3
+    namespace: gitlab
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: NotIn
+          values:
+          - controlplane
 # ---
 # apiVersion: v1
 # kind: PersistentVolume
