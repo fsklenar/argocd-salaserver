@@ -84,7 +84,6 @@ gitlab:
     gatewayApi:
       enabled: false
       installEnvoy: false
-      configureCertmanager: true
     minio:
       enabled: false
     appConfig:
