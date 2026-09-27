@@ -1,7 +1,7 @@
 apiVersion: v2
 name: immich
 type: application
-version: 3.2.0
+version: 3.2.2
 
 dependencies:
 - name: immich
