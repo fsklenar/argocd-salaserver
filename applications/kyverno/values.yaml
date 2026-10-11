@@ -28,6 +28,9 @@ kyverno:
       additionalLabels:
         release: monitoring
   reportsController:
+    extraArgs:
+      clientRateLimitQPS: "500"
+      clientRateLimitBurst: "500"
     serviceMonitor:
       enabled: true
       additionalLabels:
