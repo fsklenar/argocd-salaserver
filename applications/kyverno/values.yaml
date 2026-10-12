@@ -31,7 +31,6 @@ kyverno:
     replicas: 2
     revisionHistoryLimit: 4
     resyncPeriod: 60m
-    backgroundScanInterval: 2h   # default is 1h
     extraArgs:
       clientRateLimitQPS: "500"
       clientRateLimitBurst: "500"
@@ -39,6 +38,8 @@ kyverno:
       enabled: true
       additionalLabels:
         release: monitoring
+  features:
+    backgroundScanInterval: 2h   # default is 1h
   metricsConfig:
     enabled: true
         # - apiGroups:
