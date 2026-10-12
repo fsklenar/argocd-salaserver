@@ -39,7 +39,8 @@ kyverno:
       additionalLabels:
         release: monitoring
   features:
-    backgroundScanInterval: 2h   # default is 1h
+    backgroundScan:
+      backgroundScanInterval: 2h   # default is 1h
   metricsConfig:
     enabled: true
         # - apiGroups:
