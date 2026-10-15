@@ -28,7 +28,7 @@ kyverno:
       additionalLabels:
         release: monitoring
   reportsController:
-
+    enabled: false
     #replicas: 2
     revisionHistoryLimit: 4
     resyncPeriod: 60m
