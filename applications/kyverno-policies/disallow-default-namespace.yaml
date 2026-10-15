@@ -20,7 +20,7 @@ metadata:
       object and not at the Pod template level.
 spec:
   validationFailureAction: Enforce
-  background: true
+  background: false
   rules:
   - name: validate-namespace
     skipBackgroundRequests: true

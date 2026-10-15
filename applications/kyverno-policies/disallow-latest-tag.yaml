@@ -15,7 +15,7 @@ metadata:
       specifies a tag and that it is not called `latest`.
 spec:
   validationFailureAction: Audit
-  background: true
+  background: false
   rules:
   - name: require-image-tag
     skipBackgroundRequests: true
