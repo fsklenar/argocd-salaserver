@@ -31,7 +31,7 @@ spec:
         volumeMounts:
         - mountPath: /data
           name: redis-data
-      imagePullPolicy: Always
+        imagePullPolicy: Always
       volumes:
         - name: redis-data
           persistentVolumeClaim:
