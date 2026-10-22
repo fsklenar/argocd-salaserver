@@ -14,7 +14,6 @@ spec:
       labels:
         app: webapp-dev
     spec:
-      imagePullPolicy: Always
       volumes:
         - name: data-volume
           persistentVolumeClaim:
@@ -33,6 +32,8 @@ spec:
         volumeMounts:
           - name: data-volume
             mountPath: /usr/share/nginx/html/speed
+        imagePullPolicy: Always
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
