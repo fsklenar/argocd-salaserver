@@ -38,8 +38,8 @@ kube-prometheus-stack:
     forceDeployDashboards: true
     forceDeployDatasources: true
     #remove this tag after Grafana fix upgrade to 13.2.0
-    image:
-      tag: "13.2.1"
+    # image:
+    #   tag: "13.2.1"
     admin:
       existingSecret: "monitoring-grafana"
       userKey: admin-user
