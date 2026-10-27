@@ -1,0 +1,43 @@
+nxrm-ha:
+
+  serviceAccount:
+    enabled: true
+
+  statefulset:
+    replicaCount: 1
+
+  storageClass:
+    enabled: false          # don't let the chart create its own storage class
+
+  pvc:
+    storageClass: local-path
+    size: 20Gi
+
+  ingress:
+    enabled: false          # we use Gateway API instead
+
+  container:
+    resources:
+      # See help documentation, these are minimum system requirements
+      requests:
+        cpu: 200m
+        memory: "4Gi"
+    additionalEnv:
+      - name: DB_NAME
+        value: "nexusdb"
+
+      - name: DB_HOST
+        value: "nexusdb.nexus.svc.cluster.local"
+
+      - name: DB_USER
+        value: "nexus"
+
+      - name: DB_PASSWORD
+        valueFrom:
+          secretKeyRef:
+          name: nexus-db
+          key: password
+
+  secret:
+    existingDbSecret:
+      enabled: true
