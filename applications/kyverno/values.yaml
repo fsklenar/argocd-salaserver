@@ -51,5 +51,3 @@ kyverno:
         #     - delete
         #     - list
         #     - watch
-# kyverno-policies:
-#   policyType: ClusterPolicy
