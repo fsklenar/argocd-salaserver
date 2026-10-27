@@ -8,6 +8,7 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:18
   storage:
     size: 5Gi
+    storageClassName: "local-storage"
   resources:
     requests:
       memory: "256Mi"
