@@ -2,11 +2,6 @@ kyverno-policies:
   policyType: ClusterPolicy
 
 kyverno:
-  cleanupController:
-    rbac:
-      create: true
-      clusterRole:
-        extraResources: []
   grafana:
     enabled: true
     grafanaDashboard:
@@ -26,6 +21,10 @@ kyverno:
       additionalLabels:
         release: monitoring
   cleanupController:
+    rbac:
+      create: true
+      clusterRole:
+        extraResources: []
     serviceMonitor:
       enabled: true
       additionalLabels:
