@@ -32,6 +32,10 @@ spec:
         - group: batch # Kubernetes API group for Job
           kind: Job      # Kubernetes resource kind
           name: gitlab-issuer-e860305 # The specific name of the Job to ignore
+        - group: kyverno.io
+          kind: ClusterPolicy
+          jqPathExpressions:
+            - .spec.rules[]?.skipBackgroundRequests
       # ignoreDifferences:
       # - group: "" # Group is empty for core resources like Secret
       #   kind: Deployment
