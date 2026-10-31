@@ -1,11 +1,11 @@
 apiVersion: v2
 name: gitlab
 type: application
-version: v19.5.1
+version: v19.5.3
 
 dependencies:
   - name: gitlab
-    version: 10.5.1
+    version: 10.5.4
     repository: https://charts.gitlab.io/
   - name: garage
     version: 0.9.0
