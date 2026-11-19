@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/component: alert-router
     app.kubernetes.io/instance: prometheus-kps
     app: kube-prometheus-stack
-    release: prometheus-kps
+    release: monitoring
   name: prometheus-kps-kube-promet-alertmanager-add01-rules
   namespace: monitoring
 spec:
