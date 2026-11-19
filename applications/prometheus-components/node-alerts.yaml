@@ -298,12 +298,12 @@ spec:
         summary: Host clock not synchronising (instance {{ $labels.instance }})
         description: Clock not synchronising.\n  VALUE = {{ $value }}
 
-    # - alert: PodHighCPU
-    #   expr: sum by (namespace, pod, container) (rate(container_cpu_usage_seconds_total{container!="",container!="POD"}[5m])) > 1
-    #   for: 10m
-    #   labels:
-    #     severity: critical
-    #     action: restart
-    #   annotations:
-    #     summary: Container CPU usage above 1000m
-    #     description: Container {{ $labels.container }} in pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has been consuming more than 1000m CPU for at least 10 minutes. Current CPU usage is {{ $value }} cores.
+    - alert: PodHighCPU
+      expr: sum by (namespace, pod, container) (rate(container_cpu_usage_seconds_total{container!="",container!="POD"}[5m])) > 1
+      for: 10m
+      labels:
+        severity: critical
+        action: restart
+      annotations:
+        summary: Container CPU usage above 1000m
+        description: Container {{ $labels.container }} in pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has been consuming more than 1000m CPU for at least 10 minutes. Current CPU usage is {{ $value }} cores.
