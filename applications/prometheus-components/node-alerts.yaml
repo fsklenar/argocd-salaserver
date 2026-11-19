@@ -10,6 +10,26 @@ metadata:
   namespace: monitoring
 spec:
   groups:
+  - name: pod-cpu-alerts
+    rules:
+      - alert: PodHighCPU
+        expr: |
+          sum by (namespace, pod, container) (
+            rate(container_cpu_usage_seconds_total{
+              container!="",
+              container!="POD"
+            }[5m])
+          ) > 1500m
+        for: 10m
+        labels:
+          severity: critical
+          action: restart
+        annotations:
+          summary: "Container CPU usage above 1000m"
+          description: >-
+            Container {{ $labels.container }} in pod
+            {{ $labels.pod }} has been consuming more than 1.5 CPU
+            for at least 10 minutes.
   - name: node_exporter_alerts
     rules:
     - alert: Node down
