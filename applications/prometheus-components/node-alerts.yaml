@@ -9,6 +9,7 @@ metadata:
   name: prometheus-kps-kube-promet-alertmanager-add01-rules
   namespace: monitoring
 spec:
+  groups:
   - name: node_exporter_alerts
     rules:
     - alert: Node down
