@@ -305,8 +305,4 @@ spec:
         action: restart
       annotations:
         summary: Container CPU usage above 1000m
-        description: >-
-          Container {{ $labels.container }} in pod {{ $labels.pod }}
-          in namespace {{ $labels.namespace }} has been consuming more than
-          1000m CPU for at least 10 minutes. Current CPU usage is
-          {{ $value }} cores.
+        description: Container {{ $labels.container }} in pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has been consuming more than 1000m CPU for at least 10 minutes. Current CPU usage is {{ $value }} cores.
